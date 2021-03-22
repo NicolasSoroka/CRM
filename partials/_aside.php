@@ -146,7 +146,7 @@
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
-									<span class="menu-text">Listado de vendedores</span> <span class="menu-label"> <span class="label label-primary label-inline">Editar</span></span>
+									<span class="menu-text">Listado de vendedores</span>
 								</a>
 							</li>
 							<li class="menu-item" aria-haspopup="true">

@@ -1,20 +1,20 @@
 <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-        <!--begin::Details-->
-        <div class="d-flex align-items-center flex-wrap mr-2">
-            <!--begin::Title-->
-            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Listado de leads asignados</h5>
-            <!--end::Title-->
-        </div>
-        <!--end::Details-->
-        <!--begin::Toolbar-->
-        <div class="d-flex align-items-center">
-            <!--begin::Button-->
-            <a href="#" class="btn btn-danger font-weight-bold">Volver</a>
-            <!--end::Button-->
-        </div>
-        <!--end::Toolbar-->
-    </div>
+	<div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+		<!--begin::Details-->
+		<div class="d-flex align-items-center flex-wrap mr-2">
+			<!--begin::Title-->
+			<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Listado de leads asignados</h5>
+			<!--end::Title-->
+		</div>
+		<!--end::Details-->
+		<!--begin::Toolbar-->
+		<div class="d-flex align-items-center">
+			<!--begin::Button-->
+			<a href="#" class="btn btn-danger font-weight-bold">Volver</a>
+			<!--end::Button-->
+		</div>
+		<!--end::Toolbar-->
+	</div>
 </div>
 <!--begin::List-->
 <div class="flex-row-fluid lg-8 d-block" id="kt_inbox_list">
@@ -73,7 +73,9 @@
 							<form action="">
 								<!-- aca pongo el id del lead -->
 								<input type="hidden" value="#">
-								<button type="submit" class="btn-sm btn-primary mr-2">Asignar</button>
+								<button type="button" class="btn-sm btn-primary mr-2" data-toggle="modal" data-target="#staticBackdrop">
+									Reasignar
+								</button>
 								<button type="submit" class="btn-sm btn-success mr-2">Editar</button>
 							</form>
 						</div>
@@ -102,12 +104,14 @@
 							<span class="mt-2 mr-3 font-weight-bolder text-muted w-200px text-right" data-toggle="view"><em>Cargado el 6/2/20</em></span>
 						</div>
 						<div class="mt-2">
-							<form action="">
-								<!-- aca pongo el id del lead -->
-								<input type="hidden" value="#">
-								<button type="submit" class="btn-sm btn-primary mr-2">Asignar</button>
-								<button type="submit" class="btn-sm btn-success mr-2">Editar</button>
-							</form>
+
+							<!-- Form aca con el id del lead -->
+							<input type="hidden" value="#">
+							<button type="button" class="btn-sm btn-primary mr-2" data-toggle="modal" data-target="#staticBackdrop">
+								Reasignar
+							</button>
+							<button type="submit" class="btn-sm btn-success mr-2">Editar</button>
+
 						</div>
 					</div>
 					<!--end::Info-->
@@ -120,3 +124,45 @@
 	<!--end::Card-->
 </div>
 <!--end::List-->
+
+
+<!-- Modal-->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Asignar lead</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<i aria-hidden="true" class="ki ki-close"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="col-10">
+					<select class="form-control" id="exampleSelectd">
+						<option selected disabled>-- Seleccione vendedor --</option>
+						<option>Vendedor 1</option>
+						<option>Vendedor 2</option>
+						<option>Vendedor 3</option>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cancelar</button>
+				<button type="button" onclick="swalfire();" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Asignar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--end::Modal-->
+<script>
+	function swalfire() {
+		Swal.fire({
+			title: "Lead asignado!",
+			text: "El lead fue asignado a User",
+			icon: "success",
+			buttonsStyling: false,
+			showConfirmButton: false,
+			timer: 2000
+		})
+	}
+</script>

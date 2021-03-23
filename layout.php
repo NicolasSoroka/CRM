@@ -5,7 +5,7 @@
 			<!--begin::Page-->
 			<div class="d-flex flex-row flex-column-fluid page">
  
-				<?php include ("partials/_aside.php") ?>
+				<?php include ("partials/_aside-user.php") ?>
 
 				<!--begin::Wrapper-->
 				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
@@ -19,7 +19,7 @@
 
 						<!--Content-->
 						
-						<?php include ("partials/sales/_sales-view.php") ?>
+						<?php include ("partials/leads/_my-leads.php") ?>
 
 					</div>
 

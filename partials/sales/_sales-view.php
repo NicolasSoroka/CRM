@@ -17,7 +17,7 @@
             <thead>
                 <tr class="text-uppercase">
                     <th style="min-width: 80px">Fecha</th>
-                    <th style="min-width: 150px">Nombre cliente</th>
+                    <th style="min-width: 200px">Nombre cliente</th>
                     <th style="min-width: 130px">Medio de pago</th>
                     <th style="min-width: 130px">Vendedor</th>
                     <th style="min-width: 120px">Valor</th>
@@ -37,11 +37,10 @@
 
                             <div>
                                 <label class="text-dark-75 font-weight-bolder mb-1 font-size-lg">Carlos Santana</label>
-                                <span class="text-muted font-weight-bold d-block">Curso de Bobinado</span>
+                                <span class="text-muted font-weight-bold d-block">1122334455  carlos@santana.com</span>
                             </div>
                         </div>
                     </td>
-
                     <td>
                         <div class="symbol symbol-50 flex-shrink-0 mr-4">
                             <div class="symbol-label" style="background-image: url('assets/media/logos/mercadopago.jpg')"></div>
@@ -51,7 +50,7 @@
                         <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Vendedor 1</span>
                     </td>
                     <td>
-                        <span class="label label-lg label-primary label-inline">$8000</span>
+                        <span class="label label-lg label-primary label-inline">$48000</span>
                     </td>
                     <td class="pr-0">
                         <i class="ml-4 far fa-file-pdf text-primary icon-3x" data-toggle="modal" data-target="#modalPdf"></i>

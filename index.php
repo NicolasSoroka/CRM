@@ -5,15 +5,12 @@
 		<base href="">
 		<meta charset="utf-8" />
 		<title>Ventas IADE</title>
-		<meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<link rel="canonical" href="https://keenthemes.com/metronic" />
 
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
 		<!--end::Fonts-->
-
 		<!--begin::Page Vendors Styles(used by this page)-->
 		<link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 
@@ -53,9 +50,6 @@
 		<?php include ("partials/_extras/scrolltop.php");?>
 
 		<?php include ("partials/_extras/offcanvas/demo-panel.php");?>
-		<script>
-			var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
-		</script>
 
 		<!--begin::Global Config(global config for global JS scripts)-->
 		<script>

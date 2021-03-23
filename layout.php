@@ -19,7 +19,7 @@
 
 						<!--Content-->
 						
-						<?php include ("partials/users/_sales-accu.php") ?>
+						<?php include ("partials/sales/_sales-view.php") ?>
 
 					</div>
 

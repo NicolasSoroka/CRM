@@ -154,15 +154,7 @@
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
-									<span class="menu-text">Ventas acumuladas</span>
-								</a>
-							</li>
-							<li class="menu-item" aria-haspopup="true">
-								<a href="custom/apps/inbox.html" class="menu-link">
-									<i class="menu-bullet menu-bullet-line">
-										<span></span>
-									</i>
-									<span class="menu-text">Historial de sueldos</span>
+									<span class="menu-text">Ventas realizadas</span>
 								</a>
 							</li>
 						</ul>

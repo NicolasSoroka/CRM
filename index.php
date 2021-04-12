@@ -1,140 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-	<!--begin::Head-->
-	<head>
-		<base href="">
-		<meta charset="utf-8" />
-		<title>Ventas IADE</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!--begin::Head-->
 
-		<!--begin::Fonts-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+<?php //Route controller
+if (isset($_GET['page'])) $route = $_GET['page'];
+else $route = '_main';
+?>
 
-		<!--end::Fonts-->
-		<!--begin::Page Vendors Styles(used by this page)-->
-		<link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+<head>
+	<base href="">
+	<meta charset="utf-8" />
+	<title>Ventas IADE</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-		<!--end::Page Vendors Styles-->
+	<!--begin::Fonts-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
-		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<!--end::Fonts-->
+	<!--begin::Page Vendors Styles(used by this page)-->
+	<link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 
-		<!--end::Global Theme Styles-->
+	<!--end::Page Vendors Styles-->
 
-		<!--begin::Layout Themes(used by all pages)-->
-		<link href="assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+	<!--begin::Global Theme Styles(used by all pages)-->
+	<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 
-		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
-	</head>
-	<!--end::Head-->
+	<!--end::Global Theme Styles-->
 
-	<!--begin::Body-->
-	<body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed page-loading">
+	<!--begin::Layout Themes(used by all pages)-->
+	<link href="assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
 
-		<?php include ("partials/_page-loader.php");?>
+	<!--end::Layout Themes-->
+	<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+</head>
+<!--end::Head-->
 
-		<?php include ("layout.php");?>
+<!--begin::Body-->
 
-		<?php include ("partials/_extras/offcanvas/quick-user.php");?>
+<body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed page-loading">
 
-		<?php include ("partials/_extras/offcanvas/quick-panel.php");?>
+	<?php include("partials/_page-loader.php"); ?>
 
-		<?php include ("partials/_extras/chat.php");?>
 
-		<?php include ("partials/_extras/scrolltop.php");?>
 
-		<?php include ("partials/_extras/offcanvas/demo-panel.php");?>
+	<!--begin::Main-->
+	<?php include("partials/_header-mobile.php") ?>
+	<div class="d-flex flex-column flex-root">
 
-		<!--begin::Global Config(global config for global JS scripts)-->
-		<script>
-			var KTAppSettings = {
-				"breakpoints": {
-					"sm": 576,
-					"md": 768,
-					"lg": 992,
-					"xl": 1200,
-					"xxl": 1400
-				},
-				"colors": {
-					"theme": {
-						"base": {
-							"white": "#ffffff",
-							"primary": "#3699FF",
-							"secondary": "#E5EAEE",
-							"success": "#1BC5BD",
-							"info": "#8950FC",
-							"warning": "#FFA800",
-							"danger": "#F64E60",
-							"light": "#E4E6EF",
-							"dark": "#181C32"
-						},
-						"light": {
-							"white": "#ffffff",
-							"primary": "#E1F0FF",
-							"secondary": "#EBEDF3",
-							"success": "#C9F7F5",
-							"info": "#EEE5FF",
-							"warning": "#FFF4DE",
-							"danger": "#FFE2E5",
-							"light": "#F3F6F9",
-							"dark": "#D6D6E0"
-						},
-						"inverse": {
-							"white": "#ffffff",
-							"primary": "#ffffff",
-							"secondary": "#3F4254",
-							"success": "#ffffff",
-							"info": "#ffffff",
-							"warning": "#ffffff",
-							"danger": "#ffffff",
-							"light": "#464E5F",
-							"dark": "#ffffff"
-						}
+		<!--begin::Page-->
+		<div class="d-flex flex-row flex-column-fluid page">
+
+			<?php include("partials/_aside.php") ?>
+
+			<!--begin::Wrapper-->
+			<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+
+				<?php include("partials/_header.php") ?>
+
+				<!--begin::Content-->
+				<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+					<!-- los subheaders se construyen en cada vista. -->
+					<!-- <?php include("partials/_subheader/subheader-v1.php") ?> -->
+
+					<!--Content-->
+
+					<?php include("partials/".$route.".php") ?>
+
+				</div>
+
+				<!--end::Content-->
+
+				<?php include("partials/_footer.php") ?>
+			</div>
+
+			<!--end::Wrapper-->
+		</div>
+
+		<!--end::Page-->
+	</div>
+
+	<!--end::Main-->
+
+
+
+	<?php include("partials/_extras/offcanvas/quick-user.php"); ?>
+
+	<?php include("partials/_extras/offcanvas/quick-panel.php"); ?>
+
+	<?php include("partials/_extras/chat.php"); ?>
+
+	<?php include("partials/_extras/scrolltop.php"); ?>
+
+	<?php include("partials/_extras/offcanvas/demo-panel.php"); ?>
+
+	<!--begin::Global Config(global config for global JS scripts)-->
+	<script>
+		var KTAppSettings = {
+			"breakpoints": {
+				"sm": 576,
+				"md": 768,
+				"lg": 992,
+				"xl": 1200,
+				"xxl": 1400
+			},
+			"colors": {
+				"theme": {
+					"base": {
+						"white": "#ffffff",
+						"primary": "#3699FF",
+						"secondary": "#E5EAEE",
+						"success": "#1BC5BD",
+						"info": "#8950FC",
+						"warning": "#FFA800",
+						"danger": "#F64E60",
+						"light": "#E4E6EF",
+						"dark": "#181C32"
 					},
-					"gray": {
-						"gray-100": "#F3F6F9",
-						"gray-200": "#EBEDF3",
-						"gray-300": "#E4E6EF",
-						"gray-400": "#D1D3E0",
-						"gray-500": "#B5B5C3",
-						"gray-600": "#7E8299",
-						"gray-700": "#5E6278",
-						"gray-800": "#3F4254",
-						"gray-900": "#181C32"
+					"light": {
+						"white": "#ffffff",
+						"primary": "#E1F0FF",
+						"secondary": "#EBEDF3",
+						"success": "#C9F7F5",
+						"info": "#EEE5FF",
+						"warning": "#FFF4DE",
+						"danger": "#FFE2E5",
+						"light": "#F3F6F9",
+						"dark": "#D6D6E0"
+					},
+					"inverse": {
+						"white": "#ffffff",
+						"primary": "#ffffff",
+						"secondary": "#3F4254",
+						"success": "#ffffff",
+						"info": "#ffffff",
+						"warning": "#ffffff",
+						"danger": "#ffffff",
+						"light": "#464E5F",
+						"dark": "#ffffff"
 					}
 				},
-				"font-family": "Poppins"
-			};
+				"gray": {
+					"gray-100": "#F3F6F9",
+					"gray-200": "#EBEDF3",
+					"gray-300": "#E4E6EF",
+					"gray-400": "#D1D3E0",
+					"gray-500": "#B5B5C3",
+					"gray-600": "#7E8299",
+					"gray-700": "#5E6278",
+					"gray-800": "#3F4254",
+					"gray-900": "#181C32"
+				}
+			},
+			"font-family": "Poppins"
+		};
+	</script>
 
-			
-		</script>
+	<!--end::Global Config-->
 
-		<!--end::Global Config-->
+	<!--begin::Global Theme Bundle(used by all pages)-->
+	<script src="assets/plugins/global/plugins.bundle.js"></script>
+	<script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+	<script src="assets/js/scripts.bundle.js"></script>
 
-		<!--begin::Global Theme Bundle(used by all pages)-->
-		<script src="assets/plugins/global/plugins.bundle.js"></script>
-		<script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-		<script src="assets/js/scripts.bundle.js"></script>
+	<!--end::Global Theme Bundle-->
 
-		<!--end::Global Theme Bundle-->
+	<!--begin::Page Vendors(used by this page)-->
+	<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
-		<!--begin::Page Vendors(used by this page)-->
-		<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+	<!--end::Page Vendors-->
 
-		<!--end::Page Vendors-->
+	<!--begin::Page Scripts(used by this page)-->
+	<script src="assets/js/pages/widgets.js"></script>
 
-		<!--begin::Page Scripts(used by this page)-->
-		<script src="assets/js/pages/widgets.js"></script>
+	<!--end::Page Scripts-->
 
-		<!--end::Page Scripts-->
-		
-	</body>
+</body>
 
-	<!--end::Body-->
+<!--end::Body-->
+
 </html>

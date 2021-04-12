@@ -1,0 +1,32 @@
+• vista lead-detail agregar whatsapp y preferencia whatsapp
+• boton a whatsapp y en el alta de lead, agregar whatsapp como preferencia
+• descripcion del cliente.
+• tolerancia de 30'' por lead
+• contador de leads (cuantos pidio)
+• registrar en que momento pidio el dato.
+• bloqueo de usuario 
+• bloqueo de todos los usuarios (quizas a partir de las 12pm por ejemplo o por boton)
+• ventas accu bajar a semanal
+• tabs por estado de dato (promise ,quasi, no interesado etc)
+• los leads "avisa el"**  reminder a la semana de que los vuelvan a llamar
+		**sino enviar a disponibles.
+•cuando el clinete dice que lo llamen luego, que sea un nuevo estado (ej llamar luego)y obligue a especificar nuevo horario. DEJAR HISTORIAL DE LOS HORARIOS.
+• 5 datos al comienzo del dia (luego pedir de a uno)
+•  agregar valor neto al historial de ventas *administrator
+		confirmar por administrador y poner tilde. pedir valor neto
+
+
+ESTADOS 
+		-no interesa (final)
+		-muy caro (promo
+		-busca presencial
+		-por ahora no (llamar al mes)	
+	- llamar luego
+	-cambio horario
+
+
+
+
+
+	Hacer la validacion para mostrar menu ADM o USR
+	

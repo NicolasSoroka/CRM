@@ -1,7 +1,7 @@
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 	<!--begin::Subheader-->
-	<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+	<div class="subheader subheader-solid" id="kt_subheader">
 		<div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 			<!--begin::Details-->
 			<div class="d-flex align-items-center flex-wrap mr-2">
@@ -10,13 +10,6 @@
 				<!--end::Title-->
 			</div>
 			<!--end::Details-->
-			<!--begin::Toolbar-->
-			<div class="d-flex align-items-center">
-				<!--begin::Button-->
-				<a href="#" class="btn btn-danger font-weight-bold">Volver</a>
-				<!--end::Button-->
-			</div>
-			<!--end::Toolbar-->
 		</div>
 	</div>
 	<!--end::Subheader-->
@@ -119,7 +112,7 @@
 												<textarea class="form-control form-control-lg form-control-solid" id="exampleTextarea" rows="3" placeholder="Escriba su mensaje"></textarea>
 											</div>
 											<div class="row">
-												<div class="col">
+												<div class="col text-right">
 													<a href="#" class="btn btn-light-primary font-weight-bold">Enviar</a>
 												</div>
 											</div>

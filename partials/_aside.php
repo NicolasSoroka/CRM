@@ -39,7 +39,7 @@
 		<!--begin::Menu Container-->
 		<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
 
-			<!--begin::Menu Nav-->
+			<!--begin::Menu Nav ADM-->
 			<ul class="menu-nav">
 				<li class="menu-section">
 					<h4 class="menu-text">Menu Administrador</h4>
@@ -77,7 +77,7 @@
 								</span>
 							</li>
 							<li class="menu-item" aria-haspopup="true">
-								<a href="custom/apps/inbox.html" class="menu-link">
+								<a href="?page=leads/_new-lead" class="menu-link">
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
@@ -85,7 +85,7 @@
 								</a>
 							</li>
 							<li class="menu-item" aria-haspopup="true">
-								<a href="custom/apps/inbox.html" class="menu-link">
+								<a href="?page=leads/_assigned" class="menu-link">
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
@@ -93,7 +93,7 @@
 								</a>
 							</li>
 							<li class="menu-item" aria-haspopup="true">
-								<a href="custom/apps/inbox.html" class="menu-link">
+								<a href="?page=leads/_no-assigned" class="menu-link">
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
@@ -134,7 +134,7 @@
 								</span>
 							</li>
 							<li class="menu-item" aria-haspopup="true">
-								<a href="custom/apps/inbox.html" class="menu-link">
+								<a href="?page=users/_add-user" class="menu-link">
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
@@ -142,7 +142,7 @@
 								</a>
 							</li>
 							<li class="menu-item" aria-haspopup="true">
-								<a href="custom/apps/inbox.html" class="menu-link">
+								<a href="?page=users/_list-users" class="menu-link">
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
@@ -150,7 +150,7 @@
 								</a>
 							</li>
 							<li class="menu-item" aria-haspopup="true">
-								<a href="custom/apps/inbox.html" class="menu-link">
+								<a href="?page=users/_sales-accu" class="menu-link">
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
@@ -193,7 +193,7 @@
 								</span>
 							</li>
 							<li class="menu-item" aria-haspopup="true">
-								<a href="custom/apps/inbox.html" class="menu-link">
+								<a href="?page=users/_add-user" class="menu-link">
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
@@ -221,12 +221,12 @@
 				</li>
 
 				<li class="menu-item" aria-haspopup="true">
-					<a href="#" class="menu-link">
+					<a href="?page=sales/_sales-view" class="menu-link">
 						<span class="svg-icon menu-icon">
 							<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
 							<span class="svg-icon svg-icon-primary svg-icon-2x">
 								<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Wallet.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
 										<polygon fill="#000000" opacity="0.3" points="12 20.0218549 8.47346039 21.7286168 6.86905972 18.1543453 3.07048824 17.1949849 4.13894342 13.4256452 1.84573388 10.2490577 5.08710286 8.04836581 5.3722735 4.14091196 9.2698837 4.53859595 12 1.72861679 14.7301163 4.53859595 18.6277265 4.14091196 18.9128971 8.04836581 22.1542661 10.2490577 19.8610566 13.4256452 20.9295118 17.1949849 17.1309403 18.1543453 15.5265396 21.7286168" />
 										<polygon fill="#000000" points="14.0890818 8.60255815 8.36079737 14.7014391 9.70868621 16.049328 15.4369707 9.950447" />
@@ -243,7 +243,7 @@
 				</li>
 
 				<li class="menu-item" aria-haspopup="true">
-					<a href="#" class="menu-link">
+					<a href="?page=payment/_new-payment" class="menu-link">
 						<span class="svg-icon menu-icon">
 							<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
 							<span class="svg-icon svg-icon-primary svg-icon-2x">
@@ -264,8 +264,62 @@
 				</li>
 
 			</ul>
+			<!--end::Menu Nav ADM-->
 
-			<!--end::Menu Nav-->
+
+			<!--begin::Menu Nav USR-->
+			<ul class="menu-nav">
+				<li class="menu-section">
+					<h4 class="menu-text">Menu Vendedor</h4>
+					<i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+				</li>
+				<li class="menu-item" aria-haspopup="true">
+					<a href="#" class="menu-link">
+						<span class="svg-icon menu-icon">
+							<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+							<span class="svg-icon svg-icon-primary svg-icon-2x">
+								<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Navigation\Angle-double-up.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+										<polygon points="0 0 24 0 24 24 0 24" />
+										<path d="M8.2928955,10.2071068 C7.90237121,9.81658249 7.90237121,9.18341751 8.2928955,8.79289322 C8.6834198,8.40236893 9.31658478,8.40236893 9.70710907,8.79289322 L15.7071091,14.7928932 C16.085688,15.1714722 16.0989336,15.7810586 15.7371564,16.1757246 L10.2371564,22.1757246 C9.86396402,22.5828436 9.23139665,22.6103465 8.82427766,22.2371541 C8.41715867,21.8639617 8.38965574,21.2313944 8.76284815,20.8242754 L13.6158645,15.5300757 L8.2928955,10.2071068 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.000003, 15.500003) scale(-1, 1) rotate(-90.000000) translate(-12.000003, -15.500003) " />
+										<path d="M6.70710678,12.2071104 C6.31658249,12.5976347 5.68341751,12.5976347 5.29289322,12.2071104 C4.90236893,11.8165861 4.90236893,11.1834211 5.29289322,10.7928968 L11.2928932,4.79289682 C11.6714722,4.41431789 12.2810586,4.40107226 12.6757246,4.76284946 L18.6757246,10.2628495 C19.0828436,10.6360419 19.1103465,11.2686092 18.7371541,11.6757282 C18.3639617,12.0828472 17.7313944,12.1103502 17.3242754,11.7371577 L12.0300757,6.88414142 L6.70710678,12.2071104 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(12.000003, 8.500003) scale(-1, 1) rotate(-360.000000) translate(-12.000003, -8.500003) " />
+									</g>
+								</svg>
+								<!--end::Svg Icon-->
+							</span>
+							<!--end::Svg Icon-->
+						</span>
+						<!--end::Svg Icon-->
+						</span>
+						<span class="menu-text">Pedir datos</span>
+					</a>
+				</li>
+				<li class="menu-item" aria-haspopup="true">
+					<a href="#" class="menu-link">
+						<span class="svg-icon menu-icon">
+							<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+							<span class="svg-icon svg-icon-primary svg-icon-2x">
+								<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Info-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+										<rect x="0" y="0" width="24" height="24" />
+										<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+										<rect fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+										<rect fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+									</g>
+								</svg>
+								<!--end::Svg Icon-->
+							</span>
+							<!--end::Svg Icon-->
+						</span>
+						<!--end::Svg Icon-->
+						</span>
+						<span class="menu-text">Reportar un problema</span>
+					</a>
+				</li>
+
+			</ul>
+			<!--end::Menu Nav USR-->
+
 		</div>
 
 		<!--end::Menu Container-->

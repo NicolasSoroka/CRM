@@ -1,10 +1,7 @@
-• vista lead-detail agregar whatsapp y preferencia whatsapp
-• boton a whatsapp y en el alta de lead, agregar whatsapp como preferencia
-• descripcion del cliente.
 • tolerancia de 30'' por lead
 • contador de leads (cuantos pidio)
 • registrar en que momento pidio el dato.
-• bloqueo de usuario 
+• bloqueo de usuario (cambiar el color del boton y el texto a rojo-bloqueado o verde-desbloqueado)
 • bloqueo de todos los usuarios (quizas a partir de las 12pm por ejemplo o por boton)
 • ventas accu bajar a semanal
 • tabs por estado de dato (promise ,quasi, no interesado etc)
@@ -25,8 +22,90 @@ ESTADOS
 	-cambio horario
 
 
-
-
-
 	Hacer la validacion para mostrar menu ADM o USR
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	------------------------------------------------------------------
+
+	cifrar pass login
+arreglar tipos de dato fecha en la db
+
+• Importar cursos de la tabla 'cursos' (db exp_iade) para generar la tabla 'courses' en CRM
+• Resaltar cambios en el lead (historial) ver fecha de cambios
+• Mail para envio de alertas. (Promises quizas)
+• Cuando un dato se convierte en venta -> Boton para generar comprobante de pago (opciones para que el administrador las genere/valide)
+    - Cuando es emitido el comprobante y se paga, este debe ser adjuntado en el Lead (Vendido) y pasar a aprobacion del administrador. Recien entonces suma una venta.
+• Crear los alumnos con los cursos asignados para quien haya pasado el proceso de verificacion de pago (por parte del admin)
+• Enviar recordatorio de pago a los alumnos que posean cuotas 
+• Tabla 'Leads' contactMethod establecer los valores para ENUM. Actualmente es un varchar.
+
+User
+• Opciones de modificacion al entrar al detalle del lead
+• Comrpobacion de todos los datos, bloqueo de los mismos durante el manejo.
+• Reminder de promises
+• Medallita oro, plata o bronce al lado del perfil en caso de quedar rankeado.
+• Al apretar en "pedir datos" que recargue vendor.php con la data nueva.
+
+Administrador
+• Ver ventas (filtrar por vendedor)
+• Ver todos los leads (filtrar por estado)
+• Asignacion manual de leads
+• Ver ranking de ventas
+• Manejar los leads "Interesados" a mano. (reasignaciones)
+
+Estadisticas
+• Monetizacion (cuanto $$ acumula cada vendedor, $$ total (fitlrado por dia,semana,mes))
+• Reportes a excel (graficos?)
+• Quien vendio que
+• Ventas por cursos
+• Cantidad de datos entregados por vendedor
+
+Medios de pago
+• MP
+• Efectivo / transferencia
+• Otros ?
+
+Leads
+• Estados:
+    - Promesa 7
+    - Cuasi-Promesa 6 
+    - Interesado 5
+            -> Desplegar menu para agregar detalle.
+    - No Interesado / Negado 4
+            -> Desplegar menu para agregar detalle.
+    - Vendido 3 
+    - Viejo 2
+    - Nuevo 1
+
+• Funcion que convierta los leads en viejos (label = 2)
+
+Mobile
+ • vista minima
+ • Iphone X
+
+Desktop
+ • Vista 14''
+ • Vista full screen

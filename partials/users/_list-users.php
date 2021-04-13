@@ -1,3 +1,10 @@
+<?php
+require "./globals/database.php";
+$db = Database::getInstance();
+$db->getUsers();
+$users = $db->fetchAll();
+?>
+
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
@@ -19,260 +26,68 @@
         <div class="container">
             <!--begin::Row-->
             <div class="row">
+
                 <!--begin::Col-->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <!--begin::Card-->
-                    <div class="card card-custom gutter-b card-stretch">
-                        <!--begin::Body-->
-                        <div class="card-body pt-4">
-                            <!--begin::User-->
-                            <div class="d-flex align-items-end mb-7">
-                                <!--begin::Pic-->
-                                <div class="d-flex align-items-center">
+                <?php
+                $counter = 0;
+                foreach ($users as $user) {  ?>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                        <!--begin::Card-->
+                        <div class="card card-custom gutter-b card-stretch">
+                            <!--begin::Body-->
+                            <div class="card-body pt-4">
+                                <!--begin::User-->
+                                <div class="d-flex align-items-end mb-7">
                                     <!--begin::Pic-->
-                                    <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                        <div class="symbol symbol-circle symbol-lg-75">
-                                            <img src="assets/media/users/default.jpg" alt="image" />
+                                    <div class="d-flex align-items-center">
+                                        <!--begin::Pic-->
+                                        <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                            <div class="symbol symbol-circle symbol-lg-75">
+                                                <img src="<?= $user['img'] ?>" alt="image" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!--end::Pic-->
-                                    <!--begin::Title-->
-                                    <div class="d-flex flex-column">
-                                        <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Ven Dedor</a>
-                                        <span class="text-muted font-weight-bold">nombre_de_usuario</span>
+                                        <!--end::Pic-->
+                                        <!--begin::Title-->
+                                        <div class="d-flex flex-column">
+                                            <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0"><?= $user['name'] . ' ' . $user['lastname'] ?></a>
+                                            <span class="text-muted font-weight-bold"><?= $user['user'] ?></span>
+                                        </div>
+                                        <!--end::Title-->
                                     </div>
                                     <!--end::Title-->
                                 </div>
-                                <!--end::Title-->
+                                <!--end::User-->
+                                <!--begin::Info-->
+                                <div class="mb-20">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
+                                        <a href="#" class="text-muted text-hover-primary"><?= $user['email'] ?></a>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-cente my-1">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Telefono:</span>
+                                        <a href="#" class="text-muted text-hover-primary"><?= $user['phone'] ?></a>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-dark-75 font-weight-bolder mr-2">Pais:</span>
+                                        <span class="text-muted font-weight-bold"><?= $user['country'] ?></span>
+                                    </div>
+                                </div>
+                                <!--end::Info-->
+                                <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#staticBackdrop">Enviar mensaje</a>
+
+                                <?php if ($user['disabled'] == 1) { ?>
+                                    <a href="#" class="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4" id="status<?=$counter?>" onclick="blockUser(<?= $user['id'].','. $counter ?>);">Usuario bloqueado</a>
+                                <?php } else { ?>
+                                    <a href="#" class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4" id="status<?=$counter?>" onclick="blockUser(<?= $user['id'].','. $counter ?>);">Usuario habilitado</a>
+                                <?php } ?>
+
+                                <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword();">Restablecer clave</a>
                             </div>
-                            <!--end::User-->
-                            <!--begin::Info-->
-                            <div class="mb-20">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
-                                    <a href="#" class="text-muted text-hover-primary">ejemplo@mail.com</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-cente my-1">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Telefono:</span>
-                                    <a href="#" class="text-muted text-hover-primary">1122334455</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Pais:</span>
-                                    <span class="text-muted font-weight-bold">Argentina</span>
-                                </div>
-                            </div>
-                            <!--end::Info-->
-                            <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#staticBackdrop">Enviar mensaje</a>
-                            <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword();">Restablecer clave</a>
+                            <!--end::Body-->
                         </div>
-                        <!--end::Body-->
+                        <!--end::Card-->
                     </div>
-                    <!--end::Card-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <!--begin::Card-->
-                    <div class="card card-custom gutter-b card-stretch">
-                        <!--begin::Body-->
-                        <div class="card-body pt-4">
-                            <!--begin::User-->
-                            <div class="d-flex align-items-end mb-7">
-                                <!--begin::Pic-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Pic-->
-                                    <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                        <div class="symbol symbol-circle symbol-lg-75">
-                                            <img src="assets/media/users/default.jpg" alt="image" />
-                                        </div>
-                                    </div>
-                                    <!--end::Pic-->
-                                    <!--begin::Title-->
-                                    <div class="d-flex flex-column">
-                                        <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Ven Dedor</a>
-                                        <span class="text-muted font-weight-bold">nombre_de_usuario</span>
-                                    </div>
-                                    <!--end::Title-->
-                                </div>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::Info-->
-                            <div class="mb-20">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
-                                    <a href="#" class="text-muted text-hover-primary">ejemplo@mail.com</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-cente my-1">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Telefono:</span>
-                                    <a href="#" class="text-muted text-hover-primary">1122334455</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Pais:</span>
-                                    <span class="text-muted font-weight-bold">Argentina</span>
-                                </div>
-                            </div>
-                            <!--end::Info-->
-                            <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#staticBackdrop">Enviar mensaje</a>
-                            <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword();">Restablecer clave</a>
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Card-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <!--begin::Card-->
-                    <div class="card card-custom gutter-b card-stretch">
-                        <!--begin::Body-->
-                        <div class="card-body pt-4">
-                            <!--begin::User-->
-                            <div class="d-flex align-items-end mb-7">
-                                <!--begin::Pic-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Pic-->
-                                    <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                        <div class="symbol symbol-circle symbol-lg-75">
-                                            <img src="assets/media/users/default.jpg" alt="image" />
-                                        </div>
-                                    </div>
-                                    <!--end::Pic-->
-                                    <!--begin::Title-->
-                                    <div class="d-flex flex-column">
-                                        <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Ven Dedor</a>
-                                        <span class="text-muted font-weight-bold">nombre_de_usuario</span>
-                                    </div>
-                                    <!--end::Title-->
-                                </div>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::Info-->
-                            <div class="mb-20">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
-                                    <a href="#" class="text-muted text-hover-primary">ejemplo@mail.com</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-cente my-1">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Telefono:</span>
-                                    <a href="#" class="text-muted text-hover-primary">1122334455</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Pais:</span>
-                                    <span class="text-muted font-weight-bold">Argentina</span>
-                                </div>
-                            </div>
-                            <!--end::Info-->
-                            <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#staticBackdrop">Enviar mensaje</a>
-                            <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword();">Restablecer clave</a>
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Card-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <!--begin::Card-->
-                    <div class="card card-custom gutter-b card-stretch">
-                        <!--begin::Body-->
-                        <div class="card-body pt-4">
-                            <!--begin::User-->
-                            <div class="d-flex align-items-end mb-7">
-                                <!--begin::Pic-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Pic-->
-                                    <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                        <div class="symbol symbol-circle symbol-lg-75">
-                                            <img src="assets/media/users/default.jpg" alt="image" />
-                                        </div>
-                                    </div>
-                                    <!--end::Pic-->
-                                    <!--begin::Title-->
-                                    <div class="d-flex flex-column">
-                                        <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Ven Dedor</a>
-                                        <span class="text-muted font-weight-bold">nombre_de_usuario</span>
-                                    </div>
-                                    <!--end::Title-->
-                                </div>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::Info-->
-                            <div class="mb-20">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
-                                    <a href="#" class="text-muted text-hover-primary">ejemplo@mail.com</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-cente my-1">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Telefono:</span>
-                                    <a href="#" class="text-muted text-hover-primary">1122334455</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Pais:</span>
-                                    <span class="text-muted font-weight-bold">Argentina</span>
-                                </div>
-                            </div>
-                            <!--end::Info-->
-                            <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#staticBackdrop">Enviar mensaje</a>
-                            <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword();">Restablecer clave</a>
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Card-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-                    <!--begin::Card-->
-                    <div class="card card-custom gutter-b card-stretch">
-                        <!--begin::Body-->
-                        <div class="card-body pt-4">
-                            <!--begin::User-->
-                            <div class="d-flex align-items-end mb-7">
-                                <!--begin::Pic-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Pic-->
-                                    <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                        <div class="symbol symbol-circle symbol-lg-75">
-                                            <img src="assets/media/users/default.jpg" alt="image" />
-                                        </div>
-                                    </div>
-                                    <!--end::Pic-->
-                                    <!--begin::Title-->
-                                    <div class="d-flex flex-column">
-                                        <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Ven Dedor</a>
-                                        <span class="text-muted font-weight-bold">nombre_de_usuario</span>
-                                    </div>
-                                    <!--end::Title-->
-                                </div>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::Info-->
-                            <div class="mb-20">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
-                                    <a href="#" class="text-muted text-hover-primary">ejemplo@mail.com</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-cente my-1">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Telefono:</span>
-                                    <a href="#" class="text-muted text-hover-primary">1122334455</a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Pais:</span>
-                                    <span class="text-muted font-weight-bold">Argentina</span>
-                                </div>
-                            </div>
-                            <!--end::Info-->
-                            <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#staticBackdrop">Enviar mensaje</a>
-                            <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword();">Restablecer clave</a>
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Card-->
-                </div>
+                <?php $counter++; } ?>
                 <!--end::Col-->
             </div>
             <!--end::Row-->
@@ -331,5 +146,31 @@
             buttonsStyling: false,
             showConfirmButton: false,
         })
+    }
+
+    function blockUser(id_user, id_status) {
+        if (id_user) {
+            $.ajax({
+                type: 'get',
+                url: './functions/blockUser.php',
+                data: {
+                    id : id_user
+                },
+                success: function(response) {
+                    blocked = document.getElementById('status'+id_status);
+                    if (blocked.classList.contains('btn-light-danger')) {
+                        blocked.classList.remove('btn-light-danger');
+                        blocked.classList.add('btn-light-success');
+                        blocked.innerHTML = "Usuario habilitado";
+                    } else {
+                        blocked.classList.remove('btn-light-success');
+                        blocked.classList.add('btn-light-danger');
+                        blocked.innerHTML = "Usuario bloqueado";
+                    }
+                }
+            });
+        }
+
+        
     }
 </script>

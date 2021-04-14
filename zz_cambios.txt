@@ -101,11 +101,3 @@ Leads
     - Nuevo 1
 
 • Funcion que convierta los leads en viejos (label = 2)
-
-Mobile
- • vista minima
- • Iphone X
-
-Desktop
- • Vista 14''
- • Vista full screen

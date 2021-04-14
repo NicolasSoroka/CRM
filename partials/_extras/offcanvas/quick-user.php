@@ -4,7 +4,6 @@
 	<!--begin::Header-->
 	<div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
 		<h3 class="font-weight-bold m-0">Perfil
-			<small class="text-muted font-size-sm ml-2">99 ventas esta semana</small>
 		</h3>
 		<a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
 			<i class="ki ki-close icon-xs text-muted"></i>
@@ -23,27 +22,12 @@
 				<i class="symbol-badge bg-success"></i>
 			</div>
 			<div class="d-flex flex-column">
-				<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">Nicolas Soroka</a>
-				<div class="text-muted mt-1">Software developer</div>
+				<label class="font-weight-bold font-size-h5 text-dark-75 text-primary">Nicolas Soroka</label>
+				<div class="text-muted mt-1">Vendedor</div>
 				<div class="navi mt-2">
 					<a href="#" class="navi-item">
 						<span class="navi-link p-0 pb-2">
-							<span class="navi-icon mr-1">
-								<span class="svg-icon svg-icon-lg svg-icon-primary">
-
-									<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-notification.svg-->
-									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-											<rect x="0" y="0" width="24" height="24" />
-											<path d="M21,12.0829584 C20.6747915,12.0283988 20.3407122,12 20,12 C16.6862915,12 14,14.6862915 14,18 C14,18.3407122 14.0283988,18.6747915 14.0829584,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12.0829584 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z" fill="#000000" />
-											<circle fill="#000000" opacity="0.3" cx="19.5" cy="17.5" r="2.5" />
-										</g>
-									</svg>
-
-									<!--end::Svg Icon-->
-								</span>
-							</span>
-							<span class="navi-text text-muted text-hover-primary">email@delusuario.com</span>
+							<span class="navi-text text-muted text-primary">Argentina</span>
 						</span>
 					</a>
 					<a href="#" class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5">Cerrar Sesion</a>
@@ -91,37 +75,6 @@
 
 			<!--end:Item-->
 
-			<!--begin::Item-->
-			<a href="custom/apps/user/profile-3.html" class="navi-item">
-				<div class="navi-link">
-					<div class="symbol symbol-40 bg-light mr-3">
-						<div class="symbol-label">
-							<span class="svg-icon svg-icon-md svg-icon-warning">
-
-								<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Chart-bar1.svg-->
-								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-										<rect x="0" y="0" width="24" height="24" />
-										<rect fill="#000000" opacity="0.3" x="12" y="4" width="3" height="13" rx="1.5" />
-										<rect fill="#000000" opacity="0.3" x="7" y="9" width="3" height="8" rx="1.5" />
-										<path d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z" fill="#000000" fill-rule="nonzero" />
-										<rect fill="#000000" opacity="0.3" x="17" y="11" width="3" height="6" rx="1.5" />
-									</g>
-								</svg>
-
-								<!--end::Svg Icon-->
-							</span>
-						</div>
-					</div>
-					<div class="navi-text">
-						<div class="font-weight-bold">Mensajes</div>
-						<div class="text-muted">Mensajes del administrador</div>
-					</div>
-				</div>
-			</a>
-
-			<!--end:Item-->
-
 		</div>
 
 		<!--end::Nav-->
@@ -135,13 +88,13 @@
 		<div>
 
 			<!--begin:Heading-->
-			<h5 class="mb-5">Avisos</h5>
+			<h5 class="mb-5">Mensaje del administrador</h5>
 
 			<!--end:Heading-->
 
 			<!--begin::Item-->
-			<div class="d-flex align-items-center bg-light-warning rounded p-5 gutter-b">
-				<span class="svg-icon svg-icon-warning mr-5">
+			<div class="d-flex align-items-center bg-light-primary rounded p-5 gutter-b">
+				<span class="svg-icon svg-icon-primary mr-5">
 					<span class="svg-icon svg-icon-lg">
 
 						<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
@@ -161,13 +114,47 @@
 					</span>
 				</span>
 				<div class="d-flex flex-column flex-grow-1 mr-2">
-					<a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Esto es un mensaje personalizado</a>
+					<label class="font-weight-normal text-dark-75 text-primary font-size-lg mb-1">Esto es un mensaje personalizado</label>
 					<span class="text-muted font-size-sm">Para traerle informacion importante a los vendedores</span>
 				</div>
-				<span class="font-weight-bolder text-warning py-1 font-size-lg">:)</span>
+				<!-- <span class="font-weight-bolder text-warning py-1 font-size-lg">:)</span> -->
 			</div>
 
 			<!--end::Item-->
+
+				<!--begin:Heading-->
+				<h5 class="mb-5">Informacion importante</h5>
+
+<!--end:Heading-->
+
+<!--begin::Item-->
+<div class="d-flex align-items-center bg-light-success rounded p-5 gutter-b">
+	<span class="svg-icon svg-icon-success mr-5">
+		<span class="svg-icon svg-icon-lg">
+
+			<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+			<span class="svg-icon svg-icon-primary svg-icon-3x">
+				<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Info-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<rect x="0" y="0" width="24" height="24" />
+						<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+						<rect fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+						<rect fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+					</g>
+				</svg>
+				<!--end::Svg Icon-->
+			</span>
+
+			<!--end::Svg Icon-->
+		</span>
+	</span>
+	<div class="d-flex flex-column flex-grow-1 mr-2">
+		<label class="font-weight-normal text-dark-75 text-primary font-size-lg mb-1">Esto es un mensaje personalizado</label>
+		<span class="text-muted font-size-sm">Para traerle informacion importante a los vendedores</span>
+	</div>
+</div>
+
+<!--end::Item-->
 
 		</div>
 

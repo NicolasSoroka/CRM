@@ -73,21 +73,51 @@ $users = $db->fetchAll();
                                     </div>
                                 </div>
                                 <!--end::Info-->
-                                <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#staticBackdrop">Enviar mensaje</a>
+                                <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#modal<?= $counter ?>">Enviar mensaje</a>
 
+                                <!-- Modal-->
+                                <div class="modal fade" id="modal<?= $counter ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal<?= $counter ?>" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Enviar mensaje a <?= $user['user'] ?></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <i aria-hidden="true" class="ki ki-close"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
+                                                    <div class="container">
+                                                        <form class="form">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control form-control-lg form-control-solid" id="textArea<?= $counter ?>" rows="5" placeholder="Escriba su mensaje"></textarea>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" onclick="sendMessage(document.getElementById('textArea<?= $counter ?>').value,<?= $user['id'] ?>);" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Enviar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Modal-->
                                 <?php if ($user['disabled'] == 1) { ?>
-                                    <a href="#" class="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4" id="status<?=$counter?>" onclick="blockUser(<?= $user['id'].','. $counter ?>);">Usuario bloqueado</a>
+                                    <a href="#" class="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4 mt-2" id="status<?= $counter ?>" onclick="blockUser(<?= $user['id'] . ',' . $counter ?>);">Usuario bloqueado</a>
                                 <?php } else { ?>
-                                    <a href="#" class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4" id="status<?=$counter?>" onclick="blockUser(<?= $user['id'].','. $counter ?>);">Usuario habilitado</a>
+                                    <a href="#" class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4 mt-2" id="status<?= $counter ?>" onclick="blockUser(<?= $user['id'] . ',' . $counter ?>);">Usuario habilitado</a>
                                 <?php } ?>
 
-                                <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword();">Restablecer clave</a>
+                                <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword(<?= $user['id'] ?>);">Restablecer clave</a>
                             </div>
                             <!--end::Body-->
                         </div>
                         <!--end::Card-->
                     </div>
-                <?php $counter++; } ?>
+                <?php $counter++;
+                } ?>
                 <!--end::Col-->
             </div>
             <!--end::Row-->
@@ -98,35 +128,6 @@ $users = $db->fetchAll();
     <!--end::Entry-->
 </div>
 <!--end::Content-->
-<!-- Modal-->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enviar mensaje a #Usuario</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
-                    <div class="container">
-                        <form class="form">
-                            <div class="form-group">
-                                <textarea class="form-control form-control-lg form-control-solid" id="exampleTextarea" rows="5" placeholder="Escriba su mensaje"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cancelar</button>
-                <button type="button" onclick="swalfire();" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Enviar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end::Modal-->
 
 <script>
     function swalfire() {
@@ -139,13 +140,36 @@ $users = $db->fetchAll();
         })
     }
 
-    function resetPassword() {
-        Swal.fire({
-            text: "Contraseña reestablecida para #user!",
-            icon: "success",
-            buttonsStyling: false,
-            showConfirmButton: false,
-        })
+    function sendMessage(msg, id) {
+        $.ajax({
+            type: 'post',
+            url: './functions/sendMessage.php',
+            data: {
+                message: msg,
+                id_user: id
+            },
+            success: function(response) {
+                swalfire();
+            }
+        });
+    }
+
+    function resetPassword(user) {
+        $.ajax({
+            type: 'get',
+            url: './functions/resetPassword.php',
+            data: {
+                id_user: user
+            },
+            success: function(response) {
+                Swal.fire({
+                    text: "Contraseña reestablecida!",
+                    icon: "success",
+                    buttonsStyling: false,
+                    showConfirmButton: false,
+                })
+            }
+        });
     }
 
     function blockUser(id_user, id_status) {
@@ -154,10 +178,10 @@ $users = $db->fetchAll();
                 type: 'get',
                 url: './functions/blockUser.php',
                 data: {
-                    id : id_user
+                    id: id_user
                 },
                 success: function(response) {
-                    blocked = document.getElementById('status'+id_status);
+                    blocked = document.getElementById('status' + id_status);
                     if (blocked.classList.contains('btn-light-danger')) {
                         blocked.classList.remove('btn-light-danger');
                         blocked.classList.add('btn-light-success');
@@ -171,6 +195,6 @@ $users = $db->fetchAll();
             });
         }
 
-        
+
     }
 </script>

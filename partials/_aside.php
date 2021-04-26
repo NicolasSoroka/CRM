@@ -39,6 +39,8 @@
 		<!--begin::Menu Container-->
 		<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
 
+
+		<?php if ($userData[0]['access'] == 0) { ?>
 			<!--begin::Menu Nav ADM-->
 			<ul class="menu-nav">
 				<li class="menu-section">
@@ -265,8 +267,9 @@
 
 			</ul>
 			<!--end::Menu Nav ADM-->
+		<?php } 
 
-
+		else { ?>
 			<!--begin::Menu Nav USR-->
 			<ul class="menu-nav">
 				<li class="menu-section">
@@ -316,10 +319,9 @@
 						<span class="menu-text">Reportar un problema</span>
 					</a>
 				</li>
-
 			</ul>
 			<!--end::Menu Nav USR-->
-
+		<?php } ?>
 		</div>
 
 		<!--end::Menu Container-->

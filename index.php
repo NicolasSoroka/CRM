@@ -1,12 +1,33 @@
+<?php //Route controller
+	require "./globals/Database.php";
+	session_start();
+	$db = Database::getInstance();
+	$userId = $_SESSION['user']['id'];
+
+	//datos del usuario
+	$db->query("SELECT * FROM users WHERE id = '$userId' LIMIT 1");
+	$userData = $db->fetchAll();
+
+	//leads asignados
+	if ($userData[0]['access'] == 1) {
+		$db->query("SELECT * FROM leads LEFT JOIN assigned ON leads.id = assigned.id_lead WHERE assigned.id_user = '$userId'");
+		$leads = $db->fetchAll();
+	}
+
+	if (isset($_POST['lead'])) {
+		$route = 'leads/_lead-detail.php';
+		$leadId = $_POST['lead'];
+		$db->query("SELECT * FROM leads WHERE id = '$leadId'");
+		$lead = $db->fetchAll();
+	} else {
+		if (isset($_GET['page'])) $route = $_GET['page'].'.php';
+		else $route = '_main.php';
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <!--begin::Head-->
-
-<?php //Route controller
-if (isset($_GET['page'])) $route = $_GET['page'];
-else $route = '_main';
-?>
-
 <head>
 	<base href="">
 	<meta charset="utf-8" />
@@ -46,8 +67,6 @@ else $route = '_main';
 
 	<?php include("partials/_page-loader.php"); ?>
 
-
-
 	<!--begin::Main-->
 	<?php include("partials/_header-mobile.php") ?>
 	<div class="d-flex flex-column flex-root">
@@ -68,12 +87,9 @@ else $route = '_main';
 					<!-- <?php include("partials/_subheader/subheader-v1.php") ?> -->
 
 					<!--Content-->
-
-					<?php include("partials/".$route.".php") ?>
-
+					<?php include("partials/" . $route) ?>
 				</div>
-
-				<!--end::Content-->
+					<!--end::Content-->
 
 				<?php include("partials/_footer.php") ?>
 			</div>
@@ -85,8 +101,6 @@ else $route = '_main';
 	</div>
 
 	<!--end::Main-->
-
-
 
 	<?php include("partials/_extras/offcanvas/quick-user.php"); ?>
 

@@ -26,8 +26,8 @@
 						<!--begin::Header-->
 						<div class="card-header h-auto py-4">
 							<div class="card-title">
-								<h3 class="card-label">Juan Perez
-									<span class="d-block text-muted pt-2 font-size-sm"><b>Ingresado el 2/3/2020</b></span>
+								<h3 class="card-label"><?=$lead[0]['name']?>
+									<span class="d-block text-muted pt-2 font-size-sm"><b>Ingresado el <?=$lead[0]['date']?></b></span>
 								</h3>
 							</div>
 						</div>
@@ -37,21 +37,21 @@
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Pais:</label>
 								<div class="col-8">
-									<span class="form-control-plaintext font-weight-bolder">Argentina</span>
+									<span class="form-control-plaintext font-weight-bolder"><?=$lead[0]['country']?></span>
 								</div>
 							</div>
 
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Telefono:</label>
 								<div class="col-8">
-									<span class="form-control-plaintext font-weight-bolder">1122223333</span>
+									<span class="form-control-plaintext font-weight-bolder"><?=$lead[0]['phone']?></span>
 								</div>
 							</div>
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Email:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext font-weight-bolder">
-										test@ejemplo.com
+									<?=$lead[0]['email']?>
 									</span>
 								</div>
 							</div>
@@ -59,7 +59,7 @@
 								<label class="col-4 col-form-label">Preferencia:</label>
 								<div class="col-8">
 									<span class="label label-dark label-inline mt-3">
-										Telefono
+									<?=$lead[0]['contactMethod']?>
 									</span>
 								</div>
 							</div>
@@ -67,21 +67,21 @@
 								<label class="col-4 col-form-label">Comentario:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext">
-										<span class="font-weight-bolder"><em>Me interesa el curso de blabla porque queria comenzar con blabla lorem</em></span>&#160;
+										<span class="font-weight-bolder"><em><?=$lead[0]['detail']?></em></span>&#160;
 								</div>
 							</div>
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Curso de interes:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext">
-										<span class="font-weight-bolder">Curso de refrigeracion industrial</span>&#160;
+										<span class="font-weight-bolder"><?=$lead[0]['course']?></span>&#160;
 								</div>
 							</div>
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Horario de contacto:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext">
-										<span class="font-weight-bolder">Lunes, martes y jueves 18:30</span>&#160;
+										<span class="font-weight-bolder"><?=$lead[0]['contactTime']?></span>&#160;
 								</div>
 							</div>
 						</div>

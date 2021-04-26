@@ -54,20 +54,10 @@ var KTLogin = function() {
 
             validation.validate().then(function(status) {
 		        if (status == 'Valid') {
-                    swal.fire({
-		                text: "Todo ok!",
-		                icon: "success",
-		                buttonsStyling: false,
-		                confirmButtonText: "Ok!",
-                        customClass: {
-    						confirmButton: "btn font-weight-bold btn-light-primary"
-    					}
-		            }).then(function() {
-						KTUtil.scrollTop();
-					});
+					document.getElementById("kt_login_signin_form").submit();
 				} else {
 					swal.fire({
-		                text: "Ups, se produjo un error. Intente nuevamente",
+		                text: "Ups, hubo un error. Intente nuevamente",
 		                icon: "error",
 		                buttonsStyling: false,
 		                confirmButtonText: "Ok!",

@@ -1,6 +1,5 @@
 <!-- begin::User Panel-->
 <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
-
 	<!--begin::Header-->
 	<div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
 		<h3 class="font-weight-bold m-0">Perfil
@@ -18,19 +17,22 @@
 		<!--begin::Header-->
 		<div class="d-flex align-items-center mt-5">
 			<div class="symbol symbol-100 mr-5">
-				<div class="symbol-label" style="background-image:url('assets/media/users/default.jpg')"></div>
+				<div class="symbol-label" style="background-image:url('assets/profile/<?=$userData[0]['img']?>.jpg')"></div>
 				<i class="symbol-badge bg-success"></i>
 			</div>
 			<div class="d-flex flex-column">
-				<label class="font-weight-bold font-size-h5 text-dark-75 text-primary">Nicolas Soroka</label>
-				<div class="text-muted mt-1">Vendedor</div>
+				<label class="font-weight-bold font-size-h5 text-dark-75 text-primary"><?=$userData[0]['name']?></label>
+				<div class="text-muted mt-1">
+					<?php if ($userData[0]['access'] == 1) { ?>Vendedor<?php } 
+					else { ?>Administrador<?php } ?>
+					</div>
 				<div class="navi mt-2">
 					<a href="#" class="navi-item">
 						<span class="navi-link p-0 pb-2">
-							<span class="navi-text text-muted text-primary">Argentina</span>
+							<span class="navi-text text-muted text-primary"><?=$userData[0]['country']?></span>
 						</span>
 					</a>
-					<a href="#" class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5">Cerrar Sesion</a>
+					<a href="./functions/logout.php" class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5">Cerrar Sesion</a>
 				</div>
 			</div>
 		</div>
@@ -122,39 +124,39 @@
 
 			<!--end::Item-->
 
-				<!--begin:Heading-->
-				<h5 class="mb-5">Informacion importante</h5>
+			<!--begin:Heading-->
+			<h5 class="mb-5">Informacion importante</h5>
 
-<!--end:Heading-->
+			<!--end:Heading-->
 
-<!--begin::Item-->
-<div class="d-flex align-items-center bg-light-success rounded p-5 gutter-b">
-	<span class="svg-icon svg-icon-success mr-5">
-		<span class="svg-icon svg-icon-lg">
+			<!--begin::Item-->
+			<div class="d-flex align-items-center bg-light-success rounded p-5 gutter-b">
+				<span class="svg-icon svg-icon-success mr-5">
+					<span class="svg-icon svg-icon-lg">
 
-			<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
-			<span class="svg-icon svg-icon-primary svg-icon-3x">
-				<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Info-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-						<rect x="0" y="0" width="24" height="24" />
-						<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
-						<rect fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
-						<rect fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
-					</g>
-				</svg>
-				<!--end::Svg Icon-->
-			</span>
+						<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+						<span class="svg-icon svg-icon-primary svg-icon-3x">
+							<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Info-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<rect x="0" y="0" width="24" height="24" />
+									<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+									<rect fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+									<rect fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+								</g>
+							</svg>
+							<!--end::Svg Icon-->
+						</span>
 
-			<!--end::Svg Icon-->
-		</span>
-	</span>
-	<div class="d-flex flex-column flex-grow-1 mr-2">
-		<label class="font-weight-normal text-dark-75 text-primary font-size-lg mb-1">Esto es un mensaje personalizado</label>
-		<span class="text-muted font-size-sm">Para traerle informacion importante a los vendedores</span>
-	</div>
-</div>
+						<!--end::Svg Icon-->
+					</span>
+				</span>
+				<div class="d-flex flex-column flex-grow-1 mr-2">
+					<label class="font-weight-normal text-dark-75 text-primary font-size-lg mb-1">Esto es un mensaje personalizado</label>
+					<span class="text-muted font-size-sm">Para traerle informacion importante a los vendedores</span>
+				</div>
+			</div>
 
-<!--end::Item-->
+			<!--end::Item-->
 
 		</div>
 

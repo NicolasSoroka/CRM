@@ -1,7 +1,6 @@
 • tolerancia de 30'' por lead
 • contador de leads (cuantos pidio)
 • registrar en que momento pidio el dato.
-• bloqueo de usuario (cambiar el color del boton y el texto a rojo-bloqueado o verde-desbloqueado)
 • bloqueo de todos los usuarios (quizas a partir de las 12pm por ejemplo o por boton)
 • ventas accu bajar a semanal
 • tabs por estado de dato (promise ,quasi, no interesado etc)
@@ -21,9 +20,14 @@ ESTADOS
 	- llamar luego
 	-cambio horario
 
-
 	Hacer la validacion para mostrar menu ADM o USR
-	
+	Carga de fotos
+
+
+
+
+
+FEATURED WIDGET STATS
 
 
 
@@ -35,12 +39,8 @@ ESTADOS
 
 
 
-
-
-
-
-
-
+  
+ 
 
 
 
@@ -92,7 +92,7 @@ Leads
 • Estados:
     - Promesa 7
     - Cuasi-Promesa 6 
-    - Interesado 5
+    - llamar luego 5
             -> Desplegar menu para agregar detalle.
     - No Interesado / Negado 4
             -> Desplegar menu para agregar detalle.

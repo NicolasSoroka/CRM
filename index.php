@@ -14,11 +14,23 @@
 		$leads = $db->fetchAll();
 	}
 
+	//LIST-USERS
+	if (isset($_GET['page'])) {
+		if ($_GET['page'] == 'users/_list-users') {
+			$db->getUsers();
+			$users = $db->fetchAll();
+		}
+	}
+
+	//LEAD DETAIL
 	if (isset($_POST['lead'])) {
 		$route = 'leads/_lead-detail.php';
 		$leadId = $_POST['lead'];
 		$db->query("SELECT * FROM leads WHERE id = '$leadId'");
 		$lead = $db->fetchAll();
+
+		$db->query("SELECT * FROM messages WHERE id_lead = '$leadId'");
+		$messages = $db->fetchAll();
 	} else {
 		if (isset($_GET['page'])) $route = $_GET['page'].'.php';
 		else $route = '_main.php';
@@ -65,7 +77,7 @@
 
 <body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed page-loading">
 
-	<?php include("partials/_page-loader.php"); ?>
+	<?php //include("partials/_page-loader.php"); ?>
 
 	<!--begin::Main-->
 	<?php include("partials/_header-mobile.php") ?>

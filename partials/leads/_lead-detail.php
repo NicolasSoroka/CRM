@@ -26,8 +26,8 @@
 						<!--begin::Header-->
 						<div class="card-header h-auto py-4">
 							<div class="card-title">
-								<h3 class="card-label"><?=$lead[0]['name']?>
-									<span class="d-block text-muted pt-2 font-size-sm"><b>Ingresado el <?=$lead[0]['date']?></b></span>
+								<h3 class="card-label"><?= $lead[0]['name'] ?>
+									<span class="d-block text-muted pt-2 font-size-sm"><b>Ingresado el <?= $lead[0]['date'] ?></b></span>
 								</h3>
 							</div>
 						</div>
@@ -37,21 +37,21 @@
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Pais:</label>
 								<div class="col-8">
-									<span class="form-control-plaintext font-weight-bolder"><?=$lead[0]['country']?></span>
+									<span class="form-control-plaintext font-weight-bolder"><?= $lead[0]['country'] ?></span>
 								</div>
 							</div>
 
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Telefono:</label>
 								<div class="col-8">
-									<span class="form-control-plaintext font-weight-bolder"><?=$lead[0]['phone']?></span>
+									<span class="form-control-plaintext font-weight-bolder"><?= $lead[0]['phone'] ?></span>
 								</div>
 							</div>
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Email:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext font-weight-bolder">
-									<?=$lead[0]['email']?>
+										<?= $lead[0]['email'] ?>
 									</span>
 								</div>
 							</div>
@@ -59,7 +59,7 @@
 								<label class="col-4 col-form-label">Preferencia:</label>
 								<div class="col-8">
 									<span class="label label-dark label-inline mt-3">
-									<?=$lead[0]['contactMethod']?>
+										<?= $lead[0]['contactMethod'] ?>
 									</span>
 								</div>
 							</div>
@@ -67,21 +67,21 @@
 								<label class="col-4 col-form-label">Comentario:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext">
-										<span class="font-weight-bolder"><em><?=$lead[0]['detail']?></em></span>&#160;
+										<span class="font-weight-bolder"><em><?= $lead[0]['detail'] ?></em></span>&#160;
 								</div>
 							</div>
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Curso de interes:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext">
-										<span class="font-weight-bolder"><?=$lead[0]['course']?></span>&#160;
+										<span class="font-weight-bolder"><?= $lead[0]['course'] ?></span>&#160;
 								</div>
 							</div>
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Horario de contacto:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext">
-										<span class="font-weight-bolder"><?=$lead[0]['contactTime']?></span>&#160;
+										<span class="font-weight-bolder"><?= $lead[0]['contactTime'] ?></span>&#160;
 								</div>
 							</div>
 						</div>
@@ -107,36 +107,26 @@
 								<!--begin::Tab Content-->
 								<div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
 									<div class="container">
-										<form class="form">
-											<div class="form-group">
-												<textarea class="form-control form-control-lg form-control-solid" id="exampleTextarea" rows="3" placeholder="Escriba su mensaje"></textarea>
-											</div>
-											<div class="row">
-												<div class="col text-right">
-													<a href="#" class="btn btn-light-primary font-weight-bold">Enviar</a>
-												</div>
-											</div>
-										</form>
-										<div class="separator separator-dashed my-10"></div>
 										<!--begin::Timeline-->
-										<div class="timeline timeline-3">
-											<div class="timeline-items">
-												<div class="timeline-item">
-													<div class="timeline-media">
-														<img alt="Pic" src="assets/media/users/default.jpg" />
-													</div>
-													<div class="timeline-content">
-														<div class="d-flex align-items-center justify-content-between mb-3">
-															<div class="mr-2">
-																<a href="#" class="text-dark-75 text-hover-primary font-weight-bold">Nicolas</a>
-															</div>
+										<?php foreach ($messages as $message) { ?>
+											<div class="timeline timeline-3 mt-3">
+												<div class="timeline-items">
+													<div class="timeline-item">
+														<div class="timeline-media">
+															<img alt="Pic" src="assets/profile/<?= $message['img'] ?>.jpg" />
 														</div>
-														<p class="p-0">Hola vendedor, tene cuidado con este interesado porque tuvo un mal dia.</p>
+														<div class="timeline-content">
+															<div class="d-flex align-items-center justify-content-between mb-3">
+																<div class="mr-2">
+																	<a href="#" class="text-dark-75 text-hover-primary font-weight-bold"><?= $message['name'] . ' ' . $message['lastname'] ?></a>
+																</div>
+															</div>
+															<p class="p-0"><?= $message['text'] ?></p>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-										<!--end::Timeline-->
+										<?php } ?>
 									</div>
 								</div>
 								<!--end::Tab Content-->
@@ -155,6 +145,17 @@
 </div>
 <!--end::Content-->
 
+
+<div class="form-group">
+												<textarea class="form-control form-control-lg form-control-solid" id="messageArea" rows="3" placeholder="Escriba su mensaje"></textarea>
+											</div>
+											<div class="row">
+												<div class="col text-right">
+													<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?=$userData[0]['name']?>','<?=$userData[0]['lastname']?>','<?=$userData[0]['id']?>','<?=$lead[0]['id']?>','<?=$userData[0]['img']?>');">Enviar</button>
+												</div>
+											</div>
+										<div class="separator separator-dashed my-10"></div>
+										
 <script>
 	function swalfire() {
 		Swal.fire({
@@ -164,5 +165,26 @@
 			showConfirmButton: false,
 			timer: 2000
 		})
+	}
+
+	function sendMessage(name,lastname,id_user,id_lead,img) {
+		var info = {
+			'message': $('#messageArea').val(),
+			'name' : name,
+			'lastname' : lastname,
+			'id_user' : id_user,
+			'id_lead' : id_lead,
+			'img' : img
+		}
+
+		$.ajax({
+			type: 'get',
+			url: './functions/sendLeadMessage.php',
+			data: info,
+			success: function(response) {
+				$('#messageArea').val("");
+				location.reload();
+			}
+		});
 	}
 </script>

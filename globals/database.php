@@ -66,17 +66,9 @@ class Database {
         //aca hay que traer por las categorias S A B C segun el score.
     }
 
-
-
-
     //User Model *****************************************************************************
     public function getUsers(){
         $this->query("SELECT * FROM users");
     }
-
-
-
-
-
 }
 ?>

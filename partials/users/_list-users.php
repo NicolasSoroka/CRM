@@ -1,10 +1,3 @@
-<?php
-require "./globals/database.php";
-$db = Database::getInstance();
-$db->getUsers();
-$users = $db->fetchAll();
-?>
-
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
@@ -43,14 +36,15 @@ $users = $db->fetchAll();
                                         <!--begin::Pic-->
                                         <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
                                             <div class="symbol symbol-circle symbol-lg-75">
-                                                <img src="<?= $user['img'] ?>" alt="image" />
+                                                <img src="assets/profile/<?=$user['img']?>.jpg" alt="image" />
                                             </div>
                                         </div>
                                         <!--end::Pic-->
                                         <!--begin::Title-->
                                         <div class="d-flex flex-column">
                                             <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0"><?= $user['name'] . ' ' . $user['lastname'] ?></a>
-                                            <span class="text-muted font-weight-bold"><?= $user['user'] ?></span>
+                                            <span class="text-muted font-weight-bold"><?php if ($user['access'] == 1) { ?>Vendedor<?php } 
+					                            else { ?>Administrador<?php } ?></span>
                                         </div>
                                         <!--end::Title-->
                                     </div>

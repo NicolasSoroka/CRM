@@ -93,9 +93,7 @@ Leads
     - Promesa 7
     - Cuasi-Promesa 6 
     - llamar luego 5
-            -> Desplegar menu para agregar detalle.
     - No Interesado / Negado 4
-            -> Desplegar menu para agregar detalle.
     - Vendido 3 
     - Viejo 2
     - Nuevo 1

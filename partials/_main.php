@@ -150,7 +150,7 @@
                                 <thead>
                                     <tr>
                                         <th class="p-0 w-40px"></th>
-                                        <th class="p-0 min-w-200px"></th>
+                                        <th class="p-0 min-w-100px"></th>
                                         <th class="p-0 min-w-100px"></th>
                                         <th class="p-0 min-w-100px"></th>
                                     </tr>

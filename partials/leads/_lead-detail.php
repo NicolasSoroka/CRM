@@ -91,7 +91,7 @@
 							<a href="#" class="btn btn-primary font-weight-bold mr-2">Actualizar estado</a>
 						</div> -->
 						<div class="card-footer">
-							<a href="#" class="btn btn-primary font-weight-bold mr-2" onclick="swalfire();">Actualizar estado</a>
+							<a href="#" class="btn btn-primary font-weight-bold mr-2" data-toggle="modal" data-target="#modal">Actualizar estado</a>
 						</div>
 						<!--end::Footer-->
 					</div>
@@ -145,17 +145,34 @@
 </div>
 <!--end::Content-->
 
+<!-- Modal-->
+<div class="modal fade" id="modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="container">
+				<div class="form-group mt-5">
+					<textarea class="form-control form-control-lg form-control-solid" id="messageArea" rows="3" placeholder="Escriba su mensaje"></textarea>
+				</div>
+				<div class="row">
+					<div class="col text-right mb-5">
+					<select class="form-control mb-4" id="country">
+                        <option selected disabled>-- Seleccione --</option>
+                        <option>Promesa</option>
+                        <option>Cuasi Promesa</option>
+                        <option>Llamar luego</option>
+                        <option class="font-weight-bold text-danger">No interesado</option>
+                        <option class="font-weight-bold text-success">Vendido</option>
+                    </select>
+						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>');">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--end::Modal-->
 
-<div class="form-group">
-												<textarea class="form-control form-control-lg form-control-solid" id="messageArea" rows="3" placeholder="Escriba su mensaje"></textarea>
-											</div>
-											<div class="row">
-												<div class="col text-right">
-													<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?=$userData[0]['name']?>','<?=$userData[0]['lastname']?>','<?=$userData[0]['id']?>','<?=$lead[0]['id']?>','<?=$userData[0]['img']?>');">Enviar</button>
-												</div>
-											</div>
-										<div class="separator separator-dashed my-10"></div>
-										
+
 <script>
 	function swalfire() {
 		Swal.fire({
@@ -167,14 +184,14 @@
 		})
 	}
 
-	function sendMessage(name,lastname,id_user,id_lead,img) {
+	function sendMessage(name, lastname, id_user, id_lead, img) {
 		var info = {
 			'message': $('#messageArea').val(),
-			'name' : name,
-			'lastname' : lastname,
-			'id_user' : id_user,
-			'id_lead' : id_lead,
-			'img' : img
+			'name': name,
+			'lastname': lastname,
+			'id_user': id_user,
+			'id_lead': id_lead,
+			'img': img
 		}
 
 		$.ajax({

@@ -155,14 +155,14 @@
 				</div>
 				<div class="row">
 					<div class="col text-right mb-5">
-					<select class="form-control mb-4" id="country">
-                        <option selected disabled>-- Seleccione --</option>
-                        <option>Promesa</option>
-                        <option>Cuasi Promesa</option>
-                        <option>Llamar luego</option>
-                        <option class="font-weight-bold text-danger">No interesado</option>
-                        <option class="font-weight-bold text-success">Vendido</option>
-                    </select>
+						<select class="form-control mb-4" id="selectState">
+							<option selected disabled>-- Seleccione --</option>
+							<option value="7">Promesa</option>
+							<option value="6">Cuasi Promesa</option>
+							<option value="5">Llamar luego</option>
+							<option value="4" class="font-weight-bold text-danger">No interesado</option>
+							<option value="3" class="font-weight-bold text-success">Vendido</option>
+						</select>
 						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>');">Enviar</button>
 					</div>
 				</div>
@@ -176,8 +176,8 @@
 <script>
 	function swalfire() {
 		Swal.fire({
-			text: "Datos actualizados",
-			icon: "success",
+			text: "Debe elegir el estado y comentar el cambio (Minimo 20 caracteres)",
+			icon: "warning",
 			buttonsStyling: false,
 			showConfirmButton: false,
 			timer: 2000
@@ -185,23 +185,31 @@
 	}
 
 	function sendMessage(name, lastname, id_user, id_lead, img) {
-		var info = {
-			'message': $('#messageArea').val(),
-			'name': name,
-			'lastname': lastname,
-			'id_user': id_user,
-			'id_lead': id_lead,
-			'img': img
-		}
+		let select = $('#selectState').val();
+		let text = $('#messageArea').val();
 
-		$.ajax({
-			type: 'get',
-			url: './functions/sendLeadMessage.php',
-			data: info,
-			success: function(response) {
-				$('#messageArea').val("");
-				location.reload();
+		if ((select > 0) && (text.length > 20)) {
+			var info = {
+				'message': $('#messageArea').val(),
+				'name': name,
+				'lastname': lastname,
+				'id_user': id_user,
+				'id_lead': id_lead,
+				'img': img,
+				'state': select
 			}
-		});
+
+			$.ajax({
+				type: 'get',
+				url: './functions/changeLeadState.php',
+				data: info,
+				success: function(response) {
+					$('#messageArea').val("");
+					location.reload();
+				}
+			});
+		} else {
+			swalfire();
+		}
 	}
 </script>

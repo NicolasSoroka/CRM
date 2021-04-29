@@ -11,19 +11,13 @@
 •  agregar valor neto al historial de ventas *administrator
 		confirmar por administrador y poner tilde. pedir valor neto
 
-
-ESTADOS 
 		-no interesa (final)
 		-muy caro (promo
 		-busca presencial
 		-por ahora no (llamar al mes)	
-	- llamar luego
-	-cambio horario
+		-cambio horario
 
-	Hacer la validacion para mostrar menu ADM o USR
 	Carga de fotos
-
-
 
 
 
@@ -32,25 +26,6 @@ FEATURED WIDGET STATS
 
 
 
-
-
-
-
-
-
-
-  
- 
-
-
-
-
-
-
-
-	------------------------------------------------------------------
-
-	cifrar pass login
 arreglar tipos de dato fecha en la db
 
 • Importar cursos de la tabla 'cursos' (db exp_iade) para generar la tabla 'courses' en CRM
@@ -63,11 +38,7 @@ arreglar tipos de dato fecha en la db
 • Tabla 'Leads' contactMethod establecer los valores para ENUM. Actualmente es un varchar.
 
 User
-• Opciones de modificacion al entrar al detalle del lead
-• Comrpobacion de todos los datos, bloqueo de los mismos durante el manejo.
-• Reminder de promises
-• Medallita oro, plata o bronce al lado del perfil en caso de quedar rankeado.
-• Al apretar en "pedir datos" que recargue vendor.php con la data nueva.
+• Pedir datos
 
 Administrador
 • Ver ventas (filtrar por vendedor)
@@ -83,11 +54,6 @@ Estadisticas
 • Ventas por cursos
 • Cantidad de datos entregados por vendedor
 
-Medios de pago
-• MP
-• Efectivo / transferencia
-• Otros ?
-
 Leads
 • Estados:
     - Promesa 7
@@ -97,5 +63,3 @@ Leads
     - Vendido 3 
     - Viejo 2
     - Nuevo 1
-
-• Funcion que convierta los leads en viejos (label = 2)

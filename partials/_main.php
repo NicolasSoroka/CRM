@@ -157,7 +157,8 @@
                                 </thead>
                                 <tbody>
                                     <!-- Leads TODOS -->
-                                    <?php foreach ($leads as $lead) { ?>
+                                    <?php foreach ($leads as $lead) {
+                                        if ($lead['label'] === '3') continue; ?>
                                         <tr>
                                             <form action="./index.php" method="post">
                                                 <td class="pl-0 py-4">
@@ -207,7 +208,7 @@
                                 <tbody>
                                     <!--  LEAD promesas -->
                                     <?php foreach ($leads as $lead) {
-                                        if ($lead['label'] !== 7) continue; ?>
+                                        if ($lead['label'] !== '7') continue; ?>
                                         <tr>
                                             <form action="./index.php" method="post">
                                                 <td class="pl-0 py-4">
@@ -256,7 +257,7 @@
                                 <tbody>
                                     <!--  LEAD llamar luego -->
                                     <?php foreach ($leads as $lead) {
-                                        if ($lead['label'] !== 5) continue; ?>
+                                        if ($lead['label'] !== '5') continue; ?>
                                         <tr>
                                             <form action="./index.php" method="post">
                                                 <td class="pl-0 py-4">

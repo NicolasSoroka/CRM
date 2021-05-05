@@ -163,6 +163,11 @@
 							<option value="4" class="font-weight-bold text-danger">No interesado</option>
 							<option value="3" class="font-weight-bold text-success">Vendido</option>
 						</select>
+						<div class="form-group row">
+							<div class="col-lg-8 col-md-9 col-sm-12">
+								<input class="form-control" id="kt_timepicker_1" readonly placeholder="Select time" type="text" />
+							</div>
+						</div>
 						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>');">Enviar</button>
 					</div>
 				</div>
@@ -189,6 +194,7 @@
 		let text = $('#messageArea').val();
 
 		if ((select > 0) && (text.length > 20)) {
+			//agregar que si el select da 5 (caso de llamar luego) seleccionar un horario en cual llamar
 			var info = {
 				'message': $('#messageArea').val(),
 				'name': name,
@@ -205,7 +211,7 @@
 				data: info,
 				success: function(response) {
 					$('#messageArea').val("");
-					location.reload();
+					location.href = "./index.php";
 				}
 			});
 		} else {

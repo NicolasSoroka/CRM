@@ -3,6 +3,7 @@
 	session_start();
 	$db = Database::getInstance();
 	$userId = $_SESSION['user']['id'];
+	$route = '_main.php';
 
 	//datos del usuario
 	$db->query("SELECT * FROM users WHERE id = '$userId' LIMIT 1");
@@ -14,9 +15,26 @@
 		$leads = $db->fetchAll();
 	}
 
+	//pedir datos
+	if (isset($_GET['lead'])) {
+		if ($_GET['lead'] == 'ask') {
+			
+		}
+	}
+
 	//LIST-USERS
 	if (isset($_GET['page'])) {
 		if ($_GET['page'] == 'users/_list-users') {
+			$db->getUsers();
+			$users = $db->fetchAll();
+		}
+	}
+
+
+	//NEW LEAD WHATSAPP
+	if (isset($_GET['page'])) {
+		if ($_GET['page'] == 'leads/_new-lead-wsp') {
+			$route = 'leads/_new-lead-wsp.php';
 			$db->getUsers();
 			$users = $db->fetchAll();
 		}
@@ -33,7 +51,6 @@
 		$messages = $db->fetchAll();
 	} else {
 		if (isset($_GET['page'])) $route = $_GET['page'].'.php';
-		else $route = '_main.php';
 	}
 ?>
 

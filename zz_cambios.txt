@@ -14,14 +14,33 @@
 		-no interesa (final)
 		-muy caro (promo
 		-busca presencial
-		-por ahora no (llamar al mes)	
+		-por ahora no (llamar al mes)
 		-cambio horario
 
 	Carga de fotos
 
 
 
+
+---------------------------------------------------------------------
+al crear una promesa, enviar a confirmacion poradministrador
+al validar por administrador, pasar a promesas de pagos (asignando al vendedor) y hacer seguimiento detallado (opciones de carga de comprobantes por parte del admin y del vendedor al momento de pagar cuotas.)
+agregar tab en la vista dle vendedor para las promesas de pago.
+agregar una etiqueta con el horario a llamar, si pasa el horario se pone en rojo
+form de ampliacion de datos de carga al pasar a promesa
+agregar opcion de multiple usuario al ampliar datos en promesa
+pasar a venta unicamente desde promesa
+agregar dia y hora de mensaje del vendedor
+agregar etiqueta que diga con que estado se guardo su mensaje
+agregar boton de cancelar
+agregar tab "no leidos" meh
+---------------------------------------------------------------------
+
+
+
+
 FEATURED WIDGET STATS
+---- mail de aviso de pago al alumno
 
 
 
@@ -63,3 +82,13 @@ Leads
     - Vendido 3 
     - Viejo 2
     - Nuevo 1
+
+
+
+
+
+
+
+
+
+    .. agregar "no hay mensajes" en el detalle del lead si es que no los hay.

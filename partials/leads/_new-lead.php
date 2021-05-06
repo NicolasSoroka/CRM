@@ -19,7 +19,7 @@
 <!--begin::Card-->
 <div class="card card-custom gutter-b example example-compact">
     <!--begin::Form-->
-    <form>
+    <form id="form">
         <div class="card-body">
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nombre y apellido</label>
@@ -122,6 +122,7 @@
                         'detail' : $('#detail').val(),
                         'country' : $('#country').val()
                     }
+
                     $.ajax({
                         type: 'get',
                         url: './functions/addNewLead.php',

@@ -31,9 +31,35 @@
 								</h3>
 							</div>
 						</div>
+
 						<!--end::Header-->
 						<!--begin::Body-->
 						<div class="card-body py-4">
+							<div class="form-group row my-2">
+								<label class="col-4 col-form-label">Estado actual:</label>
+								<div class="col-4">
+									<?php switch ($lead['0']['label']) {
+										case 7:
+											echo '<span class="mt-2 label label-primary label-inline">Promesa</span>';
+											break;
+										case 6:
+											echo '<span class="mt-2 label label-warning label-inline">Cuasi promesa</span>';
+											break;
+										case 5:
+											echo '<span class="mt-2 label label-info label-inline">Llamar luego</span>';
+											break;
+										case 4:
+											echo '<span class="mt-2 label label-danger label-inline">No interesado</span>';
+											break;
+										case 3:
+											echo '<span class="mt-2 label label-success label-inline">Vendido</span>';
+											break;
+										case 1:
+											echo '<span class="mt-2 label label-secondary label-inline">Nuevo</span>';
+											break;
+									} ?>
+								</div>
+							</div>
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Pais:</label>
 								<div class="col-8">
@@ -118,7 +144,25 @@
 														<div class="timeline-content">
 															<div class="d-flex align-items-center justify-content-between mb-3">
 																<div class="mr-2">
-																	<a href="#" class="text-dark-75 text-hover-primary font-weight-bold"><?= $message['name'] . ' ' . $message['lastname'] ?></a>
+																	<label class="text-dark-75 text-primary font-weight-bold"><?= $message['name'] . ' ' . $message['lastname'] ?></label>
+																	<span><?= Date('d M H:i A', strtotime($message['time'])); ?></span>
+																	<?php switch ($message['label']) {
+																		case 7:
+																			echo '<span class="ml-2 label label-primary label-inline">Promesa</span>';
+																			break;
+																		case 6:
+																			echo '<span class="ml-2 label label-warning label-inline">Cuasi promesa</span>';
+																			break;
+																		case 5:
+																			echo '<span class="ml-2 label label-info label-inline">Llamar luego</span>';
+																			break;
+																		case 4:
+																			echo '<span class="ml-2 label label-danger label-inline">No interesado</span>';
+																			break;
+																		case 3:
+																			echo '<span class="ml-2 label label-success label-inline">Vendido</span>';
+																			break;
+																	} ?>
 																</div>
 															</div>
 															<p class="p-0"><?= $message['text'] ?></p>
@@ -157,17 +201,22 @@
 					<div class="col text-right mb-5">
 						<select class="form-control mb-4" id="selectState">
 							<option selected disabled>-- Seleccione --</option>
-							<option value="7">Promesa</option>
-							<option value="6">Cuasi Promesa</option>
-							<option value="5">Llamar luego</option>
-							<option value="4" class="font-weight-bold text-danger">No interesado</option>
-							<option value="3" class="font-weight-bold text-success">Vendido</option>
+							<?php if ($message['label'] != 7) { ?>
+								<option value="7">Promesa</option>
+								<?php if ($message['label'] != 6) { ?> <option value="6">Cuasi Promesa (Interesado)</option> <?php } ?>
+								<option value="5">Llamar luego</option>
+								<?php if ($message['label'] != 4) { ?><option value="4" class="font-weight-bold text-danger">No interesado</option> <?php } ?>
+							<?php } else { ?>
+								<option value="3" class="font-weight-bold text-success">Vendido</option>
+								<option value="5">Llamar luego</option>
+								<option value="4" class="font-weight-bold text-danger">No interesado</option>
+							<?php } ?>
 						</select>
-						<div class="form-group row">
+						<!-- <div class="form-group row">
 							<div class="col-lg-8 col-md-9 col-sm-12">
 								<input class="form-control" id="kt_timepicker_1" readonly placeholder="Select time" type="text" />
 							</div>
-						</div>
+						</div> -->
 						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>');">Enviar</button>
 					</div>
 				</div>
@@ -177,6 +226,102 @@
 </div>
 <!--end::Modal-->
 
+<!-- Modal carga datos-->
+<div class="modal fade" id="modalUpdate" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+	<div class="card card-custom">
+		<div class="card-header">
+			<div class="card-title">
+				<h3 class="card-label">Datos adicionales</h3>
+			</div>
+			<div class="card-toolbar">
+				<ul class="nav nav-light-success nav-bold nav-pills" id="tabIndex">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#tab1">
+							<span class="nav-icon"><i class="flaticon2-avatar"></i></span>
+							<span class="nav-text">1</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="tab-content" id="modal-container">
+				<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="container">
+								<div class="card card-custom gutter-b example example-compact">
+									<div class="card card-custom gutter-b example example-compact">
+										<!--begin::Form-->
+										<form>
+											<div class="card-body">
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Nombre</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="name1" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Apellido</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="lastname1" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="example-search-input" class="col-2 col-form-label">Telefono</label>
+													<div class="col-4">
+														<input class="form-control" type="search" id="phone1" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="example-email-input" class="col-2 col-form-label">Email</label>
+													<div class="col-4">
+														<input class="form-control" type="email" id="email1" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="exampleSelectd" class="col-2 col-form-label">Pais</label>
+													<div class="col-4">
+														<select class="form-control" id="country1">
+															<option selected disabled>-- Seleccione --</option>
+															<option value="argentina">Argentina</option>
+															<option value="chile">Chile</option>
+															<option value="paraguay">Paraguay</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="example-url-input" class="col-2 col-form-label">Curso</label>
+													<div class="col-6">
+														<select class="form-control" id="course1">
+															<option selected disabled>-- Seleccione --</option>
+															<option value="argentina">Argentina</option>
+															<option value="chile">Chile</option>
+															<option value="paraguay">Paraguay</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-right col-6">
+					<button type="button" onclick="addSale()" class="btn btn-primary mr-2">Agregar persona</button>
+					<button type="button" onclick="removeSale()" class="btn btn-danger mr-2">Quitar persona</button>
+					<button type="button" onclick="finishPromise('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>')" class="btn btn-success mr-2">Finalizar promesa</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--end::Modal carga datos-->
 
 <script>
 	function swalfire() {
@@ -187,6 +332,10 @@
 			showConfirmButton: false,
 			timer: 2000
 		})
+	}
+
+	function modalUpdate() {
+		$("#modalUpdate").modal('show');
 	}
 
 	function sendMessage(name, lastname, id_user, id_lead, img) {
@@ -202,20 +351,167 @@
 				'id_user': id_user,
 				'id_lead': id_lead,
 				'img': img,
-				'state': select
+				'state': select,
 			}
 
-			$.ajax({
-				type: 'get',
-				url: './functions/changeLeadState.php',
-				data: info,
-				success: function(response) {
-					$('#messageArea').val("");
-					location.href = "./index.php";
-				}
-			});
+			if (select != 7) {
+				$.ajax({
+					type: 'get',
+					url: './functions/changeLeadState.php',
+					data: info,
+					success: function(response) {
+						$('#messageArea').val("");
+						location.href = "./index.php";
+					}
+				});
+			} else {
+				modalUpdate();
+			}
 		} else {
 			swalfire();
+		}
+	}
+
+	let counter = 1;
+
+	function removeSale() {
+		let count = $("#modal-container").children().length;
+		if (count > 1) {
+			$('#modal-container').children().last().remove();
+			$('#tabIndex').children().last().remove();
+			counter--;
+		}
+	}
+
+	function addSale() {
+		counter++;
+		let modalContainer = $('#modal-container');
+		modalContainer.append(`<div class="tab-pane fade" id="tab${counter}" role="tabpanel" aria-labelledby="tab${counter}">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="container">
+								<div class="card card-custom gutter-b example example-compact">
+									<div class="card card-custom gutter-b example example-compact">
+										<!--begin::Form-->
+										<form>
+											<div class="card-body">
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Nombre</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="name${counter}" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Apellido</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="lastname${counter}" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="example-search-input" class="col-2 col-form-label">Telefono</label>
+													<div class="col-4">
+														<input class="form-control" type="search" id="phone${counter}" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="example-email-input" class="col-2 col-form-label">Email</label>
+													<div class="col-4">
+														<input class="form-control" type="email" id="email${counter}" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="exampleSelectd" class="col-2 col-form-label">Pais</label>
+													<div class="col-4">
+														<select class="form-control" id="country${counter}">
+															<option selected disabled>-- Seleccione --</option>
+															<option value="argentina">Argentina</option>
+															<option value="chile">Chile</option>
+															<option value="paraguay">Paraguay</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label for="example-url-input" class="col-2 col-form-label">Curso</label>
+													<div class="col-6">
+														<select class="form-control" id="course${counter}">
+															<option selected disabled>-- Seleccione --</option>
+															<option value="argentina">Argentina</option>
+															<option value="chile">Chile</option>
+															<option value="paraguay">Paraguay</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div></div>`);
+
+		let tabIndex = $('#tabIndex');
+		tabIndex.append(`<li class="nav-item">
+		<a class="nav-link" data-toggle="tab" href="#tab${counter}">
+		<span class="nav-icon"><i class="flaticon2-avatar"></i></span>
+		<span class="nav-text">${counter}</span>
+		</a>
+		</li>`);
+	}
+
+	function finishPromise() {
+		let pointer = 1;
+		for (let i = counter; i > 0; i--) {
+			var info = {
+				'phone': $(`#phone${pointer}`).val(),
+				'email': $(`#email${pointer}`).val(),
+				'name': $(`#name${pointer}`).val(),
+				'lastname': $(`#lastname${pointer}`).val(),
+				'contactMethod': $("input[type='radio'][name='radio']:checked").val(),
+				'contactTime': $('#contactTime').val(),
+				'course': $(`#course${pointer}`).val(),
+				'detail': $(`#detail`).val(),
+				'country': $(`#country${pointer}`).val(),
+				'label': 7,
+				'group_sale': 12
+			}
+			pointer++;
+			$.ajax({
+				type: 'get',
+				url: './functions/addNewLead.php',
+				data: info,
+				success: function(response) {
+					Swal.fire({
+						text: "Alta realizada con exito!",
+						icon: "success",
+						buttonsStyling: false,
+						showConfirmButton: false,
+						timer: 2000
+					})
+					location.reload();
+				}
+			});
+
+			let select = $('#selectState').val();
+			let text = $('#messageArea').val();
+
+			var info = {
+				'message': $('#messageArea').val(),
+				'name': name,
+				'lastname': lastname,
+				'id_user': id_user,
+				'id_lead': id_lead,
+				'img': img,
+				'state': select,
+			}
+				$.ajax({
+					type: 'get',
+					url: './functions/changeLeadState.php',
+					data: info,
+					success: function(response) {
+						$('#messageArea').val("");
+						location.href = "./index.php";
+					}
+				});
 		}
 	}
 </script>

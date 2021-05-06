@@ -12,5 +12,5 @@ $id_lead = $db->escape($_GET['id_lead']);
 $img = $db->escape($_GET['img']);
 
 $db->query("UPDATE `leads` SET `label`= '$state' WHERE id = '$id_lead' LIMIT 1");
-$db->query("INSERT INTO `messages`(`text`, `id_user`, `id_lead`, `img`, `name`, `lastname`) VALUES ('$message','$id_user','$id_lead','$img','$name','$lastname')");
+$db->query("INSERT INTO `messages`(`text`, `id_user`, `id_lead`, `img`, `name`, `lastname`, `label`) VALUES ('$message','$id_user','$id_lead','$img','$name','$lastname', '$state')");
 ?>

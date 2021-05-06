@@ -1,60 +1,29 @@
 • tolerancia de 30'' por lead
 • contador de leads (cuantos pidio)
-• registrar en que momento pidio el dato.
-• bloqueo de todos los usuarios (quizas a partir de las 12pm por ejemplo o por boton)
 • ventas accu bajar a semanal
-• tabs por estado de dato (promise ,quasi, no interesado etc)
-• los leads "avisa el"**  reminder a la semana de que los vuelvan a llamar
-		**sino enviar a disponibles.
-•cuando el clinete dice que lo llamen luego, que sea un nuevo estado (ej llamar luego)y obligue a especificar nuevo horario. DEJAR HISTORIAL DE LOS HORARIOS.
-• 5 datos al comienzo del dia (luego pedir de a uno)
+• estado "llamar luego" especificar horario.
 •  agregar valor neto al historial de ventas *administrator
-		confirmar por administrador y poner tilde. pedir valor neto
-
-		-no interesa (final)
-		-muy caro (promo
-		-busca presencial
-		-por ahora no (llamar al mes)
-		-cambio horario
+		confirmar por administrador y poner tilde. pedir valor neto. Pedir carga de comprobante de pago.
 
 	Carga de fotos
 
-
-
-
 ---------------------------------------------------------------------
-al crear una promesa, enviar a confirmacion poradministrador
+al crear una promesa, enviar a confirmacion por administrador
 al validar por administrador, pasar a promesas de pagos (asignando al vendedor) y hacer seguimiento detallado (opciones de carga de comprobantes por parte del admin y del vendedor al momento de pagar cuotas.)
 agregar tab en la vista dle vendedor para las promesas de pago.
 agregar una etiqueta con el horario a llamar, si pasa el horario se pone en rojo
 form de ampliacion de datos de carga al pasar a promesa
 agregar opcion de multiple usuario al ampliar datos en promesa
 pasar a venta unicamente desde promesa
-agregar dia y hora de mensaje del vendedor
-agregar etiqueta que diga con que estado se guardo su mensaje
 agregar boton de cancelar
 agregar tab "no leidos" meh
 ---------------------------------------------------------------------
 
-
-
-
 FEATURED WIDGET STATS
 ---- mail de aviso de pago al alumno
 
-
-
-
-arreglar tipos de dato fecha en la db
-
 • Importar cursos de la tabla 'cursos' (db exp_iade) para generar la tabla 'courses' en CRM
-• Resaltar cambios en el lead (historial) ver fecha de cambios
-• Mail para envio de alertas. (Promises quizas)
-• Cuando un dato se convierte en venta -> Boton para generar comprobante de pago (opciones para que el administrador las genere/valide)
-    - Cuando es emitido el comprobante y se paga, este debe ser adjuntado en el Lead (Vendido) y pasar a aprobacion del administrador. Recien entonces suma una venta.
 • Crear los alumnos con los cursos asignados para quien haya pasado el proceso de verificacion de pago (por parte del admin)
-• Enviar recordatorio de pago a los alumnos que posean cuotas 
-• Tabla 'Leads' contactMethod establecer los valores para ENUM. Actualmente es un varchar.
 
 User
 • Pedir datos
@@ -62,13 +31,10 @@ User
 Administrador
 • Ver ventas (filtrar por vendedor)
 • Ver todos los leads (filtrar por estado)
-• Asignacion manual de leads
 • Ver ranking de ventas
-• Manejar los leads "Interesados" a mano. (reasignaciones)
 
 Estadisticas
 • Monetizacion (cuanto $$ acumula cada vendedor, $$ total (fitlrado por dia,semana,mes))
-• Reportes a excel (graficos?)
 • Quien vendio que
 • Ventas por cursos
 • Cantidad de datos entregados por vendedor
@@ -82,13 +48,6 @@ Leads
     - Vendido 3 
     - Viejo 2
     - Nuevo 1
-
-
-
-
-
-
-
-
+    - Grupo 8
 
     .. agregar "no hay mensajes" en el detalle del lead si es que no los hay.

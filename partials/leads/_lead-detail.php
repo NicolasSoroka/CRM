@@ -126,7 +126,6 @@
 				<div class="col-xl-8">
 					<!--begin::Card-->
 					<div class="card card-custom gutter-b">
-
 						<!--begin::Body-->
 						<div class="card-body px-0">
 							<div class="tab-content pt-5">
@@ -320,7 +319,6 @@
 		</div>
 	</div>
 </div>
-
 <!--end::Modal carga datos-->
 
 <script>
@@ -487,7 +485,7 @@
 						showConfirmButton: false,
 						timer: 2000
 					})
-					location.reload();
+					//location.reload();
 				}
 			});
 
@@ -502,6 +500,7 @@
 				'id_lead': id_lead,
 				'img': img,
 				'state': select,
+				'group_sale' : 12
 			}
 				$.ajax({
 					type: 'get',

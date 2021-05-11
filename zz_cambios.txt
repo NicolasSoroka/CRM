@@ -1,30 +1,12 @@
 • tolerancia de 30'' por lead
-• contador de leads (cuantos pidio)
-• ventas accu bajar a semanal
 • estado "llamar luego" especificar horario.
-•  agregar valor neto al historial de ventas *administrator
-		confirmar por administrador y poner tilde. pedir valor neto. Pedir carga de comprobante de pago.
-
-	Carga de fotos
-
----------------------------------------------------------------------
-al crear una promesa, enviar a confirmacion por administrador
-al validar por administrador, pasar a promesas de pagos (asignando al vendedor) y hacer seguimiento detallado (opciones de carga de comprobantes por parte del admin y del vendedor al momento de pagar cuotas.)
-agregar tab en la vista dle vendedor para las promesas de pago.
-agregar una etiqueta con el horario a llamar, si pasa el horario se pone en rojo
-agregar opcion de multiple usuario al ampliar datos en promesa
-pasar a venta unicamente desde promesa
-agregar boton de cancelar
----------------------------------------------------------------------
-
-FEATURED WIDGET STATS
----- mail de aviso de pago al alumno
-
-• Importar cursos de la tabla 'cursos' (db exp_iade) para generar la tabla 'courses' en CRM
+• agregar valor neto al historial de ventas *administrator
+• confirmar por administrador y poner tilde. pedir valor neto. Pedir carga de comprobante de pago.
+• al validar por administrador, pasar a promesas de pagos (asignando al vendedor) y hacer seguimiento detallado (opciones de carga de comprobantes por parte del admin y del vendedor al momento de pagar cuotas.)
+• agregar una etiqueta con el horario a llamar, si pasa el horario se pone en rojo
+• agregar boton de cancelar
+• mail de aviso de pago al alumno
 • Crear los alumnos con los cursos asignados para quien haya pasado el proceso de verificacion de pago (por parte del admin)
-
-User
-• Pedir datos
 
 Administrador
 • Ver ventas (filtrar por vendedor)
@@ -37,8 +19,8 @@ Estadisticas
 • Ventas por cursos
 • Cantidad de datos entregados por vendedor
 
-Leads
-• Estados:
+• Carga de fotos
+
     - Promesa 7
     - Cuasi-Promesa 6 
     - llamar luego 5
@@ -46,6 +28,8 @@ Leads
     - Vendido 3 
     - Viejo 2
     - Nuevo 1
-    - Grupo 8
 
-    .. agregar "no hay mensajes" en el detalle del lead si es que no los hay.
+FEATURED WIDGET STATS
+
+
+CHECKEAR QUE AL PEDIR UN LEAD SOLO LO HAGA SI NO TIENE GROUP_LABEL, DE LO CONTRARIO LE ESTA ASIGNANDO UNA PROMESA

@@ -1,3 +1,10 @@
+<?php
+require './globals/database_campus.php';
+$db2 = Database_campus::getInstance();
+$db2->query('SELECT nombre, id_curso FROM curso');
+$courses_list = $db2->fetchAll();
+?>
+
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 	<!--begin::Subheader-->
@@ -43,7 +50,7 @@
 											echo '<span class="mt-2 label label-primary label-inline">Promesa</span>';
 											break;
 										case 6:
-											echo '<span class="mt-2 label label-warning label-inline">Cuasi promesa</span>';
+											echo '<span class="mt-2 label label-warning label-inline">Interesado</span>';
 											break;
 										case 5:
 											echo '<span class="mt-2 label label-info label-inline">Llamar luego</span>';
@@ -150,7 +157,7 @@
 																			echo '<span class="ml-2 label label-primary label-inline">Promesa</span>';
 																			break;
 																		case 6:
-																			echo '<span class="ml-2 label label-warning label-inline">Cuasi promesa</span>';
+																			echo '<span class="ml-2 label label-warning label-inline">Interesado</span>';
 																			break;
 																		case 5:
 																			echo '<span class="ml-2 label label-info label-inline">Llamar luego</span>';
@@ -216,7 +223,7 @@
 								<input class="form-control" id="kt_timepicker_1" readonly placeholder="Select time" type="text" />
 							</div>
 						</div> -->
-						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>');">Enviar</button>
+						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>','<?= $lead[0]['phone'] ?>','<?= $lead[0]['email'] ?>','<?= $lead[0]['country'] ?>','<?= $lead[0]['course_id'] ?>');">Modificar</button>
 					</div>
 				</div>
 			</div>
@@ -257,13 +264,19 @@
 												<div class="form-group row">
 													<label class="col-2 col-form-label">Nombre</label>
 													<div class="col-4">
-														<input class="form-control" type="text" id="name1" />
+														<input class="form-control" type="text" id="name1" required />
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-2 col-form-label">Apellido</label>
 													<div class="col-4">
 														<input class="form-control" type="text" id="lastname1" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Documento</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="username1" required />
 													</div>
 												</div>
 												<div class="form-group row">
@@ -294,9 +307,9 @@
 													<div class="col-6">
 														<select class="form-control" id="course1">
 															<option selected disabled>-- Seleccione --</option>
-															<option value="argentina">Argentina</option>
-															<option value="chile">Chile</option>
-															<option value="paraguay">Paraguay</option>
+															<?php foreach ($courses_list as $course) { ?>
+																<option value="<?= $course['id_curso'] ?>"><?= $course['nombre'] ?></option>
+															<?php } ?>
 														</select>
 													</div>
 												</div>
@@ -313,7 +326,7 @@
 				<div class="text-right col-6">
 					<button type="button" onclick="addSale()" class="btn btn-primary mr-2">Agregar persona</button>
 					<button type="button" onclick="removeSale()" class="btn btn-danger mr-2">Quitar persona</button>
-					<button type="button" onclick="finishPromise('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>')" class="btn btn-success mr-2">Finalizar promesa</button>
+					<button type="button" onclick="finishPromise('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>','<?= $lead[0]['course_id'] ?>')" class="btn btn-success mr-2">Finalizar promesa</button>
 				</div>
 			</div>
 		</div>
@@ -332,11 +345,17 @@
 		})
 	}
 
-	function modalUpdate() {
+	function modalUpdate(user_info) {
 		$("#modalUpdate").modal('show');
+		$("#name1").val(user_info.name);
+		$("#lastname1").val(user_info.lastname);
+		$("#phone1").val(user_info.phone);
+		$("#email1").val(user_info.email);
+		$("#country1").val(user_info.country);
+		$("#course1").val(user_info.course_id);
 	}
 
-	function sendMessage(name, lastname, id_user, id_lead, img) {
+	function sendMessage(name, lastname, id_user, id_lead, img, phone, email, country, course_id) {
 		let select = $('#selectState').val();
 		let text = $('#messageArea').val();
 
@@ -350,6 +369,10 @@
 				'id_lead': id_lead,
 				'img': img,
 				'state': select,
+				'phone': phone,
+				'email': email,
+				'country': country,
+				'course_id': course_id
 			}
 
 			if (select != 7) {
@@ -363,7 +386,7 @@
 					}
 				});
 			} else {
-				modalUpdate();
+				modalUpdate(info);
 			}
 		} else {
 			swalfire();
@@ -406,6 +429,12 @@
 													</div>
 												</div>
 												<div class="form-group row">
+													<label class="col-2 col-form-label">Documento</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="username${counter}" required/>
+													</div>
+												</div>
+												<div class="form-group row">
 													<label for="example-search-input" class="col-2 col-form-label">Telefono</label>
 													<div class="col-4">
 														<input class="form-control" type="search" id="phone${counter}" />
@@ -433,9 +462,9 @@
 													<div class="col-6">
 														<select class="form-control" id="course${counter}">
 															<option selected disabled>-- Seleccione --</option>
-															<option value="argentina">Argentina</option>
-															<option value="chile">Chile</option>
-															<option value="paraguay">Paraguay</option>
+															<?php foreach ($courses_list as $course) { ?> 
+																<option value = "<?= $course['id_curso'] ?>" > <?= $course['nombre'] ?></option>
+															<?php } ?>
 														</select>
 													</div>
 												</div>
@@ -449,28 +478,26 @@
 
 		let tabIndex = $('#tabIndex');
 		tabIndex.append(`<li class="nav-item">
-		<a class="nav-link" data-toggle="tab" href="#tab${counter}">
-		<span class="nav-icon"><i class="flaticon2-avatar"></i></span>
-		<span class="nav-text">${counter}</span>
-		</a>
-		</li>`);
+						<a class="nav-link" data-toggle="tab" href="#tab${counter}">
+						<span class="nav-icon"><i class="flaticon2-avatar"></i></span>
+						<span class="nav-text">${counter}</span>
+						</a>
+						</li>`);
 	}
 
-	function finishPromise() {
-		let pointer = 1;
+	function finishPromise(name, lastname, id_user, id_lead, img) {
+		let pointer = 2;
 		for (let i = counter; i > 0; i--) {
 			var info = {
-				'phone': $(`#phone${pointer}`).val(),
-				'email': $(`#email${pointer}`).val(),
 				'name': $(`#name${pointer}`).val(),
 				'lastname': $(`#lastname${pointer}`).val(),
-				'contactMethod': $("input[type='radio'][name='radio']:checked").val(),
-				'contactTime': $('#contactTime').val(),
-				'course': $(`#course${pointer}`).val(),
-				'detail': $(`#detail`).val(),
+				'username': $(`#username${pointer}`).val(),
+				'phone': $(`#phone${pointer}`).val(),
+				'email': $(`#email${pointer}`).val(),
 				'country': $(`#country${pointer}`).val(),
+				'course': $(`#course${pointer}`).val(),
 				'label': 7,
-				'group_sale': 12
+				'group_sale': id_lead
 			}
 			pointer++;
 			$.ajax({
@@ -479,38 +506,36 @@
 				data: info,
 				success: function(response) {
 					Swal.fire({
-						text: "Alta realizada con exito!",
+						text: "Promesa creada con exito",
 						icon: "success",
 						buttonsStyling: false,
 						showConfirmButton: false,
 						timer: 2000
 					})
-					//location.reload();
 				}
 			});
-
-			let select = $('#selectState').val();
-			let text = $('#messageArea').val();
-
-			var info = {
-				'message': $('#messageArea').val(),
-				'name': name,
-				'lastname': lastname,
-				'id_user': id_user,
-				'id_lead': id_lead,
-				'img': img,
-				'state': select,
-				'group_sale' : 12
-			}
-				$.ajax({
-					type: 'get',
-					url: './functions/changeLeadState.php',
-					data: info,
-					success: function(response) {
-						$('#messageArea').val("");
-						location.href = "./index.php";
-					}
-				});
 		}
+
+		let select = $('#selectState').val();
+		let text = $('#messageArea').val();
+		var info = {
+			'message': $('#messageArea').val(),
+			'state': select,
+			'name': name,
+			'lastname': lastname,
+			'id_user': id_user,
+			'id_lead': id_lead,
+			'img': img,
+			'group_sale': id_lead
+		}
+		$.ajax({
+			type: 'get',
+			url: './functions/changeLeadState.php',
+			data: info,
+			success: function(response) {
+				$('#messageArea').val("");
+				location.href = "./index.php";
+			}
+		});
 	}
 </script>

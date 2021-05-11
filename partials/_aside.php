@@ -268,8 +268,8 @@
 							<h4 class="menu-text">Menu Vendedor</h4>
 							<i class="menu-icon ki ki-bold-more-hor icon-md"></i>
 						</li>
-						<li class="menu-item" aria-haspopup="true">
-							<a href="?lead=ask" class="menu-link">
+						<li class="menu-item" onclick="pedirLead();" aria-haspopup="true">
+							<a href="#" class="menu-link">
 								<span class="svg-icon menu-icon">
 									<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
 									<span class="svg-icon svg-icon-primary svg-icon-2x">
@@ -339,6 +339,19 @@
 
 <script>
 	function pedirLead() {
-		alert("test");
+		$.ajax({
+				type: 'get',
+				url: './functions/leadRequest.php',
+				success: function(response) {
+					Swal.fire({
+						text: "",
+						icon: "success",
+						buttonsStyling: false,
+						showConfirmButton: false,
+						timer: 2000
+					})
+					location.reload();
+				}
+			});
 	}
 </script>

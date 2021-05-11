@@ -8,7 +8,8 @@ require '../globals/database.php';
 session_start();
 $db = Database::getInstance();
 $userId = $_SESSION['user']['id'];
-
+$db->query("SELECT lead_counter FROM users WHERE id = '$userId'");
+$user_counter = $db->fetch();
 //TRAER TODOS LOS LEADS DEL USUARIO (ID)
 $db->query("SELECT *     
             FROM assigned
@@ -22,9 +23,9 @@ foreach ($leads as $lead) {
 }
 
 if ($ok == 0) {
-    echo "no reviso todos los datos aun!";  //aca revisar el mensaje de error.
+    echo "no reviso todos los datos.";
     exit;
-} else {
+} /* else {
     $db->query("SELECT *
                 FROM leads
                 LEFT JOIN assigned
@@ -32,6 +33,8 @@ if ($ok == 0) {
                 WHERE assigned.id_lead is Null");
 
     $leads = $db->fetchAll();
+   
+   
     $leadsNew = array();
     $leadsOld = array();
     $leadsInterested = array();
@@ -61,7 +64,7 @@ if ($ok == 0) {
 
     switch ($rank) {
         case "top":                                     //3 nuevos 1 interested 1 old
-            for ($i = 0; $i < 3; $i++) {
+            for ($i = 0; $i < 1; $i++) {                //for ($i = 0; $i < 3; $i++) {
                 if (count($leadsNew) > 0) {
                     array_push($leadsToAssign, $leadsNew[0]);
                     array_splice($leadsNew,0,1);
@@ -97,7 +100,7 @@ if ($ok == 0) {
             break;
 
         case "mid":                                         //2 new 1 interested 1 not 1 old
-            for ($i = 0; $i < 2; $i++) {
+            for ($i = 0; $i < 1; $i++) {   //for ($i = 0; $i < 2; $i++) {
                 if (count($leadsNew) > 0) {
                     array_push($leadsToAssign, $leadsNew[0]);
                     array_splice($leadsNew,0,1);
@@ -152,7 +155,7 @@ if ($ok == 0) {
                     array_splice($leadsNotInterested,0,1);
                 }  else echo "No hay datos disponibles en este momento!";
             
-                for ($i = 0 ; $i < 2 ; $i++) {
+                for ($i = 0 ; $i < 1 ; $i++) {          //for ($i = 0 ; $i < 2 ; $i++) {
                     if (count($leadsInterested) > 0) {
                         array_push($leadsToAssign, $leadsInterested[0]);
                         array_splice($leadsInterested,0,1);
@@ -179,8 +182,16 @@ if ($ok == 0) {
                 }  else echo "No hay datos disponibles en este momento!";
             break;
     }
+}                                   //ESTE ES EL CODIGO QUE SE ENCARGA DE BUSCAR EL RANK Y ASIGNAR LEADS SEGUN FILTRO, NO EN USO
+*/ else {
+    $db->query("SELECT *
+                FROM leads
+                LEFT JOIN assigned
+                ON leads.id = assigned.id_lead  
+                WHERE assigned.id_lead is Null");
 
-    assignLeads($leadsToAssign, $userId);
+    $leads = $db->fetchAll();
+    assignLeads($leads[0]['id'], $userId, $user_counter['lead_counter']);
 }
 
 function getScores($id)
@@ -199,13 +210,19 @@ function getScores($id)
     }
 }
 
-function assignLeads($leads, $userId){ 
+function assignLeads($lead, $userId, $user_counter)
+{
     $db = Database::getInstance();
-   
-    $queryString = "INSERT INTO `assigned`(`id_user`, `id_lead`, `status`) VALUES "; 
-    foreach ($leads as $lead) {
-        $queryString = $queryString . "( " . $userId . ", " . $lead['id'] .  ", default),";
-    }
-    $queryString = substr($queryString, 0, -1);
-    $db->query($queryString);
+    $user_counter++;
+
+    // ESTE BLOQUE DEBE ESTAR HABILITADO EN CASO DE USARSE EL SISTEMA DE RANK.
+    // $queryString = "INSERT INTO `assigned`(`id_user`, `id_lead`, `status`) VALUES ";
+    // foreach ($leads as $lead) {
+    //     $queryString = $queryString . "( " . $userId . ", " . $lead['id'] .  ", default),";
+    // }
+    // $queryString = substr($queryString, 0, -1);
+    // $db->query($queryString);
+
+    $db->query("INSERT INTO `assigned`(`id_user`, `id_lead`, `status`) VALUES ('$userId', '$lead', 'default')");
+    $db->query("UPDATE `users` SET `lead_counter`= '$user_counter' WHERE `id` = '$userId'");
 }

@@ -1,3 +1,10 @@
+<?php
+require './globals/database_campus.php';
+$db2 = Database_campus::getInstance();
+$db2->query('SELECT nombre, id_curso FROM curso');
+$courses_list = $db2->fetchAll();
+?>
+
 <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
     <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <!--begin::Details-->
@@ -75,7 +82,12 @@
             <div class="form-group row">
                 <label for="example-url-input" class="col-2 col-form-label">Curso de interes</label>
                 <div class="col-4">
-                    <input class="form-control" type="text" id="course" />
+                    <select class="form-control" id="course">
+                        <option selected disabled>-- Seleccione --</option>
+                        <?php foreach ($courses_list as $course) { ?> 
+                        <option value="<?=$course['id_curso']?>"><?=$course['nombre']?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">

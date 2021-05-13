@@ -85,7 +85,7 @@ $courses_list = $db2->fetchAll();
                     <select class="form-control" id="course">
                         <option selected disabled>-- Seleccione --</option>
                         <?php foreach ($courses_list as $course) { ?> 
-                        <option value="<?=$course['id_curso']?>"><?=$course['nombre']?></option>
+                        <option value="<?=$course['nombre']?>"><?=$course['nombre']?></option>
                         <?php } ?>
                     </select>
                 </div>

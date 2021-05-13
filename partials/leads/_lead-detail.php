@@ -44,7 +44,7 @@ $courses_list = $db2->fetchAll();
 						<div class="card-body py-4">
 							<div class="form-group row my-2">
 								<label class="col-4 col-form-label">Estado actual:</label>
-								<div class="col-4">
+								<div class="col-5">
 									<?php switch ($lead['0']['label']) {
 										case 7:
 											echo '<span class="mt-2 label label-primary label-inline">Promesa</span>';
@@ -326,7 +326,7 @@ $courses_list = $db2->fetchAll();
 				<div class="text-right col-6">
 					<button type="button" onclick="addSale()" class="btn btn-primary mr-2">Agregar persona</button>
 					<button type="button" onclick="removeSale()" class="btn btn-danger mr-2">Quitar persona</button>
-					<button type="button" onclick="finishPromise('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>','<?= $lead[0]['course_id'] ?>')" class="btn btn-success mr-2">Finalizar promesa</button>
+					<button type="button" onclick="finishPromise('<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>')" class="btn btn-success mr-2">Finalizar promesa</button>
 				</div>
 			</div>
 		</div>
@@ -368,13 +368,13 @@ $courses_list = $db2->fetchAll();
 				'id_user': id_user,
 				'id_lead': id_lead,
 				'img': img,
-				'state': select,
+				'label': select,
 				'phone': phone,
 				'email': email,
 				'country': country,
 				'course_id': course_id
 			}
-
+			
 			if (select != 7) {
 				$.ajax({
 					type: 'get',
@@ -386,6 +386,14 @@ $courses_list = $db2->fetchAll();
 					}
 				});
 			} else {
+				var info = {
+					'name': '<?= $lead[0]['name'] ?>',
+					'lastname': '<?= $lead[0]['lastname'] ?>',
+					'phone': '<?= $lead[0]['phone'] ?>',
+					'email': '<?= $lead[0]['email'] ?>',
+					'country': '<?= $lead[0]['country'] ?>',
+					'course_id': '<?= $lead[0]['id'] ?>'
+				}
 				modalUpdate(info);
 			}
 		} else {
@@ -485,8 +493,9 @@ $courses_list = $db2->fetchAll();
 						</li>`);
 	}
 
-	function finishPromise(name, lastname, id_user, id_lead, img) {
+	function finishPromise(id_user, id_lead, img) {
 		let pointer = 2;
+		counter--;
 		for (let i = counter; i > 0; i--) {
 			var info = {
 				'name': $(`#name${pointer}`).val(),
@@ -495,7 +504,7 @@ $courses_list = $db2->fetchAll();
 				'phone': $(`#phone${pointer}`).val(),
 				'email': $(`#email${pointer}`).val(),
 				'country': $(`#country${pointer}`).val(),
-				'course': $(`#course${pointer}`).val(),
+				'course_id': $(`#course${pointer}`).val(),
 				'label': 7,
 				'group_sale': id_lead
 			}
@@ -516,16 +525,19 @@ $courses_list = $db2->fetchAll();
 			});
 		}
 
-		let select = $('#selectState').val();
-		let text = $('#messageArea').val();
 		var info = {
 			'message': $('#messageArea').val(),
-			'state': select,
-			'name': name,
-			'lastname': lastname,
+			'label': $('#selectState').val(),
+			'name': $(`#name1`).val(),
+			'lastname': $(`#lastname1`).val(),
+			'username': $(`#username1`).val(),
 			'id_user': id_user,
 			'id_lead': id_lead,
 			'img': img,
+			'phone': $(`#phone1`).val(),
+			'email': $(`#email1`).val(),
+			'country': $(`#country1`).val(),
+			'course_id': $(`#course1`).val(),
 			'group_sale': id_lead
 		}
 		$.ajax({

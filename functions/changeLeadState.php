@@ -15,6 +15,8 @@ $email = (isset($_GET['email'])) ? $db->escape($_GET['email']) : 999;
 $country = (isset($_GET['country'])) ? $db->escape($_GET['country']) : 'default';
 $course_id = (isset($_GET['course_id'])) ? $db->escape($_GET['course_id']) : 999;
 $group_sale = (isset($_GET['group_sale'])) ? $db->escape($_GET['group_sale']) : 999;
+$contactDay = (isset($_GET['contactDay'])) ? $db->escape($_GET['contactDay']) : '0000-00-00';
+$contactTime = (isset($_GET['contactTime'])) ? $db->escape($_GET['contactTime']) : '00-00';
 
 if (isset($_GET['group_sale'])) {
     $db->query("UPDATE `leads` SET 
@@ -31,8 +33,13 @@ if (isset($_GET['group_sale'])) {
                 WHERE id = '$id_lead' LIMIT 1");
     $db->query("UPDATE `assigned` SET `status`= 'modified' WHERE id_lead = '$id_lead' LIMIT 1");
 } else {
-    $db->query("UPDATE `leads` SET `label`= '$label' WHERE id = '$id_lead' LIMIT 1");
-    $db->query("UPDATE `assigned` SET `status`= 'modified' WHERE id_lead = '$id_lead' LIMIT 1");
-}
+        if ((isset($_GET['contactDay'])) && (isset($_GET['contactTime']))) {
+            $db->query("UPDATE `leads` SET `contactDay`= '$contactDay', `contactTime`= '$contactTime', `label`= '$label' WHERE id = '$id_lead' LIMIT 1");
+            $db->query("UPDATE `assigned` SET `status`= 'modified' WHERE id_lead = '$id_lead' LIMIT 1");
+        } else {
+            $db->query("UPDATE `leads` SET `label`= '$label' WHERE id = '$id_lead' LIMIT 1");
+            $db->query("UPDATE `assigned` SET `status`= 'modified' WHERE id_lead = '$id_lead' LIMIT 1");
+        }
+    }
 $db->query("INSERT INTO `messages`(`text`, `id_user`, `id_lead`, `img`, `name`, `lastname`, `label`) VALUES ('$message','$id_user','$id_lead','$img','$name','$lastname', '$label')");
 ?>

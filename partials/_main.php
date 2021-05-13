@@ -145,148 +145,233 @@
                     <!--begin::Tap pane-->
                     <div class="tab-pane fade show active" id="kt_tab_pane_11_1" role="tabpanel" aria-labelledby="kt_tab_pane_11_1">
                         <!--begin::Table-->
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-vertical-center">
-                                <thead>
-                                    <tr>
-                                        <th class="p-0 w-40px"></th>
-                                        <th class="p-0 min-w-100px"></th>
-                                        <th class="p-0 min-w-100px"></th>
-                                        <th class="p-0 min-w-100px"></th>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">Uso</th>
+                                    <th class="text-center" scope="col">Pais</th>
+                                    <th class="text-center" scope="col">Nombre</th>
+                                    <th class="text-center" scope="col">Fecha de ingreso</th>
+                                    <th class="text-center" scope="col">Estado</th>
+                                    <th class="text-center" scope="col">Curso</th>
+                                    <th class="text-center" scope="col">Llamar luego</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($leads as $lead) {
+                                    if ($lead['label'] === '3') continue; ?>
+                                    <tr onclick="window.location='./index.php?lead=<?= $lead['id'] ?>'" style="cursor: pointer;">
+                                        <td class="text-center align-middle">
+                                            <?php if ($lead['status'] == 'default') {
+                                                echo '<span class="dot"></span>';
+                                            } else {
+                                                echo '<span class="dot-ok">';
+                                            } ?>
+                                            </span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <div class="symbol symbol-50 symbol-light">
+                                                <span class="symbol-label">
+                                                    <img src="assets/media/country/<?= $lead['country'] ?>.png" class="h-50 align-self-center" alt="" />
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $lead['name'] ?></label>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <label class="font-weight-bold"><?= $lead['date'] ?></label>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?php switch ($lead['label']) {
+                                                case 7:
+                                                    echo '<span class="mt-2 label label-primary label-inline">Promesa</span>';
+                                                    break;
+                                                case 6:
+                                                    echo '<span class="mt-2 label label-warning label-inline">Interesado</span>';
+                                                    break;
+                                                case 5:
+                                                    echo '<span class="mt-2 label label-info label-inline">Llamar luego</span>';
+                                                    break;
+                                                case 4:
+                                                    echo '<span class="mt-2 label label-danger label-inline">No interesado</span>';
+                                                    break;
+                                                case 3:
+                                                    echo '<span class="mt-2 label label-secondary label-inline">Vendido</span>';
+                                                    break;
+                                                case 1:
+                                                    echo '<span class="mt-2 label label-dark label-inline">Nuevo</span>';
+                                                    break;
+                                            } ?>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span class="font-weight-bolder font-weight-500"><?= $lead['course'] ?></span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?php
+                                            if ($lead['contactDay'] == '0000-00-00') {
+                                                echo '<span class="font-weight-bolder font-weight-500">-</span>';
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                                echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $lead['contactDay'] . ' ' . $lead['contactTime'] . '</span>';
+                                            } else {
+                                                echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $lead['contactDay'] . ' ' . $lead['contactTime'] . '</span>';
+                                            } ?>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Leads TODOS -->
-                                    <?php foreach ($leads as $lead) {
-                                        if ($lead['label'] === '3') continue; ?>
-                                        <tr>
-                                            <form action="./index.php" method="post">
-                                                <td class="pl-0 py-4">
-                                                    <button class="btn-info" type="submit">Ver detalle</button>
-                                                </td>
-                                                <td class="pl-0 py-4">
-                                                    <div class="symbol symbol-50 symbol-light">
-                                                        <span class="symbol-label">
-                                                            <img src="assets/media/country/<?= $lead['country'] ?>.png" class="h-50 align-self-center" alt="" />
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td class="pl-0">
-                                                    <label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $lead['name'] ?></label>
-                                                    <div>
-                                                        <span class="font-weight-bolder">Fecha de ingreso: </span>
-                                                        <label class="text-muted font-weight-bold text-primary"><?= $lead['date'] ?></label>
-                                                    </div>
-                                                </td>
-                                                <td class="text-right">
-                                                    <span class="font-weight-bolder font-weight-500"><?= $lead['course'] ?></span>
-                                                </td>
-                                                <input type="hidden" name="lead" value="<?= $lead['id'] ?>">
-                                            </form>
-                                        </tr>
-                                    <?php } ?>
-                                    <!-- FIN LEAD TODOS -->
-                                </tbody>
-                            </table>
-                        </div>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                         <!--end::Table-->
                     </div>
                     <!--end::Tap pane-->
                     <!--begin::Tap pane-->
                     <div class="tab-pane fade" id="kt_tab_pane_11_2" role="tabpanel" aria-labelledby="kt_tab_pane_11_2">
                         <!--begin::Table-->
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-vertical-center">
-                                <thead>
-                                    <tr>
-                                        <th class="p-0 w-40px"></th>
-                                        <th class="p-0 min-w-200px"></th>
-                                        <th class="p-0 min-w-100px"></th>
-                                        <th class="p-0 min-w-100px"></th>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">Uso</th>
+                                    <th class="text-center" scope="col">Pais</th>
+                                    <th class="text-center" scope="col">Nombre</th>
+                                    <th class="text-center" scope="col">Fecha de ingreso</th>
+                                    <th class="text-center" scope="col">Estado</th>
+                                    <th class="text-center" scope="col">Curso</th>
+                                    <th class="text-center" scope="col">Horario de contacto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($leads as $lead) {
+                                    if ($lead['label'] !== '7') continue; ?>
+                                    <tr onclick="window.location='./index.php?lead=<?= $lead['id'] ?>'" style="cursor: pointer;">
+                                        <td class="text-center align-middle">
+                                            <?php if ($lead['status'] == 'default') {
+                                                echo '<span class="dot"></span>';
+                                            } else {
+                                                echo '<span class="dot-ok">';
+                                            } ?>
+                                            </span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <div class="symbol symbol-50 symbol-light">
+                                                <span class="symbol-label">
+                                                    <img src="assets/media/country/<?= $lead['country'] ?>.png" class="h-50 align-self-center" alt="" />
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $lead['name'] ?></label>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <label class="font-weight-bold"><?= $lead['date'] ?></label>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?php switch ($lead['label']) {
+                                                case 7:
+                                                    echo '<span class="mt-2 label label-primary label-inline">Promesa</span>';
+                                                    break;
+                                                case 6:
+                                                    echo '<span class="mt-2 label label-warning label-inline">Interesado</span>';
+                                                    break;
+                                                case 5:
+                                                    echo '<span class="mt-2 label label-info label-inline">Llamar luego</span>';
+                                                    break;
+                                                case 4:
+                                                    echo '<span class="mt-2 label label-danger label-inline">No interesado</span>';
+                                                    break;
+                                                case 3:
+                                                    echo '<span class="mt-2 label label-secondary label-inline">Vendido</span>';
+                                                    break;
+                                                case 1:
+                                                    echo '<span class="mt-2 label label-success label-inline">Nuevo</span>';
+                                                    break;
+                                            } ?>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span class="font-weight-bolder font-weight-500"><?= $lead['course'] ?></span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span class="font-weight-bolder font-weight-500"><?= $lead['contactTime'] ?></span>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <!--  LEAD promesas -->
-                                    <?php foreach ($leads as $lead) {
-                                        if ($lead['label'] !== '7') continue; ?>
-                                        <tr>
-                                            <form action="./index.php" method="post">
-                                                <td class="pl-0 py-4">
-                                                    <button class="btn-info" type="submit">Ver detalle</button>
-                                                </td>
-                                                <td class="pl-0 py-4">
-                                                    <div class="symbol symbol-50 symbol-light">
-                                                        <span class="symbol-label">
-                                                            <img src="assets/media/country/<?= $lead['country'] ?>.png" class="h-50 align-self-center" alt="" />
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td class="pl-0">
-                                                    <a href="#" class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $lead['name'] ?></a>
-                                                    <div>
-                                                        <span class="font-weight-bolder">Fecha de ingreso: </span>
-                                                        <label class="text-muted font-weight-bold text-hover-primary"><?= $lead['date'] ?></label>
-                                                    </div>
-                                                </td>
-                                                <td class="text-right">
-                                                    <span class="font-weight-bolder font-weight-500"><?= $lead['course'] ?></span>
-                                                </td>
-                                            </form>
-                                        </tr>
-                                    <?php } ?>
-                                    <!-- FIN LEAD promesas -->
-                                </tbody>
-                            </table>
-                        </div>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+
                         <!--end::Table-->
                     </div>
                     <!--end::Tap pane-->
                     <!--begin::Tap pane-->
                     <div class="tab-pane fade" id="kt_tab_pane_11_3" role="tabpanel" aria-labelledby="kt_tab_pane_11_3">
                         <!--begin::Table-->
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-vertical-center">
-                                <thead>
-                                    <tr>
-                                        <th class="p-0 w-40px"></th>
-                                        <th class="p-0 min-w-200px"></th>
-                                        <th class="p-0 min-w-100px"></th>
-                                        <th class="p-0 min-w-100px"></th>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">Uso</th>
+                                    <th class="text-center" scope="col">Pais</th>
+                                    <th class="text-center" scope="col">Nombre</th>
+                                    <th class="text-center" scope="col">Fecha de ingreso</th>
+                                    <th class="text-center" scope="col">Estado</th>
+                                    <th class="text-center" scope="col">Curso</th>
+                                    <th class="text-center" scope="col">Horario de contacto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($leads as $lead) {
+                                    if ($lead['label'] !== '5') continue; ?>
+                                    <tr onclick="window.location='./index.php?lead=<?= $lead['id'] ?>'" style="cursor: pointer;">
+                                        <td class="text-center align-middle">
+                                            <?php if ($lead['status'] == 'default') {
+                                                echo '<span class="dot"></span>';
+                                            } else {
+                                                echo '<span class="dot-ok">';
+                                            } ?>
+                                            </span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <div class="symbol symbol-50 symbol-light">
+                                                <span class="symbol-label">
+                                                    <img src="assets/media/country/<?= $lead['country'] ?>.png" class="h-50 align-self-center" alt="" />
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $lead['name'] ?></label>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <label class="font-weight-bold"><?= $lead['date'] ?></label>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <?php switch ($lead['label']) {
+                                                case 7:
+                                                    echo '<span class="mt-2 label label-primary label-inline">Promesa</span>';
+                                                    break;
+                                                case 6:
+                                                    echo '<span class="mt-2 label label-warning label-inline">Interesado</span>';
+                                                    break;
+                                                case 5:
+                                                    echo '<span class="mt-2 label label-info label-inline">Llamar luego</span>';
+                                                    break;
+                                                case 4:
+                                                    echo '<span class="mt-2 label label-danger label-inline">No interesado</span>';
+                                                    break;
+                                                case 3:
+                                                    echo '<span class="mt-2 label label-secondary label-inline">Vendido</span>';
+                                                    break;
+                                                case 1:
+                                                    echo '<span class="mt-2 label label-success label-inline">Nuevo</span>';
+                                                    break;
+                                            } ?>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span class="font-weight-bolder font-weight-500"><?= $lead['course'] ?></span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span class="font-weight-bolder font-weight-500"><?= $lead['contactTime'] ?></span>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <!--  LEAD llamar luego -->
-                                    <?php foreach ($leads as $lead) {
-                                        if ($lead['label'] !== '5') continue; ?>
-                                        <tr>
-                                            <form action="./index.php" method="post">
-                                                <td class="pl-0 py-4">
-                                                    <button class="btn-info" type="submit">Ver detalle</button>
-                                                </td>
-                                                <td class="pl-0 py-4">
-                                                    <div class="symbol symbol-50 symbol-light">
-                                                        <span class="symbol-label">
-                                                            <img src="assets/media/country/<?= $lead['country'] ?>.png" class="h-50 align-self-center" alt="" />
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td class="pl-0">
-                                                    <a href="#" class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $lead['name'] ?></a>
-                                                    <div>
-                                                        <span class="font-weight-bolder">Fecha de ingreso: </span>
-                                                        <label class="text-muted font-weight-bold text-hover-primary"><?= $lead['date'] ?></label>
-                                                    </div>
-                                                </td>
-                                                <td class="text-right">
-                                                    <span class="font-weight-bolder font-weight-500"><?= $lead['course'] ?></span>
-                                                </td>
-                                            </form>
-                                        </tr>
-                                    <?php } ?>
-                                    <!-- FIN LEAD llamar luego -->
-                                </tbody>
-                            </table>
-                        </div>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                         <!--end::Table-->
                     </div>
                     <!--end::Tap pane-->

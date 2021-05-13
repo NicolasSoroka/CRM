@@ -59,10 +59,10 @@ $courses_list = $db2->fetchAll();
 											echo '<span class="mt-2 label label-danger label-inline">No interesado</span>';
 											break;
 										case 3:
-											echo '<span class="mt-2 label label-success label-inline">Vendido</span>';
+											echo '<span class="mt-2 label label-secondary label-inline">Vendido</span>';
 											break;
 										case 1:
-											echo '<span class="mt-2 label label-secondary label-inline">Nuevo</span>';
+											echo '<span class="mt-2 label label-success label-inline">Nuevo</span>';
 											break;
 									} ?>
 								</div>
@@ -199,13 +199,13 @@ $courses_list = $db2->fetchAll();
 <div class="modal fade" id="modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
-			<div class="container">
-				<div class="form-group mt-5">
+			<div class="container" id="messageContainer">
+				<div class="form-group row mt-5">
 					<textarea class="form-control form-control-lg form-control-solid" id="messageArea" rows="3" placeholder="Escriba su mensaje"></textarea>
 				</div>
-				<div class="row">
-					<div class="col text-right mb-5">
-						<select class="form-control mb-4" id="selectState">
+				<div class="form-group row">
+					<div class="col">
+						<select class="form-control mb-4" id="selectState" onchange="comboChange(this)">
 							<option selected disabled>-- Seleccione --</option>
 							<?php if ($message['label'] != 7) { ?>
 								<option value="7">Promesa</option>
@@ -218,11 +218,13 @@ $courses_list = $db2->fetchAll();
 								<option value="4" class="font-weight-bold text-danger">No interesado</option>
 							<?php } ?>
 						</select>
-						<!-- <div class="form-group row">
-							<div class="col-lg-8 col-md-9 col-sm-12">
-								<input class="form-control" id="kt_timepicker_1" readonly placeholder="Select time" type="text" />
-							</div>
-						</div> -->
+					</div>
+				</div>
+				<div class="form-group row">
+					<span class="col-6" id="contactTimeField" style="display: none;">
+						<input class="form-control" type="datetime-local" id="datetime-call-later" />
+					</span>
+					<div class="col-6 text-right">
 						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>','<?= $lead[0]['phone'] ?>','<?= $lead[0]['email'] ?>','<?= $lead[0]['country'] ?>','<?= $lead[0]['course_id'] ?>');">Modificar</button>
 					</div>
 				</div>
@@ -359,6 +361,9 @@ $courses_list = $db2->fetchAll();
 		let select = $('#selectState').val();
 		let text = $('#messageArea').val();
 
+		let str = $('#datetime-call-later').val();
+		let substrings = str.split('T');
+
 		if ((select > 0) && (text.length > 20)) {
 			//agregar que si el select da 5 (caso de llamar luego) seleccionar un horario en cual llamar
 			var info = {
@@ -372,9 +377,11 @@ $courses_list = $db2->fetchAll();
 				'phone': phone,
 				'email': email,
 				'country': country,
-				'course_id': course_id
+				'course_id': course_id,
+				'contactDay': substrings[0],
+				'contactTime': substrings[1]
 			}
-			
+
 			if (select != 7) {
 				$.ajax({
 					type: 'get',
@@ -549,5 +556,14 @@ $courses_list = $db2->fetchAll();
 				location.href = "./index.php";
 			}
 		});
+	}
+
+	function comboChange(combo) {
+		let combo_value = combo.value;
+		if (combo_value == 5) {
+			$('#contactTimeField').show();
+		} else {
+			$('#contactTimeField').hide();
+		}
 	}
 </script>

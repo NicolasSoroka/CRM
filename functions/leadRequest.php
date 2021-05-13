@@ -188,10 +188,10 @@ if ($ok == 0) {
                 FROM leads
                 LEFT JOIN assigned
                 ON leads.id = assigned.id_lead  
-                WHERE assigned.id_lead is Null");
+                WHERE assigned.id_lead is Null AND leads.group_sale = '0'");
 
-    $leads = $db->fetchAll();
-    assignLeads($leads[0]['id'], $userId, $user_counter['lead_counter']);
+    $leads_ok = $db->fetchAll();
+    assignLeads($leads_ok[0]['id'], $userId, $user_counter['lead_counter']);
 }
 
 function getScores($id)
@@ -214,7 +214,7 @@ function assignLeads($lead, $userId, $user_counter)
 {
     $db = Database::getInstance();
     $user_counter++;
-
+    if ($lead == 0) exit;
     // ESTE BLOQUE DEBE ESTAR HABILITADO EN CASO DE USARSE EL SISTEMA DE RANK.
     // $queryString = "INSERT INTO `assigned`(`id_user`, `id_lead`, `status`) VALUES ";
     // foreach ($leads as $lead) {
@@ -223,6 +223,6 @@ function assignLeads($lead, $userId, $user_counter)
     // $queryString = substr($queryString, 0, -1);
     // $db->query($queryString);
 
-    $db->query("INSERT INTO `assigned`(`id_user`, `id_lead`, `status`) VALUES ('$userId', '$lead', 'default')");
-    $db->query("UPDATE `users` SET `lead_counter`= '$user_counter' WHERE `id` = '$userId'");
+    $db->query("INSERT INTO `assigned`(`id_user`, `id_lead`, `status`) VALUES ('$userId', '$lead', 'default') LIMIT 1");
+    $db->query("UPDATE `users` SET `lead_counter`= '$user_counter' WHERE `id` = '$userId' LIMIT 1");
 }

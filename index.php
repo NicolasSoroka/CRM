@@ -1,62 +1,62 @@
 <?php //Route controller
-	require "./globals/Database.php";
-	session_start();
-	$db = Database::getInstance();
-	$userId = $_SESSION['user']['id'];
-	$route = '_main.php';
+require "./globals/Database.php";
+session_start();
+$db = Database::getInstance();
+$userId = $_SESSION['user']['id'];
+$route = '_main.php';
 
-	//datos del usuario
-	$db->query("SELECT * FROM users WHERE id = '$userId' LIMIT 1");
-	$userData = $db->fetchAll();
+//datos del usuario
+$db->query("SELECT * FROM users WHERE id = '$userId' LIMIT 1");
+$userData = $db->fetchAll();
 
-	//leads asignados
-	if ($userData[0]['access'] == 1) {
-		$db->query("SELECT * FROM leads LEFT JOIN assigned ON leads.id = assigned.id_lead WHERE assigned.id_user = '$userId'");
-		$leads = $db->fetchAll();
+//leads asignados
+if ($userData[0]['access'] == 1) {
+	$db->query("SELECT *, assigned.status FROM leads LEFT JOIN assigned ON leads.id = assigned.id_lead WHERE assigned.id_user = '$userId'");
+	$leads = $db->fetchAll();
+}
+
+//pedir datos
+if (isset($_GET['lead'])) {
+	if ($_GET['lead'] == 'ask') {
 	}
+}
 
-	//pedir datos
-	if (isset($_GET['lead'])) {
-		if ($_GET['lead'] == 'ask') {
-			
-		}
+//LIST-USERS
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'users/_list-users') {
+		$db->getUsers();
+		$users = $db->fetchAll();
 	}
+}
 
-	//LIST-USERS
-	if (isset($_GET['page'])) {
-		if ($_GET['page'] == 'users/_list-users') {
-			$db->getUsers();
-			$users = $db->fetchAll();
-		}
+
+//NEW LEAD WHATSAPP
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'leads/_new-lead-wsp') {
+		$route = 'leads/_new-lead-wsp.php';
+		$db->getUsers();
+		$users = $db->fetchAll();
 	}
+}
 
+//LEAD DETAIL
+if (isset($_GET['lead'])) {
+	$route = 'leads/_lead-detail.php';
+	$leadId = $_GET['lead'];
+	$db->query("SELECT * FROM leads WHERE id = '$leadId'");
+	$lead = $db->fetchAll();
 
-	//NEW LEAD WHATSAPP
-	if (isset($_GET['page'])) {
-		if ($_GET['page'] == 'leads/_new-lead-wsp') {
-			$route = 'leads/_new-lead-wsp.php';
-			$db->getUsers();
-			$users = $db->fetchAll();
-		}
-	}
-
-	//LEAD DETAIL
-	if (isset($_POST['lead'])) {
-		$route = 'leads/_lead-detail.php';
-		$leadId = $_POST['lead'];
-		$db->query("SELECT * FROM leads WHERE id = '$leadId'");
-		$lead = $db->fetchAll();
-
-		$db->query("SELECT * FROM messages WHERE id_lead = '$leadId'");
-		$messages = $db->fetchAll();
-	} else {
-		if (isset($_GET['page'])) $route = $_GET['page'].'.php';
-	}
+	$db->query("SELECT * FROM messages WHERE id_lead = '$leadId'");
+	$messages = $db->fetchAll();
+} else {
+	if (isset($_GET['page'])) $route = $_GET['page'] . '.php';
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <!--begin::Head-->
+
 <head>
 	<base href="">
 	<meta charset="utf-8" />
@@ -87,6 +87,23 @@
 
 	<!--end::Layout Themes-->
 	<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+	<style>
+		.dot {
+			height: 15px;
+			width: 15px;
+			background-color: #bbb;
+			border-radius: 50%;
+			display: inline-block;
+		}
+
+		.dot-ok {
+			height: 15px;
+			width: 15px;
+			background-color: #32CD32;
+			border-radius: 50%;
+			display: inline-block;
+		}
+	</style>
 </head>
 <!--end::Head-->
 
@@ -94,7 +111,8 @@
 
 <body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed page-loading">
 
-	<?php //include("partials/_page-loader.php"); ?>
+	<?php //include("partials/_page-loader.php"); 
+	?>
 
 	<!--begin::Main-->
 	<?php include("partials/_header-mobile.php") ?>
@@ -118,7 +136,7 @@
 					<!--Content-->
 					<?php include("partials/" . $route) ?>
 				</div>
-					<!--end::Content-->
+				<!--end::Content-->
 
 				<?php include("partials/_footer.php") ?>
 			</div>

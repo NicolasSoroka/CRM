@@ -289,28 +289,6 @@
 								<span class="menu-text">Pedir datos</span>
 							</a>
 						</li>
-						<li class="menu-item" aria-haspopup="true">
-							<a href="./index.php" class="menu-link">
-								<span class="svg-icon menu-icon">
-									<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
-									<span class="svg-icon svg-icon-primary svg-icon-2x">
-										<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Info-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-											<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-												<rect x="0" y="0" width="24" height="24" />
-												<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
-												<rect fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
-												<rect fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
-											</g>
-										</svg>
-										<!--end::Svg Icon-->
-									</span>
-									<!--end::Svg Icon-->
-								</span>
-								<!--end::Svg Icon-->
-								</span>
-								<span class="menu-text">Reportar un problema</span>
-							</a>
-						</li>
 
 						<!--end::Menu Nav USR-->
 					<?php } ?>
@@ -323,6 +301,28 @@
 							<!--end::Svg Icon-->
 							</span>
 							<span class="menu-text">Cargar Whatsapp</span>
+						</a>
+					</li>
+					<li class="menu-item" aria-haspopup="true">
+						<a href="./index.php" class="menu-link">
+							<span class="svg-icon menu-icon">
+								<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
+								<span class="svg-icon svg-icon-primary svg-icon-2x">
+									<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Info-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											<rect x="0" y="0" width="24" height="24" />
+											<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+											<rect fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+											<rect fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+										</g>
+									</svg>
+									<!--end::Svg Icon-->
+								</span>
+								<!--end::Svg Icon-->
+							</span>
+							<!--end::Svg Icon-->
+							</span>
+							<span class="menu-text">Reportar un problema</span>
 						</a>
 					</li>
 					</ul>
@@ -340,18 +340,18 @@
 <script>
 	function pedirLead() {
 		$.ajax({
-				type: 'get',
-				url: './functions/leadRequest.php',
-				success: function(response) {
-					Swal.fire({
-						text: "",
-						icon: "success",
-						buttonsStyling: false,
-						showConfirmButton: false,
-						timer: 2000
-					})
-					location.reload();
-				}
-			});
+			type: 'get',
+			url: './functions/leadRequest.php',
+			success: function(response) {
+				Swal.fire({
+					text: "",
+					icon: "success",
+					buttonsStyling: false,
+					showConfirmButton: false,
+					timer: 2000
+				})
+				location.reload();
+			}
+		});
 	}
 </script>

@@ -1,11 +1,11 @@
 • tolerancia de 30'' por lead
-• estado "llamar luego" especificar horario.
-• agregar valor neto al historial de ventas *administrator
 • confirmar por administrador y poner tilde. pedir valor neto. Pedir carga de comprobante de pago.
 • al validar por administrador, pasar a promesas de pagos (asignando al vendedor) y hacer seguimiento detallado (opciones de carga de comprobantes por parte del admin y del vendedor al momento de pagar cuotas.)
 • agregar una etiqueta con el horario a llamar, si pasa el horario se pone en rojo
 • agregar boton de cancelar
 • mail de aviso de pago al alumno
+• leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
+• al generar las promesas aclarar cantidad de cuotas/valor de la misma.
 • Crear los alumnos con los cursos asignados para quien haya pasado el proceso de verificacion de pago (por parte del admin)
 
 Administrador
@@ -32,4 +32,6 @@ Estadisticas
 FEATURED WIDGET STATS
 
 MENSAJES EN EL LEAD MAS NUEVOS PRIMERO
-CHECKEAR QUE AL PEDIR UN LEAD SOLO LO HAGA SI NO TIENE GROUP_LABEL, DE LO CONTRARIO LE ESTA ASIGNANDO UNA PROMESA
+CHECKEAR QUE AL PEDIR UN LEAD SOLO LO HAGA SI NO TIENE GROUP_LABEL, DE LO CONTRARIO LE ESTA ASIGNANDO UNA PROMESA (Y QUE NO ESTE EN LABEL 8 'VENDIDO')
+PRIMER LOGEO CAMBIAR PASS
+

@@ -132,7 +132,8 @@ $courses_list = $db2->fetchAll();
                         'contactTime' : $('#contactTime').val(),
                         'course' : $('#course').val(),
                         'detail' : $('#detail').val(),
-                        'country' : $('#country').val()
+                        'country' : $('#country').val(),
+                        'created_by' : '<?=$userId?>'
                     }
 
                     $.ajax({

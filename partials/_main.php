@@ -154,7 +154,7 @@
                                     <th class="text-center" scope="col">Fecha de ingreso</th>
                                     <th class="text-center" scope="col">Estado</th>
                                     <th class="text-center" scope="col">Curso</th>
-                                    <th class="text-center" scope="col">Llamar luego</th>
+                                    <th class="text-center" scope="col">Llamar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -209,12 +209,14 @@
                                         </td>
                                         <td class="text-center align-middle">
                                             <?php
+                                            $str = $lead['contactDay'] . ' ' . $lead['contactTime'];
+                                            $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
                                             if ($lead['contactDay'] == '0000-00-00') {
                                                 echo '<span class="font-weight-bolder font-weight-500">-</span>';
                                             } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
-                                                echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $lead['contactDay'] . ' ' . $lead['contactTime'] . '</span>';
+                                                echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d-m h:i") . '</span>';
                                             } else {
-                                                echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $lead['contactDay'] . ' ' . $lead['contactTime'] . '</span>';
+                                                echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d-m h:i") . '</span>';
                                             } ?>
                                         </td>
                                     </tr>
@@ -236,7 +238,7 @@
                                     <th class="text-center" scope="col">Fecha de ingreso</th>
                                     <th class="text-center" scope="col">Estado</th>
                                     <th class="text-center" scope="col">Curso</th>
-                                    <th class="text-center" scope="col">Horario de contacto</th>
+                                    <th class="text-center" scope="col">Llamar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -290,7 +292,16 @@
                                             <span class="font-weight-bolder font-weight-500"><?= $lead['course'] ?></span>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <span class="font-weight-bolder font-weight-500"><?= $lead['contactTime'] ?></span>
+                                            <?php
+                                            $str = $lead['contactDay'] . ' ' . $lead['contactTime'];
+                                            $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
+                                            if ($lead['contactDay'] == '0000-00-00') {
+                                                echo '<span class="font-weight-bolder font-weight-500">-</span>';
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                                echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d-m h:i") . '</span>';
+                                            } else {
+                                                echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d-m h:i") . '</span>';
+                                            } ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -312,7 +323,7 @@
                                     <th class="text-center" scope="col">Fecha de ingreso</th>
                                     <th class="text-center" scope="col">Estado</th>
                                     <th class="text-center" scope="col">Curso</th>
-                                    <th class="text-center" scope="col">Horario de contacto</th>
+                                    <th class="text-center" scope="col">Llamar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -366,7 +377,16 @@
                                             <span class="font-weight-bolder font-weight-500"><?= $lead['course'] ?></span>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <span class="font-weight-bolder font-weight-500"><?= $lead['contactTime'] ?></span>
+                                            <?php
+                                            $str = $lead['contactDay'] . ' ' . $lead['contactTime'];
+                                            $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
+                                            if ($lead['contactDay'] == '0000-00-00') {
+                                                echo '<span class="font-weight-bolder font-weight-500">-</span>';
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                                echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d-m h:i") . '</span>';
+                                            } else {
+                                                echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d-m h:i") . '</span>';
+                                            } ?>
                                         </td>
                                     </tr>
                                 <?php } ?>

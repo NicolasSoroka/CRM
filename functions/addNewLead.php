@@ -15,10 +15,10 @@ $course = (isset($_GET['course'])) ? $db->escape($_GET['course']) : 'Sin datos';
 $contactTime = (isset($_GET['contactTime'])) ? $db->escape($_GET['contactTime']) : '';
 $group_sale = (isset($_GET['group_sale'])) ? $db->escape($_GET['group_sale']) : '0';
 $label = (isset($_GET['label'])) ? $db->escape($_GET['label']) : 1;
+$created_by = (isset($_GET['created_by'])) ? $db->escape($_GET['created_by']) : 0;
 
-
-$db->query("INSERT INTO `leads`(`phone`, `email`, `name`, `lastname`, `username`, `contactTime`, `detail`, `label`, `course`, `course_id`, `contactMethod`, `country`, `group_sale`) 
-VALUES ('$phone', '$email', '$name', '$lastname', '$username', '$contactTime', '$detail', '$label', '$course','$course_id', '$contactMethod', '$country', $group_sale) LIMIT 1");
+$db->query("INSERT INTO `leads`(`phone`, `email`, `name`, `lastname`, `username`, `contactTime`, `detail`, `label`, `course`, `course_id`, `contactMethod`, `created_by`, `country`, `group_sale`) 
+VALUES ('$phone', '$email', '$name', '$lastname', '$username', '$contactTime', '$detail', '$label', '$course','$course_id', '$contactMethod', '$created_by', '$country', $group_sale) LIMIT 1");
 
 $db->query("SELECT MAX(id) from leads limit 1");
 $res = $db->fetch();

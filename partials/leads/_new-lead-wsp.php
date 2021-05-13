@@ -66,6 +66,7 @@
 			if (result.value) {
 				var info = {
 					'detail': $('#detail').val(),
+					'created_by' : '<?=$userId?>'
 				}
 				$.ajax({
 					type: 'get',

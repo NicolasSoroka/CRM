@@ -513,6 +513,7 @@ $courses_list = $db2->fetchAll();
 				'country': $(`#country${pointer}`).val(),
 				'course_id': $(`#course${pointer}`).val(),
 				'label': 7,
+				'created_by' : '<?=$userId?>',
 				'group_sale': id_lead
 			}
 			pointer++;

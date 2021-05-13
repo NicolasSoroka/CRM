@@ -225,7 +225,7 @@ $courses_list = $db2->fetchAll();
 						<input class="form-control" type="datetime-local" id="datetime-call-later" />
 					</span>
 					<div class="col-6 text-right">
-						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>','<?= $lead[0]['phone'] ?>','<?= $lead[0]['email'] ?>','<?= $lead[0]['country'] ?>','<?= $lead[0]['course_id'] ?>');">Modificar</button>
+						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>','<?= $lead[0]['phone'] ?>','<?= $lead[0]['email'] ?>','<?= $lead[0]['country'] ?>','<?= $lead[0]['course_id'] ?>','<?= $lead[0]['course'] ?>');">Modificar</button>
 					</div>
 				</div>
 			</div>
@@ -315,6 +315,18 @@ $courses_list = $db2->fetchAll();
 														</select>
 													</div>
 												</div>
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Cantidad de cuotas</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="installments1" required numeric step="1" min="1" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Valor bruto</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="total_amount1" numeric required />
+													</div>
+												</div>
 											</div>
 										</form>
 									</div>
@@ -357,7 +369,7 @@ $courses_list = $db2->fetchAll();
 		$("#course1").val(user_info.course_id);
 	}
 
-	function sendMessage(name, lastname, id_user, id_lead, img, phone, email, country, course_id) {
+	function sendMessage(name, lastname, id_user, id_lead, img, phone, email, country, course_id, course_name) {
 		let select = $('#selectState').val();
 		let text = $('#messageArea').val();
 
@@ -365,7 +377,6 @@ $courses_list = $db2->fetchAll();
 		let substrings = str.split('T');
 
 		if ((select > 0) && (text.length > 20)) {
-			//agregar que si el select da 5 (caso de llamar luego) seleccionar un horario en cual llamar
 			var info = {
 				'message': $('#messageArea').val(),
 				'name': name,
@@ -378,8 +389,9 @@ $courses_list = $db2->fetchAll();
 				'email': email,
 				'country': country,
 				'course_id': course_id,
-				'contactDay': substrings[0],
-				'contactTime': substrings[1]
+				'course_name' : course_name,
+				'contactDay' : substrings[0],
+				'contactTime' : substrings[1]
 			}
 
 			if (select != 7) {
@@ -483,6 +495,18 @@ $courses_list = $db2->fetchAll();
 														</select>
 													</div>
 												</div>
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Cantidad de cuotas</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="installments${counter}" required numeric step="1" min="1"/>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-2 col-form-label">Valor bruto</label>
+													<div class="col-4">
+														<input class="form-control" type="text" id="total_amount${counter}" numeric required />
+													</div>
+												</div>
 											</div>
 										</form>
 									</div>
@@ -512,8 +536,11 @@ $courses_list = $db2->fetchAll();
 				'email': $(`#email${pointer}`).val(),
 				'country': $(`#country${pointer}`).val(),
 				'course_id': $(`#course${pointer}`).val(),
+				'installments': $(`#installments${pointer}`).val(),
+				'total_amount': $(`#total_amount${pointer}`).val(),
+				'course_name': $(`#course${pointer}`).text(),
 				'label': 7,
-				'created_by' : '<?=$userId?>',
+				'created_by': '<?= $userId ?>',
 				'group_sale': id_lead
 			}
 			pointer++;
@@ -546,6 +573,9 @@ $courses_list = $db2->fetchAll();
 			'email': $(`#email1`).val(),
 			'country': $(`#country1`).val(),
 			'course_id': $(`#course1`).val(),
+			'course_name': $(`#course1`).text(),
+			'installments': $(`#installments1`).val(),
+			'total_amount': $(`#total_amount1`).val(),
 			'group_sale': id_lead
 		}
 		$.ajax({

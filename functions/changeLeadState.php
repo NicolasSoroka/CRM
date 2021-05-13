@@ -14,9 +14,12 @@ $phone = (isset($_GET['phone'])) ? $db->escape($_GET['phone']) : 999;
 $email = (isset($_GET['email'])) ? $db->escape($_GET['email']) : 999;
 $country = (isset($_GET['country'])) ? $db->escape($_GET['country']) : 'default';
 $course_id = (isset($_GET['course_id'])) ? $db->escape($_GET['course_id']) : 999;
+$course_name = (isset($_GET['course_name'])) ? $db->escape($_GET['course_name']) : 'Sin datos';
 $group_sale = (isset($_GET['group_sale'])) ? $db->escape($_GET['group_sale']) : 999;
 $contactDay = (isset($_GET['contactDay'])) ? $db->escape($_GET['contactDay']) : '0000-00-00';
 $contactTime = (isset($_GET['contactTime'])) ? $db->escape($_GET['contactTime']) : '00-00';
+$installments = (isset($_GET['installments'])) ? $db->escape($_GET['installments']) : 0;
+$total_amount = (isset($_GET['total_amount'])) ? $db->escape($_GET['total_amount']) : 0;
 
 if (isset($_GET['group_sale'])) {
     $db->query("UPDATE `leads` SET 
@@ -26,8 +29,10 @@ if (isset($_GET['group_sale'])) {
                 `phone`= '$phone',
                 `email`= '$email',
                 `country`= '$country',
-                `course`= '',
+                `course`= '$course_name',
                 `course_id`= '$course_id',
+                `installments`= '$installments',
+				`total_amount`= '$total_amount',
                 `label`= '$label',
                 `group_sale`= '$group_sale'
                 WHERE id = '$id_lead' LIMIT 1");

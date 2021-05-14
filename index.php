@@ -5,6 +5,26 @@ $db = Database::getInstance();
 $userId = $_SESSION['user']['id'];
 $route = '_main.php';
 
+//SALES-PENDING
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'sales/_sales-pending') {
+		$db->query("SELECT sales.*, leads.total_amount, leads.country, leads.group_sale, users.name, users.lastname 
+					FROM sales, leads, users
+					where sales.id_lead = leads.id AND sales.id_user = users.id AND sales.status = 0");
+		$sales = $db->fetchAll();
+	}
+}
+
+//SALES-VIEW
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'sales/_sales-view') {
+		$db->query("SELECT sales.*, leads.total_amount, leads.country, leads.group_sale, users.name, users.lastname 
+					FROM sales, leads, users
+					where sales.id_lead = leads.id AND sales.id_user = users.id AND sales.status = 1");
+		$sales = $db->fetchAll();
+	}
+}
+
 //datos del usuario
 $db->query("SELECT * FROM users WHERE id = '$userId' LIMIT 1");
 $userData = $db->fetchAll();

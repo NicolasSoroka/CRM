@@ -68,7 +68,7 @@
                     } ?>
                     </span>
                 </td>
-                <td class="text-center align-middle" data-toggle="modal" data-target="#modalPdf" style="cursor: pointer;">
+                <td class="text-center align-middle" onclick="uploadPayment('<?=$sale['id']?>');" style="cursor: pointer;">
                     <?php if ($sale['status'] == 0) {
                         echo '<span class="svg-icon svg-icon-danger svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -144,9 +144,30 @@
 </div>
 <!--end::Modal carga_comprobante-->
 
-
-
 <script>
-    function uploadPayment() {
+    function uploadPayment(sale_id) {
+        var info = {
+            'name': 'test',
+            'lastname': 'test-apellido',
+            'username': '4434',
+            'phone': '1122334455',
+            'email': 'srasras@gmail.com',
+            'country': 'paraguay',
+            'course_id': '104',
+            'installments': "2",
+            'total_amount': "10000",
+            'sale_id': sale_id
+        }
+
+        $.ajax({
+            type: 'get',
+            url: './functions/registerStudent.php',
+            data: info,
+            success: function(response) {
+                $('#messageArea').val("");
+                location.href = "./index.php";
+            }
+        });
+
     }
 </script>

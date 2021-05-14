@@ -114,7 +114,11 @@ $courses_list = $db2->fetchAll();
 								<label class="col-4 col-form-label">Horario de contacto:</label>
 								<div class="col-8">
 									<span class="form-control-plaintext">
-										<span class="font-weight-bolder"><?= $lead[0]['contactTime'] ?></span>&#160;
+										<?php $str = $lead[0]['contactTime'];
+										$date = DateTime::createFromFormat("H:i:s", $str);
+										?>
+										<span class="font-weight-bolder"><?= $date->format("h:i") ?></span>&#160;
+									</span>
 								</div>
 							</div>
 						</div>
@@ -207,11 +211,11 @@ $courses_list = $db2->fetchAll();
 					<div class="col">
 						<select class="form-control mb-4" id="selectState" onchange="comboChange(this)">
 							<option selected disabled>-- Seleccione --</option>
-							<?php if ($message['label'] != 7) { ?>
+							<?php if ($message['label'] !== '7') { ?>
 								<option value="7">Promesa</option>
-								<?php if ($message['label'] != 6) { ?> <option value="6">Cuasi Promesa (Interesado)</option> <?php } ?>
+								<?php if ($message['label'] !== '6') { ?> <option value="6">Cuasi Promesa (Interesado)</option> <?php } ?>
 								<option value="5">Llamar luego</option>
-								<?php if ($message['label'] != 4) { ?><option value="4" class="font-weight-bold text-danger">No interesado</option> <?php } ?>
+								<?php if ($message['label'] !== '4') { ?><option value="4" class="font-weight-bold text-danger">No interesado</option> <?php } ?>
 							<?php } else { ?>
 								<option value="3" class="font-weight-bold text-success">Vendido</option>
 								<option value="5">Llamar luego</option>
@@ -225,7 +229,8 @@ $courses_list = $db2->fetchAll();
 						<input class="form-control" type="datetime-local" id="datetime-call-later" />
 					</span>
 					<div class="col-6 text-right">
-						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>','<?= $lead[0]['phone'] ?>','<?= $lead[0]['email'] ?>','<?= $lead[0]['country'] ?>','<?= $lead[0]['course_id'] ?>','<?= $lead[0]['course'] ?>');">Modificar</button>
+						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>',
+						'<?= $lead[0]['phone'] ?>','<?= $lead[0]['email'] ?>','<?= $lead[0]['country'] ?>','<?= $lead[0]['course_id'] ?>','<?= $lead[0]['course'] ?>');">Modificar</button>
 					</div>
 				</div>
 			</div>
@@ -372,51 +377,53 @@ $courses_list = $db2->fetchAll();
 	function sendMessage(name, lastname, id_user, id_lead, img, phone, email, country, course_id, course_name) {
 		let select = $('#selectState').val();
 		let text = $('#messageArea').val();
-
 		let str = $('#datetime-call-later').val();
 		let substrings = str.split('T');
-
-		if ((select > 0) && (text.length > 20)) {
-			var info = {
-				'message': $('#messageArea').val(),
-				'name': name,
-				'lastname': lastname,
-				'id_user': id_user,
-				'id_lead': id_lead,
-				'img': img,
-				'label': select,
-				'phone': phone,
-				'email': email,
-				'country': country,
-				'course_id': course_id,
-				'course_name' : course_name,
-				'contactDay' : substrings[0],
-				'contactTime' : substrings[1]
-			}
-
-			if (select != 7) {
-				$.ajax({
-					type: 'get',
-					url: './functions/changeLeadState.php',
-					data: info,
-					success: function(response) {
-						$('#messageArea').val("");
-						location.href = "./index.php";
-					}
-				});
-			} else {
-				var info = {
-					'name': '<?= $lead[0]['name'] ?>',
-					'lastname': '<?= $lead[0]['lastname'] ?>',
-					'phone': '<?= $lead[0]['phone'] ?>',
-					'email': '<?= $lead[0]['email'] ?>',
-					'country': '<?= $lead[0]['country'] ?>',
-					'course_id': '<?= $lead[0]['id'] ?>'
-				}
-				modalUpdate(info);
-			}
+		if (select === '3') {
+			finishSale(name, lastname, id_user, id_lead, img);
 		} else {
-			swalfire();
+			if ((select > 0) && (text.length > 20)) {
+				var info = {
+					'message': $('#messageArea').val(),
+					'name': name,
+					'lastname': lastname,
+					'id_user': id_user,
+					'id_lead': id_lead,
+					'img': img,
+					'label': select,
+					'phone': phone,
+					'email': email,
+					'country': country,
+					'course_id': course_id,
+					'course_name': course_name,
+					'contactDay': substrings[0],
+					'contactTime': substrings[1]
+				}
+
+				if (select != 7) {
+					$.ajax({
+						type: 'get',
+						url: './functions/changeLeadState.php',
+						data: info,
+						success: function(response) {
+							$('#messageArea').val("");
+							location.href = "./index.php";
+						}
+					});
+				} else {
+					var info = {
+						'name': '<?= $lead[0]['name'] ?>',
+						'lastname': '<?= $lead[0]['lastname'] ?>',
+						'phone': '<?= $lead[0]['phone'] ?>',
+						'email': '<?= $lead[0]['email'] ?>',
+						'country': '<?= $lead[0]['country'] ?>',
+						'course_id': '<?= $lead[0]['id'] ?>'
+					}
+					modalUpdate(info);
+				}
+			} else {
+				swalfire();
+			}
 		}
 	}
 
@@ -573,7 +580,7 @@ $courses_list = $db2->fetchAll();
 			'email': $(`#email1`).val(),
 			'country': $(`#country1`).val(),
 			'course_id': $(`#course1`).val(),
-			'course_name': $(`#course1`).text(),
+			'course_name': $(`#course1 option:selected`).text(),
 			'installments': $(`#installments1`).val(),
 			'total_amount': $(`#total_amount1`).val(),
 			'group_sale': id_lead
@@ -596,5 +603,28 @@ $courses_list = $db2->fetchAll();
 		} else {
 			$('#contactTimeField').hide();
 		}
+	}
+
+	function finishSale(name, lastname, id_user, id_lead, img) {
+		let text = $('#messageArea').val();
+		var info = {
+			'message': $('#messageArea').val(),
+			'name': name,
+			'lastname': lastname,
+			'id_user': id_user,
+			'id_lead': id_lead,
+			'img': img,
+			'label' : '3',
+			'sold' : '1'
+		}
+		$.ajax({
+			type: 'get',
+			url: './functions/finishSale.php',
+			data: info,
+			success: function(response) {
+				$('#messageArea').val("");
+				location.href = "./index.php";
+			}
+		});
 	}
 </script>

@@ -4,6 +4,14 @@
 • mail de aviso de pago al alumno
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
 • Crear los alumnos con los cursos asignados para quien haya pasado el proceso de verificacion de pago (por parte del admin)
+• agregar fecha a las promesas (fecha de concretacion tentativa)
+• Agregar "guia de usuario" con forma de arbol, tipo el "funciona? si/no"
+
+promesas pide fecha y hora de cuando va a pagar
+estadistica de promesas por dia y ventas por dia
+check campos APB
+dato no interesado pasarlo a disposicion del admin
+ORDENAR PROMESAS POR FECHA primera arriba
 
 Administrador
 • Ver ventas (filtrar por vendedor)

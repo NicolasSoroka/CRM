@@ -13,16 +13,20 @@ $email = (isset($_GET['email'])) ? $db->escape($_GET['email']) : 'Sin datos';
 $course_id = (isset($_GET['course_id'])) ? $db->escape($_GET['course_id']) : 0;
 $course = (isset($_GET['course'])) ? $db->escape($_GET['course']) : 'Sin datos';
 $contactTime = (isset($_GET['contactTime'])) ? $db->escape($_GET['contactTime']) : '';
+$contactUntil = (isset($_GET['contactUntil'])) ? $db->escape($_GET['contactUntil']) : '';
 $group_sale = (isset($_GET['group_sale'])) ? $db->escape($_GET['group_sale']) : '0';
 $label = (isset($_GET['label'])) ? $db->escape($_GET['label']) : 1;
 $created_by = (isset($_GET['created_by'])) ? $db->escape($_GET['created_by']) : 0;
 $installments = (isset($_GET['installments'])) ? $db->escape($_GET['installments']) : 0;
 $total_amount = (isset($_GET['total_amount'])) ? $db->escape($_GET['total_amount']) : 0;
 
-$db->query("INSERT INTO `leads`(`phone`, `email`, `name`, `lastname`, `username`, `contactTime`, `detail`, `label`, `course`, `course_id`, `installments`, `total_amount`, `contactMethod`, `created_by`, `country`, `group_sale`) 
-VALUES ('$phone', '$email', '$name', '$lastname', '$username', '$contactTime', '$detail', '$label', '$course','$course_id', '$installments', '$total_amount', '$contactMethod', '$created_by', '$country', $group_sale) LIMIT 1");
+$db->query("INSERT INTO `leads` (`phone`, `email`, `name`, `lastname`, `username`, `contactTime` , `contactUntil`, `detail`, `label`, `course`, `course_id`, `installments`, `total_amount`, `contactMethod`, `created_by`, `country`, `group_sale`) 
+VALUES ('$phone', '$email', '$name', '$lastname', '$username', '$contactTime', '$contactUntil', '$detail', '$label', '$course','$course_id', '$installments', '$total_amount', '$contactMethod', '$created_by', '$country', $group_sale)");
 
-$db->query("SELECT MAX(id) from leads limit 1");
-$res = $db->fetch();
-echo json_encode($res['MAX(id)']);
+if ($created_by !== 0) {
+    $db->query("SELECT MAX(id) from leads limit 1");
+    $res = $db->fetch();
+    echo json_encode($res['MAX(id)']);
+} else { 
+echo "Consulta enviada con exito!"; }
 ?>

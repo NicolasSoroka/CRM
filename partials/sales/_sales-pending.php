@@ -54,7 +54,7 @@
                     <label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $sale['course'] ?></label>
                 </td>
                 <td class="text-center align-middle">
-                    <label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $sale['username'] . ' ' . $sale['userlastname'] ?></label>
+                    <label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $sale['salesusername'] . ' ' . $sale['userlastname'] ?></label>
                 </td>
                 <td class="text-center align-middle">
                     <span class="mt-2 label label-secondary label-inline"><?= '$ ' . $sale['total_amount'] ?></span>
@@ -104,7 +104,7 @@
                     </span>
                 </td>
                 <td class="text-center align-middle">
-                    <button onclick="verify('<?= $sale['id'] ?>',<?= $sale['net_price'] ?>,'<?= $sale['proof_payment'] ?>');">
+                    <button onclick="verify('<?= $sale['id'] ?>',<?= $sale['net_price'] ?>,'<?= $sale['proof_payment'] ?>','<?= $sale['name'] ?>','<?= $sale['lastname'] ?>','<?= $sale['username'] ?>','<?= $sale['phone'] ?>','<?= $sale['email'] ?>','<?= $sale['country'] ?>','<?= $sale['installments'] ?>','<?= $sale['total_amount'] ?>','<?= $sale['course_id'] ?>');">
                         <span class="svg-icon svg-icon-warning svg-icon-2x">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -188,19 +188,19 @@
         });
     }
 
-    function verify(id, net_value, proof_payment) {
+    function verify(id, net_value, proof_payment, name, lastname, username, phone, email, country, installments, total_amount, course_id) {
         if (net_value > 0 && proof_payment === '1') {
 
             let info = {
-                'name': 'sarasonga',
-                'lastname': 'test-apellido',
-                'username': '4434',
-                'phone': '1122334455',
-                'email': 'srasras@gmail.com',
-                'country': 'paraguay',
-                'course_id': '104',
-                'installments': "2",
-                'total_amount': "10000"
+                'name': name,
+                'lastname': lastname,
+                'username': username,
+                'phone': phone,
+                'email': email,
+                'country': country,
+                'course_id': course_id,
+                'installments': installments,
+                'total_amount': total_amount
             }
 
             $.ajax({

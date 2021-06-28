@@ -8,7 +8,7 @@ $route = '_main.php';
 //SALES-PENDING
 if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'sales/_sales-pending') {
-		$db->query("SELECT leads.*, users.name AS username, users.lastname AS userlastname
+		$db->query("SELECT leads.*, users.name AS salesusername, users.lastname AS userlastname
 					FROM leads, users, assigned 
 					WHERE assigned.id_lead = leads.id AND assigned.id_user = users.id AND leads.label = 7");
 		$sales = $db->fetchAll();

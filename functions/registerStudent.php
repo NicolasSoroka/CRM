@@ -13,7 +13,7 @@ $acceso = 3;
 $telefono = $db2->escape($_GET['phone']);
 $email = $db2->escape($_GET['email']);
 $pais = $db2->escape($_GET['country']);
-    
+$installments = (($_GET['installments']) == 0) ? 1 : $db->escape($_GET['installments']);
 
 //CREACION DE ALUMNO
 $db2->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`, `foto`, `pais`) 
@@ -24,9 +24,8 @@ $res = $db2->fetch();
 //Asignacion de curso
 $userId = $res['MAX(id)'];
 $course = $db2->escape($_GET['course_id']);
-$cantidad_cuotas = $db2->escape($_GET['installments']);
 $precio_bruto = $db2->escape($_GET['total_amount']);
-$valor_cuota = $precio_bruto / $cantidad_cuotas;
+$valor_cuota = $precio_bruto / $installments;
 $pago = 0;
 $cuotas_pagas = 0;
 $presencial =  0;
@@ -34,8 +33,5 @@ $db2->query("SELECT cantidad_modulos FROM curso WHERE id_curso = '$course' LIMIT
 $temp = $db2->fetch();
 
 $db2->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `pago`, `cantidad_cuotas`, `cuotas_pagas`, `valor_cuota`, `presencial`) 
-                            VALUES ('$course','$userId', '$pago', '$cantidad_cuotas', '$cuotas_pagas', '$valor_cuota', '$presencial');");
-
-// $sale_id = $db2->escape($_GET['sale_id']);
-// $db->query("UPDATE `sales` SET `status`= 1 WHERE id = '$sale_id' LIMIT 1");
+                            VALUES ('$course','$userId', '$pago', '$installments', '$cuotas_pagas', '$valor_cuota', '$presencial');");
 ?>

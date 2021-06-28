@@ -1,13 +1,11 @@
 • tolerancia de 30'' por lead
 • confirmar por administrador y poner tilde. pedir valor neto. Pedir carga de comprobante de pago.
 • agregar boton de cancelar
-• mail de aviso de pago al alumno
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
 • Crear los alumnos con los cursos asignados para quien haya pasado el proceso de verificacion de pago (por parte del admin)
-• agregar fecha a las promesas (fecha de concretacion tentativa)
-• Agregar "guia de usuario" con forma de arbol, tipo el "funciona? si/no"
+• Al formulario de promesa, agregar "agregar curso" para aclarar que cursos y a cuanto se venden, que la solapa que agrega solo sea para mas personas.
 
-promesas pide fecha y hora de cuando va a pagar
+
 estadistica de promesas por dia y ventas por dia
 check campos APB
 dato no interesado pasarlo a disposicion del admin
@@ -25,6 +23,17 @@ Estadisticas
 • Cantidad de datos entregados por vendedor
 
 • Carga de fotos
+• Agregar "guia de usuario" con forma de arbol, tipo el "funciona? si/no"
+• mail de aviso de pago al alumno
+
+FEATURED WIDGET STATS
+MENSAJES EN EL LEAD MAS NUEVOS PRIMERO
+PRIMER LOGEO CAMBIAR PASS
+
+working on:
+    sales-pending          Trabajar las ventanas modales para modificar cada sale individualmente. Terminar de ver la carga del comprobante.
+    sales-view             Revisar la informacion que se envia a registerStudent.
+    registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entegando y la opcion de curso completo y/o remoto.
 
     - Promesa 7
     - Cuasi-Promesa 6 
@@ -33,13 +42,4 @@ Estadisticas
     - Vendido 3 
     - Viejo 2
     - Nuevo 1
-
-FEATURED WIDGET STATS
-
-MENSAJES EN EL LEAD MAS NUEVOS PRIMERO
-PRIMER LOGEO CAMBIAR PASS
-
-working on:
-    sales-pending          Trabajar las ventanas modales para modificar cada sale individualmente. Terminar de ver la carga del comprobante.
-    sales-view             Revisar la informacion que se envia a registerStudent.
-    registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entegando y la opcion de curso completo y/o remoto.
+    - No asignado 0

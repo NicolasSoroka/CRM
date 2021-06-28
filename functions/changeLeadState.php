@@ -34,7 +34,9 @@ if (isset($_GET['group_sale'])) {
                 `installments`= '$installments',
 				`total_amount`= '$total_amount',
                 `label`= '$label',
-                `group_sale`= '$group_sale'
+                `group_sale`= '$group_sale',
+                `contactDay`= '$contactDay',
+                `contactTime`= '$contactTime'
                 WHERE id = '$id_lead' LIMIT 1");
     $db->query("UPDATE `assigned` SET `status`= 'modified' WHERE id_lead = '$id_lead' LIMIT 1");
 } else {

@@ -14,8 +14,10 @@ $telefono = $db2->escape($_GET['phone']);
 $email = $db2->escape($_GET['email']);
 $pais = $db2->escape($_GET['country']);
     
-// $db2->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`, `foto`, `pais`) 
-//             VALUES ('$dni', '$pwd', '$nombre', '$apellido', '$acceso', '$telefono', '$email', './img/blank.png' , '$pais');");
+
+//CREACION DE ALUMNO
+$db2->query("INSERT INTO personas(`dni`, `password`, `nombre`, `apellido`, `acceso`, `telefono`, `email`, `foto`, `pais`) 
+            VALUES ('$dni', '$pwd', '$nombre', '$apellido', '$acceso', '$telefono', '$email', './img/blank.png' , '$pais');");
 $db2->query("SELECT MAX(id) FROM personas LIMIT 1");
 $res = $db2->fetch();
 
@@ -34,9 +36,6 @@ $temp = $db2->fetch();
 $db2->query("INSERT INTO curso_p (`id_curso`, `id_persona`, `pago`, `cantidad_cuotas`, `cuotas_pagas`, `valor_cuota`, `presencial`) 
                             VALUES ('$course','$userId', '$pago', '$cantidad_cuotas', '$cuotas_pagas', '$valor_cuota', '$presencial');");
 
-
-$sale_id = $db2->escape($_GET['sale_id']);
-$db->query("UPDATE `sales` SET `status`= 1 WHERE id = '$sale_id' LIMIT 1");
-
-
+// $sale_id = $db2->escape($_GET['sale_id']);
+// $db->query("UPDATE `sales` SET `status`= 1 WHERE id = '$sale_id' LIMIT 1");
 ?>

@@ -104,16 +104,18 @@
                     </span>
                 </td>
                 <td class="text-center align-middle">
-                    <span class="svg-icon svg-icon-warning svg-icon-2x">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <rect x="0" y="0" width="24" height="24" />
-                                <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
-                                <rect fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
-                                <rect fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
-                            </g>
-                        </svg>
-                    </span>
+                    <button onclick="verify('<?= $sale['id'] ?>',<?= $sale['net_price'] ?>,'<?= $sale['proof_payment'] ?>');">
+                        <span class="svg-icon svg-icon-warning svg-icon-2x">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24" />
+                                    <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+                                    <rect fill="#000000" x="11" y="10" width="2" height="7" rx="1" />
+                                    <rect fill="#000000" x="11" y="7" width="2" height="2" rx="1" />
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
                 </td>
             </tr>
         <?php } ?>
@@ -171,31 +173,6 @@
 <!--end::Modal carga_comprobante-->
 
 <script>
-    function uploadPayment(sale_id) {
-        var info = {
-            'name': 'test',
-            'lastname': 'test-apellido',
-            'username': '4434',
-            'phone': '1122334455',
-            'email': 'srasras@gmail.com',
-            'country': 'paraguay',
-            'course_id': '104',
-            'installments': "2",
-            'total_amount': "10000",
-            'sale_id': sale_id
-        }
-
-        $.ajax({
-            type: 'get',
-            url: './functions/registerStudent.php',
-            data: info,
-            success: function(response) {
-                $('#messageArea').val("");
-                location.href = "./index.php";
-            }
-        });
-    }
-
     function updateNetValue(id) {
         let value = $('#netValue' + id).val();
         $.ajax({
@@ -210,4 +187,54 @@
             }
         });
     }
+
+    function verify(id, net_value, proof_payment) {
+        if (net_value > 0 && proof_payment === '1') {
+
+            let info = {
+                'name': 'sarasonga',
+                'lastname': 'test-apellido',
+                'username': '4434',
+                'phone': '1122334455',
+                'email': 'srasras@gmail.com',
+                'country': 'paraguay',
+                'course_id': '104',
+                'installments': "2",
+                'total_amount': "10000"
+            }
+
+            $.ajax({
+                type: 'get',
+                url: './functions/registerStudent.php',
+                data: info,
+                success: function(response) {
+                    let lead_to_update = {
+                        'id_lead': id,
+                        'label': '3'
+                    }
+
+                    $.ajax({
+                        type: 'get',
+                        url: './functions/changeLeadState.php',
+                        data: lead_to_update,
+                        success: function(response) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        } else {
+            swalfire('Error, revise los campos.');
+        }
+    }
+
+    function swalfire(text) {
+		Swal.fire({
+			text,
+			icon: "warning",
+			buttonsStyling: true,
+			showConfirmButton: true,
+			timer: 4000
+		})
+	}
 </script>

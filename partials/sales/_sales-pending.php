@@ -61,9 +61,9 @@
                     if ($sale['contactDay'] == '0000-00-00') {
                         echo '<span class="font-weight-bolder font-weight-500">-</span>';
                     } else if ((strtotime($sale['contactDay'] . ' ' . $sale['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
-                        echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d-m h:i") . '</span>';
+                        echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d-m / h:i") . '</span>';
                     } else {
-                        echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d-m h:i") . '</span>';
+                        echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d-m / h:i") . '</span>';
                     } ?>
                 </td>
                 <td class="text-center align-middle">
@@ -248,7 +248,7 @@
                 }
             });
         } else {
-            swalfire('Error, revise los campos.');
+            swalfire('Revise valor neto y comprobante.');
         }
     }
 
@@ -279,7 +279,6 @@
             if (optValue === 'salesusername') {
                 (lead['userlastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();
             }
-            
         });
     }
 </script>

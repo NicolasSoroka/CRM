@@ -4,6 +4,11 @@
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
 • Crear los alumnos con los cursos asignados para quien haya pasado el proceso de verificacion de pago (por parte del admin)
 • Al formulario de promesa, agregar "agregar curso" para aclarar que cursos y a cuanto se venden, que la solapa que agrega solo sea para mas personas.
+• Al agregar promesa multiple, asignar en promesa los agregados.
+
+al crear promesa multiple, no se esta cargando contactDay y Course
+al crear promesa multiple, asignar al vendedor las multiples promesas.
+
 
 
 estadistica de promesas por dia y ventas por dia

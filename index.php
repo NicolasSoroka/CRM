@@ -99,7 +99,6 @@ if (isset($_GET['lead'])) {
 
 	<!--end::Global Theme Styles-->
 
-	<!--begin::Layout Themes(used by all pages)-->
 	<link href="assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
@@ -151,7 +150,8 @@ if (isset($_GET['lead'])) {
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 					<!-- los subheaders se construyen en cada vista. -->
-					<!-- <?php include("partials/_subheader/subheader-v1.php") ?> -->
+					<?php // include("partials/_subheader/subheader-v1.php") 
+					?>
 
 					<!--Content-->
 					<?php include("partials/" . $route) ?>
@@ -169,15 +169,17 @@ if (isset($_GET['lead'])) {
 
 	<!--end::Main-->
 
-	<?php include("partials/_extras/offcanvas/quick-user.php"); ?>
+	<?php 
+	/*
+	include("partials/_extras/offcanvas/quick-user.php");
 
-	<?php include("partials/_extras/offcanvas/quick-panel.php"); ?>
+	include("partials/_extras/chat.php");
 
-	<?php include("partials/_extras/chat.php"); ?>
+	include("partials/_extras/scrolltop.php");
 
-	<?php include("partials/_extras/scrolltop.php"); ?>
-
-	<?php include("partials/_extras/offcanvas/demo-panel.php"); ?>
+	include("partials/_extras/offcanvas/demo-panel.php");
+	*/
+	?>
 
 	<!--begin::Global Config(global config for global JS scripts)-->
 	<script>
@@ -241,24 +243,13 @@ if (isset($_GET['lead'])) {
 		};
 	</script>
 
-	<!--end::Global Config-->
-
-	<!--begin::Global Theme Bundle(used by all pages)-->
 	<script src="assets/plugins/global/plugins.bundle.js"></script>
 	<script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
 	<script src="assets/js/scripts.bundle.js"></script>
 
-	<!--end::Global Theme Bundle-->
-
-	<!--begin::Page Vendors(used by this page)-->
 	<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
-	<!--end::Page Vendors-->
-
-	<!--begin::Page Scripts(used by this page)-->
 	<script src="assets/js/pages/widgets.js"></script>
-
-	<!--end::Page Scripts-->
 
 </body>
 

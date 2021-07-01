@@ -3,7 +3,7 @@
         <!--begin::Details-->
         <div class="d-flex align-items-center flex-wrap mr-2">
             <!--begin::Title-->
-            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Promesas de venta</h5>
+            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Ventas</h5>
             <!--end::Title-->
         </div>
         <!--end::Details-->
@@ -19,7 +19,7 @@
             <th class="text-center" scope="col">Monto bruto</th>
             <th class="text-center" scope="col">Monto neto</th>
             <th class="text-center" scope="col">Comprobante</th>
-            <th class="text-center" scope="col">Verificado</th>
+            <th class="text-center" scope="col">Curso vendido</th>
         </tr>
     </thead>
     <tbody>

@@ -123,7 +123,7 @@
                     </span>
                 </td>
                 <td class="text-center align-middle">
-                    <button onclick="verify('<?= $sale['id'] ?>',<?= $sale['net_price'] ?>,'<?= $sale['proof_payment'] ?>','<?= $sale['name'] ?>','<?= $sale['lastname'] ?>','<?= $sale['username'] ?>','<?= $sale['phone'] ?>','<?= $sale['email'] ?>','<?= $sale['country'] ?>','<?= $sale['installments'] ?>','<?= $sale['total_amount'] ?>','<?= $sale['course_id'] ?>');">
+                    <button style="border: none; background-color: transparent;" onclick="verify('<?= $sale['id'] ?>',<?= $sale['net_price'] ?>,'<?= $sale['proof_payment'] ?>','<?= $sale['name'] ?>','<?= $sale['lastname'] ?>','<?= $sale['username'] ?>','<?= $sale['phone'] ?>','<?= $sale['email'] ?>','<?= $sale['country'] ?>','<?= $sale['installments'] ?>','<?= $sale['total_amount'] ?>','<?= $sale['course_id'] ?>','<?= $sale['id_user'] ?>');">
                         <span class="svg-icon svg-icon-warning svg-icon-2x">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -212,7 +212,7 @@
         });
     }
 
-    function verify(id, net_value, proof_payment, name, lastname, username, phone, email, country, installments, total_amount, course_id) {
+    function verify(id, net_value, proof_payment, name, lastname, username, phone, email, country, installments, total_amount, course_id, id_user) {
         if (net_value > 0 && proof_payment === '1') {
 
             let info = {
@@ -234,9 +234,9 @@
                 success: function(response) {
                     let lead_to_update = {
                         'id_lead': id,
+                        'id_user': id_user,
                         'label': '3'
                     }
-
                     $.ajax({
                         type: 'get',
                         url: './functions/changeLeadState.php',
@@ -274,7 +274,7 @@
                 $('#tr' + lead['id']).hide();
             }
             if (optValue === 'name') {
-                (lead['lastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();
+                (lead['lastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show() : $('#tr' + lead['id']).hide();
             }
             if (optValue === 'salesusername') {
                 (lead['userlastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();

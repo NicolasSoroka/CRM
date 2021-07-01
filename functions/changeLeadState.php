@@ -3,12 +3,12 @@ require "../globals/database.php";
 $db = Database::getInstance();
 
 $label = $db->escape($_GET['label']);
-$message = $db->escape($_GET['message']);
+$message = ($label === '3') ? "Vendido." : $db->escape($_GET['message']);
 $name = $db->escape($_GET['name']);
 $lastname = $db->escape($_GET['lastname']);
 $id_user = $db->escape($_GET['id_user']);
 $id_lead = $db->escape($_GET['id_lead']);
-$img = $db->escape($_GET['img']);
+$img = ($label === '3') ? "sold.png" : $db->escape($_GET['img']);
 $username = (isset($_GET['username'])) ? $db->escape($_GET['username']) : 999;
 $phone = (isset($_GET['phone'])) ? $db->escape($_GET['phone']) : 999;
 $email = (isset($_GET['email'])) ? $db->escape($_GET['email']) : 999;
@@ -46,6 +46,7 @@ if (isset($_GET['group_sale'])) {
         } else {
             $db->query("UPDATE `leads` SET `label`= '$label' WHERE id = '$id_lead' LIMIT 1");
             $db->query("UPDATE `assigned` SET `status`= 'modified' WHERE id_lead = '$id_lead' LIMIT 1");
+            if ($label === '3') $db->query("INSERT INTO `sales` (`id_user`, `id_lead`, `sale_date`) VALUES ('$id_user', '$id_lead', current_timestamp());");
         }
     }
 $db->query("INSERT INTO `messages`(`text`, `id_user`, `id_lead`, `img`, `name`, `lastname`, `label`) VALUES ('$message','$id_user','$id_lead','$img','$name','$lastname', '$label')");

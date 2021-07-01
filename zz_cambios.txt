@@ -1,20 +1,27 @@
 • tolerancia de 30'' por lead
-• confirmar por administrador y poner tilde. pedir valor neto. Pedir carga de comprobante de pago.
-• agregar boton de cancelar
+• Pedir carga de comprobante de pago.
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
-• Crear los alumnos con los cursos asignados para quien haya pasado el proceso de verificacion de pago (por parte del admin)
 • Al formulario de promesa, agregar "agregar curso" para aclarar que cursos y a cuanto se venden, que la solapa que agrega solo sea para mas personas.
 • Al agregar promesa multiple, asignar en promesa los agregados.
+• En los listados de leads, al hacer click en alguno tiene que llevar al detalle del mismo.
+    - falta hacer esto en "datos disponibles"
+    - 
+• Datos sin asignar
+• Agregar columna "ID DE DATO"
+• Editar datos
+• Revisar cifrado al logeo.
+• activar loader
+• confirmar al tocar el boton Verificar en promises.
+• Cuando se actualiza el valor neto de una promesa, hasta no actualizar la pagina no funca el verify, revisar.
+
+• mail de aviso de pago al alumno
 
 al crear promesa multiple, no se esta cargando contactDay y Course
 al crear promesa multiple, asignar al vendedor las multiples promesas.
 
-
-
 estadistica de promesas por dia y ventas por dia
 check campos APB
 dato no interesado pasarlo a disposicion del admin
-ORDENAR PROMESAS POR FECHA primera arriba
 
 Administrador
 • Ver ventas (filtrar por vendedor)
@@ -27,18 +34,9 @@ Estadisticas
 • Ventas por cursos
 • Cantidad de datos entregados por vendedor
 
-• Carga de fotos
-• Agregar "guia de usuario" con forma de arbol, tipo el "funciona? si/no"
-• mail de aviso de pago al alumno
-
-FEATURED WIDGET STATS
-MENSAJES EN EL LEAD MAS NUEVOS PRIMERO
 PRIMER LOGEO CAMBIAR PASS
 
-working on:
-    sales-pending          Trabajar las ventanas modales para modificar cada sale individualmente. Terminar de ver la carga del comprobante.
-    sales-view             Revisar la informacion que se envia a registerStudent.
-    registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entegando y la opcion de curso completo y/o remoto.
+registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
 
     - Promesa 7
     - Cuasi-Promesa 6 

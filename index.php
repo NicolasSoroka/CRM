@@ -5,10 +5,22 @@ $db = Database::getInstance();
 $userId = $_SESSION['user']['id'];
 $route = '_main.php';
 
+//_ASSIGNED
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'leads/_assigned') {
+		$db->query("SELECT leads.country, leads.course, leads.id, users.name, users.lastname, assigned.time
+					FROM leads, users, assigned 
+					WHERE assigned.id_lead = leads.id AND assigned.id_user = users.id AND leads.label <> 3 ORDER BY `assigned`.`time` ASC");
+		$sales = $db->fetchAll();
+		$db->getUsers();
+		$users = $db->fetchAll();
+	}
+}
+
 //SALES-PENDING
 if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'sales/_sales-pending') {
-		$db->query("SELECT leads.*, users.name AS salesusername, users.lastname AS userlastname
+		$db->query("SELECT leads.*, users.name AS salesusername, users.lastname AS userlastname, users.id AS id_user
 					FROM leads, users, assigned 
 					WHERE assigned.id_lead = leads.id AND assigned.id_user = users.id AND leads.label = 7 ORDER BY `leads`.`contactDay` ASC");
 		$sales = $db->fetchAll();
@@ -20,7 +32,7 @@ if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'sales/_sales-view') {
 		$db->query("SELECT sales.*, leads.total_amount, leads.country, leads.group_sale, users.name, users.lastname 
 					FROM sales, leads, users
-					where sales.id_lead = leads.id AND sales.id_user = users.id AND sales.status = 1");
+					where sales.id_lead = leads.id AND sales.id_user = users.id");
 		$sales = $db->fetchAll();
 	}
 }
@@ -130,7 +142,7 @@ if (isset($_GET['lead'])) {
 
 <body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed page-loading">
 
-	<?php //include("partials/_page-loader.php"); 
+	<?php // include("partials/_page-loader.php"); 
 	?>
 
 	<!--begin::Main-->
@@ -170,9 +182,9 @@ if (isset($_GET['lead'])) {
 	<!--end::Main-->
 
 	<?php 
-	/*
+	
 	include("partials/_extras/offcanvas/quick-user.php");
-
+/*
 	include("partials/_extras/chat.php");
 
 	include("partials/_extras/scrolltop.php");

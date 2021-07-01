@@ -148,7 +148,7 @@ $courses_list = $db2->fetchAll();
 											<div class="timeline timeline-3 mt-3">
 												<div class="timeline-items">
 													<div class="timeline-item">
-														<div class="timeline-media">
+														<div class="timeline-media" style="margin-top: 15px;">
 															<img alt="Pic" src="assets/profile/<?= $message['img'] ?>.jpg" />
 														</div>
 														<div class="timeline-content">
@@ -378,51 +378,47 @@ $courses_list = $db2->fetchAll();
 		let text = $('#messageArea').val();
 		let str = $('#datetime-call-later').val();
 		let substrings = str.split('T');
-		if (select === '3') {    //EN CASO DE VENDIDO, SE LLAMA LA FUNCION FINISH SALE
-			finishSale(name, lastname, id_user, id_lead, img);
-		} else {
-			if ((select > 0) && (text.length > 20)) {
-				var info = {
-					'message': $('#messageArea').val(),
-					'name': name,
-					'lastname': lastname,
-					'id_user': id_user,
-					'id_lead': id_lead,
-					'img': img,
-					'label': select,
-					'phone': phone,
-					'email': email,
-					'country': country,
-					'course_id': course_id,
-					'course_name': course_name,
-					'contactDay': substrings[0],
-					'contactTime': substrings[1]
-				}
-
-				if (select != 7) { 
-					$.ajax({
-						type: 'get',
-						url: './functions/changeLeadState.php',
-						data: info,
-						success: function(response) {
-							$('#messageArea').val("");
-							location.href = "./index.php";
-						}
-					});
-				} else {  		//EN CASO DE PROMISE SE MUESTRA EL MODAL CON DATA DEL LEAD.
-					var info = {
-						'name': '<?= $lead[0]['name'] ?>',
-						'lastname': '<?= $lead[0]['lastname'] ?>',
-						'phone': '<?= $lead[0]['phone'] ?>',
-						'email': '<?= $lead[0]['email'] ?>',
-						'country': '<?= $lead[0]['country'] ?>',
-						'course_id': '<?= $lead[0]['id'] ?>'
-					}
-					modalUpdate(info);
-				}
-			} else {
-				swalfire();
+		if ((select > 0) && (text.length > 20)) {
+			var info = {
+				'message': $('#messageArea').val(),
+				'name': name,
+				'lastname': lastname,
+				'id_user': id_user,
+				'id_lead': id_lead,
+				'img': img,
+				'label': select,
+				'phone': phone,
+				'email': email,
+				'country': country,
+				'course_id': course_id,
+				'course_name': course_name,
+				'contactDay': substrings[0],
+				'contactTime': substrings[1]
 			}
+
+			if (select != 7) {
+				$.ajax({
+					type: 'get',
+					url: './functions/changeLeadState.php',
+					data: info,
+					success: function(response) {
+						$('#messageArea').val("");
+						location.href = "./index.php";
+					}
+				});
+			} else { //EN CASO DE PROMISE SE MUESTRA EL MODAL CON DATA DEL LEAD.
+				var info = {
+					'name': '<?= $lead[0]['name'] ?>',
+					'lastname': '<?= $lead[0]['lastname'] ?>',
+					'phone': '<?= $lead[0]['phone'] ?>',
+					'email': '<?= $lead[0]['email'] ?>',
+					'country': '<?= $lead[0]['country'] ?>',
+					'course_id': '<?= $lead[0]['id'] ?>'
+				}
+				modalUpdate(info);
+			}
+		} else {
+			swalfire();
 		}
 	}
 
@@ -603,33 +599,10 @@ $courses_list = $db2->fetchAll();
 
 	function comboChange(combo) {
 		let combo_value = combo.value;
-		if ((combo_value == 5) || (combo_value == 7) ) {
+		if ((combo_value == 5) || (combo_value == 7)) {
 			$('#contactTimeField').show();
 		} else {
 			$('#contactTimeField').hide();
 		}
-	}
-
-	function finishSale(name, lastname, id_user, id_lead, img) {
-		let text = $('#messageArea').val();
-		var info = {
-			'message': $('#messageArea').val(),
-			'name': name,
-			'lastname': lastname,
-			'id_user': id_user,
-			'id_lead': id_lead,
-			'img': img,
-			'label' : '3',
-			'sold' : '1'
-		}
-		$.ajax({
-			type: 'get',
-			url: './functions/finishSale.php',
-			data: info,
-			success: function(response) {
-				$('#messageArea').val("");
-				location.href = "./index.php";
-			}
-		});
 	}
 </script>

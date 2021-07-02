@@ -22,7 +22,6 @@
 
                 <!--begin::Col-->
                 <?php
-                $counter = 0;
                 foreach ($users as $user) {  ?>
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                         <!--begin::Card-->
@@ -67,10 +66,10 @@
                                     </div>
                                 </div>
                                 <!--end::Info-->
-                                <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#modal<?= $counter ?>">Enviar mensaje</a>
+                                <a href="#" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4" data-toggle="modal" data-target="#modal<?= $user['id'] ?>">Enviar mensaje</a>
 
                                 <!-- Modal-->
-                                <div class="modal fade" id="modal<?= $counter ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal<?= $counter ?>" aria-hidden="true">
+                                <div class="modal fade" id="modal<?= $user['id'] ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal<?= $user['id'] ?>" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -84,7 +83,7 @@
                                                     <div class="container">
                                                         <form class="form">
                                                             <div class="form-group">
-                                                                <textarea class="form-control form-control-lg form-control-solid" id="textArea<?= $counter ?>" rows="5" placeholder="Escriba su mensaje"></textarea>
+                                                                <textarea class="form-control form-control-lg form-control-solid" id="textArea<?= $user['id'] ?>" rows="5" placeholder="Escriba su mensaje"></textarea>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -92,16 +91,16 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cancelar</button>
-                                                <button type="button" onclick="sendMessage(document.getElementById('textArea<?= $counter ?>').value,<?= $user['id'] ?>);" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Enviar</button>
+                                                <button type="button" onclick="sendMessage(<?= $user['id'] ?>);" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Enviar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!--end::Modal-->
                                 <?php if ($user['disabled'] == 1) { ?>
-                                    <a href="#" class="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4 mt-2" id="status<?= $counter ?>" onclick="blockUser(<?= $user['id'] . ',' . $counter ?>);">Usuario bloqueado</a>
+                                    <a href="#" class="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4 mt-2" id="status<?= $user['id'] ?>" onclick="blockUser(<?= $user['id'] . ',' . $user['id'] ?>);">Usuario bloqueado</a>
                                 <?php } else { ?>
-                                    <a href="#" class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4 mt-2" id="status<?= $counter ?>" onclick="blockUser(<?= $user['id'] . ',' . $counter ?>);">Usuario habilitado</a>
+                                    <a href="#" class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4 mt-2" id="status<?= $user['id'] ?>" onclick="blockUser(<?= $user['id'] . ',' . $user['id'] ?>);">Usuario habilitado</a>
                                 <?php } ?>
 
                                 <a href="#" class="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4" onclick="resetPassword(<?= $user['id'] ?>);">Restablecer clave</a>
@@ -110,7 +109,7 @@
                         </div>
                         <!--end::Card-->
                     </div>
-                <?php $counter++;
+                <?php
                 } ?>
                 <!--end::Col-->
             </div>
@@ -134,9 +133,11 @@
         })
     }
 
-    function sendMessage(msg, id) {
+    function sendMessage(id) {
+        let msg = $('#textArea'+id).val();
+
         $.ajax({
-            type: 'post',
+            type: 'get',
             url: './functions/sendMessage.php',
             data: {
                 message: msg,

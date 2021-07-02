@@ -48,13 +48,11 @@
 		<div class="navi navi-spacer-x-0 p-0">
 
 			<!--begin::Item-->
-			<a href="custom/apps/user/profile-1/personal-information.html" class="navi-item">
+			<a href="?page=users/_profile" class="navi-item">
 				<div class="navi-link">
 					<div class="symbol symbol-40 bg-light mr-3">
 						<div class="symbol-label">
 							<span class="svg-icon svg-icon-md svg-icon-success">
-
-								<!--begin::Svg Icon | path:assets/media/svg/icons/General/Notification2.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
@@ -62,14 +60,12 @@
 										<circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5" r="2.5" />
 									</g>
 								</svg>
-
-								<!--end::Svg Icon-->
 							</span>
 						</div>
 					</div>
 					<div class="navi-text">
 						<div class="font-weight-bold">Mi perfil</div>
-						<div class="text-muted">Edite su informacion personal
+						<div class="text-muted">Informacion personal y de contacto
 						</div>
 					</div>
 				</div>

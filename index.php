@@ -173,7 +173,7 @@ if ($route == '_main.php') {
 
 <body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed page-loading">
 
-	<?php // include("partials/_page-loader.php"); 
+	<?php include("partials/_page-loader.php"); 
 	?>
 
 	<!--begin::Main-->
@@ -214,7 +214,7 @@ if ($route == '_main.php') {
 
 	<?php
 
-	include("partials/_extras/offcanvas/quick-user.php");
+	include("partials/quick-user.php");
 	/*
 	include("partials/_extras/chat.php");
 

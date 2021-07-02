@@ -3,9 +3,6 @@
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
 • Al formulario de promesa, agregar "agregar curso" para aclarar que cursos y a cuanto se venden, que la solapa que agrega solo sea para mas personas.
 • Al agregar promesa multiple, asignar en promesa los agregados.
-• En los listados de leads, al hacer click en alguno tiene que llevar al detalle del mismo.
-    - falta hacer esto en "datos disponibles"
-    - 
 • Datos sin asignar
 • Agregar columna "ID DE DATO"
 • Editar datos
@@ -14,7 +11,7 @@
 • confirmar al tocar el boton Verificar en promises.
 • Cuando se actualiza el valor neto de una promesa, hasta no actualizar la pagina no funca el verify, revisar.
 • Quitar el nombre "Hola sarasa" que esta hardcodeado
-
+• Revisar la carga automatica desde los formularios de las paginas.
 • mail de aviso de pago al alumno
 
 al crear promesa multiple, no se esta cargando contactDay y Course
@@ -26,7 +23,6 @@ dato no interesado pasarlo a disposicion del admin
 
 Administrador
 • Ver ventas (filtrar por vendedor)
-• Ver todos los leads (filtrar por estado)
 • Ver ranking de ventas
 
 Estadisticas

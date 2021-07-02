@@ -35,6 +35,7 @@
 			<th class="text-center" scope="col">Vendedor</th>
 			<th class="text-center" scope="col">Fecha de asignacion</th>
 			<th class="text-center" scope="col">Curso de interes</th>
+			<th class="text-center" scope="col">Estado</th>
 			<th class="text-center" scope="col">Reasignar</th>
 			<th class="text-center" scope="col">Ver detalle</th>
 		</tr>
@@ -63,7 +64,41 @@
 				<td class="text-center align-middle">
 					<label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $sale['course'] ?></label>
 				</td>
-
+				<td class="text-center align-middle">
+					<?php switch ($sale['label']) {
+						case 7:
+							echo '<span class="ml-2 label label-primary label-inline">Promesa</span>';
+							break;
+						case 6:
+							echo '<span class="ml-2 label bg-transparent border border-dark label-inline">No contactado</span>';
+							break;
+						case 5:
+							echo '<span class="ml-2 label bg-warning label-inline">Llamar luego</span>';
+							break;
+						case 4:
+							echo '<span class="ml-2 label label-danger label-inline">No interesado</span>';
+							break;
+						case 3:
+							echo '<span class="ml-2 label label-success label-inline">Vendido</span>';
+							break;
+						case 2:
+							echo '<span class="ml-2 label label-info label-inline">Interesado</span>';
+							break;
+						case 1:
+							echo '<span class="label bg-gray-300 label-inline">Nuevo<span class="pl-1 svg-icon svg-icon-warning svg-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<polygon points="0 0 24 0 24 24 0 24" />
+									<path d="M12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.3476862,4.32173209 11.9473121,4.11839309 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 Z" fill="#000000" />
+								</g>
+							</svg>
+						</span></span>';
+							break;
+						case 0:
+							echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
+							break;
+					} ?>
+				</td>
 				<td class="text-center align-middle" data-toggle="modal" data-target="#modal<?= $sale['id'] ?>" style="cursor: pointer;">
 					<span class="svg-icon svg-icon-primary svg-icon-2x">
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -154,6 +189,33 @@
 	function search() {
 		let searchValue = $('#searchValue').val().toLowerCase();
 		let optValue = $('#searchOpt').val();
+
+		switch (searchValue) {
+			case 'no asignado':
+				searchValue = 0;
+				break;
+			case 'nuevo':
+				searchValue = 1;
+				break;
+			case 'interesado':
+				searchValue = 2;
+				break;
+			case 'vendido':
+				searchValue = 3;
+				break;
+			case 'no interesado':
+				searchValue = 4;
+				break;
+			case 'llamar luego':
+				searchValue = 5;
+				break;
+			case 'no contactado':
+				searchValue = 6;
+				break;
+			case 'promesa':
+				searchValue = 7;
+				break;
+		}
 
 		leads_array.forEach(lead => {
 			if (lead[optValue].toLowerCase().includes(searchValue)) {

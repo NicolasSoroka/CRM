@@ -8,9 +8,21 @@ $route = '_main.php';
 //_ASSIGNED
 if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'leads/_assigned') {
-		$db->query("SELECT leads.country, leads.course, leads.id, users.name, users.lastname, assigned.time
+		$db->query("SELECT leads.country, leads.course, leads.id, leads.label, users.name, users.lastname, assigned.time
 					FROM leads, users, assigned 
 					WHERE assigned.id_lead = leads.id AND assigned.id_user = users.id AND leads.label <> 3 ORDER BY `assigned`.`time` ASC");
+		$sales = $db->fetchAll();
+		$db->getUsers();
+		$users = $db->fetchAll();
+	}
+}
+
+//NO-ASSIGNED
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'leads/_no-assigned') {
+		$db->query("SELECT leads.country, leads.course, leads.id, leads.date, leads.name, leads.label 
+					FROM leads 
+					WHERE id NOT IN (SELECT id_lead FROM assigned)");
 		$sales = $db->fetchAll();
 		$db->getUsers();
 		$users = $db->fetchAll();
@@ -82,6 +94,25 @@ if (isset($_GET['lead'])) {
 	$messages = $db->fetchAll();
 } else {
 	if (isset($_GET['page'])) $route = $_GET['page'] . '.php';
+}
+
+
+//_MAIN
+if ($route == '_main.php') {
+	// cantidad de promesas y monto bruto
+	$db->query("SELECT count(`label`) AS `number_of_promises`, sum(`total_amount`) AS `amount_in_promises` FROM `leads` WHERE leads.label = 7 AND leads.contactDay = CURDATE()");
+	$promises_stats = $db->fetchAll();
+
+	//cantidad de leads
+	$db->query("SELECT COUNT(*) AS total_leads FROM `leads`");
+	$total_leads = $db->fetchAll();
+
+	//cantidad de ventas
+	$db->query("SELECT COUNT(*) AS total_sales FROM `sales`");
+	$total_sales = $db->fetchAll();
+
+	$db->getUsers();
+	$users = $db->fetchAll();
 }
 ?>
 
@@ -181,10 +212,10 @@ if (isset($_GET['lead'])) {
 
 	<!--end::Main-->
 
-	<?php 
-	
+	<?php
+
 	include("partials/_extras/offcanvas/quick-user.php");
-/*
+	/*
 	include("partials/_extras/chat.php");
 
 	include("partials/_extras/scrolltop.php");

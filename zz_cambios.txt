@@ -13,6 +13,7 @@
 • activar loader
 • confirmar al tocar el boton Verificar en promises.
 • Cuando se actualiza el valor neto de una promesa, hasta no actualizar la pagina no funca el verify, revisar.
+• Quitar el nombre "Hola sarasa" que esta hardcodeado
 
 • mail de aviso de pago al alumno
 
@@ -38,11 +39,11 @@ PRIMER LOGEO CAMBIAR PASS
 
 registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
 
-    - Promesa 7
-    - Cuasi-Promesa 6 
-    - llamar luego 5
-    - No Interesado / Negado 4
-    - Vendido 3 
-    - Viejo 2
-    - Nuevo 1
-    - No asignado 0
+    promesa 7
+    no contactado (sin info o sin respuesta)  (si en 24h nada, al pool) 6
+    llamar luego 5
+    no interesado 4
+    venta 3
+    interesado 2
+    nuevos 1
+    no asignado 0

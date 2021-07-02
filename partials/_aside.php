@@ -91,7 +91,7 @@
 										<i class="menu-bullet menu-bullet-line">
 											<span></span>
 										</i>
-										<span class="menu-text">Ver asignados</span> <span class="menu-label"> <span class="label label-primary label-inline">Reasignar</span></span>
+										<span class="menu-text">Asignados</span> <span class="menu-label"></span>
 									</a>
 								</li>
 								<li class="menu-item" aria-haspopup="true">
@@ -99,7 +99,7 @@
 										<i class="menu-bullet menu-bullet-line">
 											<span></span>
 										</i>
-										<span class="menu-text">Ver disponibles</span> <span class="menu-label"> <span class="label label-primary label-inline">Asignar</span></span>
+										<span class="menu-text">No asignados</span> <span class="menu-label"></span>
 									</a>
 								</li>
 							</ul>
@@ -151,14 +151,6 @@
 										<span class="menu-text">Listado de vendedores</span>
 									</a>
 								</li>
-								<li class="menu-item" aria-haspopup="true">
-									<a href="?page=users/_sales-accu" class="menu-link">
-										<i class="menu-bullet menu-bullet-line">
-											<span></span>
-										</i>
-										<span class="menu-text">Ventas realizadas</span>
-									</a>
-								</li>
 							</ul>
 						</div>
 					</li>
@@ -207,15 +199,15 @@
 										<i class="menu-bullet menu-bullet-line">
 											<span></span>
 										</i>
-										<span class="menu-text">Ventas por fecha</span>
+										<span class="menu-text">Ganancia por fecha</span>
 									</a>
 								</li>
 								<li class="menu-item" aria-haspopup="true">
-									<a href="custom/apps/inbox.html" class="menu-link">
+									<a href="?page=users/_sales-accu" class="menu-link">
 										<i class="menu-bullet menu-bullet-line">
 											<span></span>
 										</i>
-										<span class="menu-text">Ganancia por fecha</span>
+										<span class="menu-text">Ventas por vendedor</span>
 									</a>
 								</li>
 							</ul>

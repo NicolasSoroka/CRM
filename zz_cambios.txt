@@ -7,10 +7,8 @@
 • Agregar columna "ID DE DATO"
 • Editar datos
 • Revisar cifrado al logeo.
-• activar loader
 • confirmar al tocar el boton Verificar en promises.
 • Cuando se actualiza el valor neto de una promesa, hasta no actualizar la pagina no funca el verify, revisar.
-• Quitar el nombre "Hola sarasa" que esta hardcodeado
 • Revisar la carga automatica desde los formularios de las paginas.
 • mail de aviso de pago al alumno
 

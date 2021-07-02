@@ -302,19 +302,16 @@
 					<?php } ?>
 					<li class="menu-item" aria-haspopup="true">
 						<a href="?page=leads/_new-lead-wsp" class="menu-link">
-							<span class="socicon-whatsapp icon-xl text-success mr-5">
-							</span>
-							<!--end::Svg Icon-->
-							</span>
-							<!--end::Svg Icon-->
+							<span class="socicon-whatsapp icon-xl text-success mr-5 pt-1">
 							</span>
 							<span class="menu-text">Cargar Whatsapp</span>
 						</a>
 					</li>
 					<li class="menu-item" aria-haspopup="true">
 						<a href="./index.php" class="menu-link">
-							<span class="svg-icon svg-icon-primary svg-icon-2x mr-4">
-								<!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Warning-1-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+						<span class="svg-icon menu-icon">
+							<span class="svg-icon svg-icon-primary svg-icon-2x">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
 										<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
@@ -322,7 +319,7 @@
 										<rect fill="#000000" x="11" y="16" width="2" height="2" rx="1" />
 									</g>
 								</svg>
-								<!--end::Svg Icon-->
+							</span>
 							</span>
 							<span class="menu-text">Reportar un problema</span>
 						</a>

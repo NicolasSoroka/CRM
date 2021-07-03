@@ -169,27 +169,27 @@ $courses_list = $db2->fetchAll();
 																<div class="mr-2">
 																	<label class="text-dark-75 text-primary font-weight-bold"><?= $message['name'] . ' ' . $message['lastname'] ?></label>
 																	<span><?= Date('d M H:i A', strtotime($message['time'])); ?></span>
-																		<?php switch ($message['label']) {
-																			case 7:
-																				echo '<span class="ml-2 label label-primary label-inline">Promesa</span>';
-																				break;
-																			case 6:
-																				echo '<span class="ml-2 label bg-transparent border border-dark label-inline">No contactado</span>';
-																				break;
-																			case 5:
-																				echo '<span class="ml-2 label bg-warning label-inline">Llamar luego</span>';
-																				break;
-																			case 4:
-																				echo '<span class="ml-2 label label-danger label-inline">No interesado</span>';
-																				break;
-																			case 3:
-																				echo '<span class="ml-2 label label-success label-inline">Vendido</span>';
-																				break;
-																			case 2:
-																				echo '<span class="ml-2 label label-info label-inline">Interesado</span>';
-																				break;
-																			case 1:
-																				echo '<span class="label bg-gray-300 label-inline">Nuevo<span class="pl-1 svg-icon svg-icon-warning svg-icon">
+																	<?php switch ($message['label']) {
+																		case 7:
+																			echo '<span class="ml-2 label label-primary label-inline">Promesa</span>';
+																			break;
+																		case 6:
+																			echo '<span class="ml-2 label bg-transparent border border-dark label-inline">No contactado</span>';
+																			break;
+																		case 5:
+																			echo '<span class="ml-2 label bg-warning label-inline">Llamar luego</span>';
+																			break;
+																		case 4:
+																			echo '<span class="ml-2 label label-danger label-inline">No interesado</span>';
+																			break;
+																		case 3:
+																			echo '<span class="ml-2 label label-success label-inline">Vendido</span>';
+																			break;
+																		case 2:
+																			echo '<span class="ml-2 label label-info label-inline">Interesado</span>';
+																			break;
+																		case 1:
+																			echo '<span class="label bg-gray-300 label-inline">Nuevo<span class="pl-1 svg-icon svg-icon-warning svg-icon">
 																				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 																					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																						<polygon points="0 0 24 0 24 24 0 24" />
@@ -197,11 +197,11 @@ $courses_list = $db2->fetchAll();
 																					</g>
 																				</svg>
 																			</span></span>';
-																				break;
-																			case 0:
-																				echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
-																				break;
-																		} ?>
+																			break;
+																		case 0:
+																			echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
+																			break;
+																	} ?>
 																</div>
 															</div>
 															<p class="p-0"><?= $message['text'] ?></p>
@@ -240,14 +240,20 @@ $courses_list = $db2->fetchAll();
 					<div class="col">
 						<select class="form-control mb-4" id="selectState" onchange="comboChange(this)">
 							<option selected disabled>-- Seleccione --</option>
-							<?php if ($message['label'] !== '7') { ?>
+							<?php if ($message['label'] !== '7' && $message['label'] !== '3') { ?>
+								<option value="2">Interesado</option>
+								<?php if ($message['label'] !== '2') { ?><option value="2">Quasi promesa</option> <?php } ?>
 								<option value="7">Promesa</option>
-								<?php if ($message['label'] !== '6') { ?> <option value="6">Cuasi Promesa (Interesado)</option> <?php } ?>
+								<option value="6">No contactado</option>
 								<option value="5">Llamar luego</option>
 								<?php if ($message['label'] !== '4') { ?><option value="4" class="font-weight-bold text-danger">No interesado</option> <?php } ?>
 							<?php } else { ?>
+								<option value="6">No contactado</option>
 								<option value="5">Llamar luego</option>
 								<option value="4" class="font-weight-bold text-danger">No interesado</option>
+							<?php }
+							if ($userData[0]['access'] == '0') { ?>
+								<option value="0">Reasignado</option>
 							<?php } ?>
 						</select>
 					</div>
@@ -431,7 +437,14 @@ $courses_list = $db2->fetchAll();
 					url: './functions/changeLeadState.php',
 					data: info,
 					success: function(response) {
-						$('#messageArea').val("");
+						if (select == '4') {
+							$.ajax({
+								type: 'get',
+								url: './functions/removeLead.php',
+								data: info,
+								success: function(response) {}
+							});
+						}
 						location.href = "./index.php";
 					}
 				});

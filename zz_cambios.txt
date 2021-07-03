@@ -46,7 +46,7 @@ registerStudent.php    chequear todos los tipos de dato y los casos de error. Re
     venta 3
     interesado 2
     nuevos 1
-    no asignado 0
+    no asignado 0  (lo voy a renombrar como reasignado por el momento, solo el admin lo puede poner en este estado.)
 
 • Traer view con info de los alumnos y sus cursos.
 • Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todosl os casos.)

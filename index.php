@@ -96,7 +96,6 @@ if (isset($_GET['lead'])) {
 	if (isset($_GET['page'])) $route = $_GET['page'] . '.php';
 }
 
-
 //_MAIN
 if ($route == '_main.php') {
 	// cantidad de promesas y monto bruto

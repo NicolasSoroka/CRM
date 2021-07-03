@@ -31,6 +31,7 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
+			<th class="text-center" scope="col">Numero</th>
 			<th class="text-center" scope="col">Pais</th>
 			<th class="text-center" scope="col">Vendedor</th>
 			<th class="text-center" scope="col">Fecha de asignacion</th>
@@ -38,12 +39,16 @@
 			<th class="text-center" scope="col">Estado</th>
 			<th class="text-center" scope="col">Reasignar</th>
 			<th class="text-center" scope="col">Ver detalle</th>
+			<th class="text-center" scope="col">Eliminar</th>
 		</tr>
 	</thead>
 	<tbody id="tbody-leads">
 		<?php
 		foreach ($sales as $sale) { ?>
 			<tr id="tr<?= $sale['id'] ?>">
+				<td class="text-center align-middle">
+					<label class="text-dark-75 font-weight-bolder ml-2 label label-lg bg-transparent border border-dark label-inline font-size-lg"><?= $sale['id'] ?></label>
+				</td>
 				<td class="text-center align-middle">
 					<div class="symbol symbol-50 symbol-light">
 						<span class="symbol-label">
@@ -66,6 +71,9 @@
 				</td>
 				<td class="text-center align-middle">
 					<?php switch ($sale['label']) {
+						case 8:
+							echo '<span class="ml-2 label label-primary label-inline">Quasi Promesa</span>';
+							break;
 						case 7:
 							echo '<span class="ml-2 label label-primary label-inline">Promesa</span>';
 							break;
@@ -111,7 +119,7 @@
 					</span>
 				</td>
 
-				<!-- Modal comprobante-->
+				<!-- Asignar dato -->
 				<div class="modal fade" id="modal<?= $sale['id'] ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content">
@@ -147,9 +155,9 @@
 						<button type="submit" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
-				<!--end::Modal comprobante-->
+				<!-- Asignar dato -->
 
-
+				<!-- Ver detalle -->
 				<td class="text-center align-middle">
 					<button style="border: none; background-color: transparent;" onclick="window.location='./index.php?lead=<?= $sale['id'] ?>'">
 						<span class="svg-icon svg-icon-primary svg-icon-2x">
@@ -164,6 +172,23 @@
 						</span>
 					</button>
 				</td>
+				<!-- Ver detalle -->
+
+				<!-- Eliminar dato -->
+				<td class="text-center align-middle">
+					<button style="border: none; background-color: transparent;" onclick="deleteLead(<?= $sale['id'] ?>)">
+						<span class="svg-icon svg-icon-danger svg-icon-2x">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<rect x="0" y="0" width="24" height="24" />
+									<path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#000000" fill-rule="nonzero" />
+									<path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3" />
+								</g>
+							</svg>
+						</span>
+					</button>
+				</td>
+				<!-- Eliminar dato -->
 			</tr>
 		<?php } ?>
 	</tbody>
@@ -250,6 +275,29 @@
 					timer: 2000
 				})
 				location.reload();
+			}
+		});
+	}
+
+	function deleteLead(id) {
+		Swal.fire({
+			title: "Esta a punto de eliminar un lead",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonText: "Eliminar",
+			cancelButtonText: "Cancelar",
+			reverseButtons: true
+		}).then(function(result) {
+			let id_lead = id;
+			if (result.value) {
+				$.ajax({
+					type: 'get',
+					url: './functions/deleteLead.php',
+					data: {id_lead},
+					success: function(response) {
+						location.reload();
+					}
+				});
 			}
 		});
 	}

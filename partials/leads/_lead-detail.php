@@ -13,7 +13,7 @@ $courses_list = $db2->fetchAll();
 			<!--begin::Details-->
 			<div class="d-flex align-items-center flex-wrap mr-2">
 				<!--begin::Title-->
-				<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Detalle del dato</h5>
+				<h5 class="text-dark font-weight-bold mt-2 mr-2">Detalle del dato </h5><span class="text-dark-75 font-weight-bolder label label-xl bg-transparent border border-dark label-inline font-size-xg"><?=$lead[0]['id']?></span>
 				<!--end::Title-->
 			</div>
 			<!--end::Details-->
@@ -46,6 +46,9 @@ $courses_list = $db2->fetchAll();
 								<label class="col-4 col-form-label">Estado actual:</label>
 								<div class="col-5">
 									<?php switch ($lead['0']['label']) {
+										case 8:
+											echo '<span class="ml-2 label label-primary label-inline">Quasi Promesa</span>';
+											break;
 										case 7:
 											echo '<span class="ml-2 label label-primary label-inline">Promesa</span>';
 											break;
@@ -170,6 +173,9 @@ $courses_list = $db2->fetchAll();
 																	<label class="text-dark-75 text-primary font-weight-bold"><?= $message['name'] . ' ' . $message['lastname'] ?></label>
 																	<span><?= Date('d M H:i A', strtotime($message['time'])); ?></span>
 																	<?php switch ($message['label']) {
+																		case 8:
+																			echo '<span class="ml-2 label label-primary label-inline">Quasi Promesa</span>';
+																			break;
 																		case 7:
 																			echo '<span class="ml-2 label label-primary label-inline">Promesa</span>';
 																			break;
@@ -242,7 +248,7 @@ $courses_list = $db2->fetchAll();
 							<option selected disabled>-- Seleccione --</option>
 							<?php if ($message['label'] !== '7' && $message['label'] !== '3') { ?>
 								<option value="2">Interesado</option>
-								<?php if ($message['label'] !== '2') { ?><option value="2">Quasi promesa</option> <?php } ?>
+								<?php if ($message['label'] !== '8') { ?><option value="8">Quasi promesa</option> <?php } ?>
 								<option value="7">Promesa</option>
 								<option value="6">No contactado</option>
 								<option value="5">Llamar luego</option>

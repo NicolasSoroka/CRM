@@ -32,6 +32,7 @@
 <table class="table table-hover">
     <thead>
         <tr>
+            <th class="text-center" scope="col">Numero</th>
             <th class="text-center" scope="col">Pais</th>
             <th class="text-center" scope="col">Cierre</th>
             <th class="text-center" scope="col">Alumno</th>
@@ -47,6 +48,9 @@
         <?php
         foreach ($sales as $sale) { ?>
             <tr id="tr<?= $sale['id'] ?>">
+                <td class="text-center align-middle">
+                    <label class="text-dark-75 font-weight-bolder ml-2 label label-lg bg-transparent border border-dark label-inline font-size-lg"><?= $sale['id'] ?></label>
+                </td>
                 <td class="text-center align-middle">
                     <div class="symbol symbol-50 symbol-light">
                         <span class="symbol-label">
@@ -95,8 +99,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" data-toggle="modal" data-target="#modalNeto<?= $sale['id'] ?>" onclick="updateNetValue(<?= $sale['id'] ?>)">Guardar</button>
                                 <button type="submit" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" data-toggle="modal" data-target="#modalNeto<?= $sale['id'] ?>" onclick="updateNetValue(<?= $sale['id'] ?>)">Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -123,7 +127,7 @@
                     </span>
                 </td>
                 <td class="text-center align-middle">
-                    <button style="border: none; background-color: transparent;" onclick="verify('<?= $sale['id'] ?>',<?= $sale['net_price'] ?>,'<?= $sale['proof_payment'] ?>','<?= $sale['name'] ?>','<?= $sale['lastname'] ?>','<?= $sale['username'] ?>','<?= $sale['phone'] ?>','<?= $sale['email'] ?>','<?= $sale['country'] ?>','<?= $sale['installments'] ?>','<?= $sale['total_amount'] ?>','<?= $sale['course_id'] ?>','<?= $sale['id_user'] ?>');">
+                    <button style="border: none; background-color: transparent;" onclick="verify('<?= $sale['id'] ?>','<?= $sale['proof_payment'] ?>','<?= $sale['name'] ?>','<?= $sale['lastname'] ?>','<?= $sale['username'] ?>','<?= $sale['phone'] ?>','<?= $sale['email'] ?>','<?= $sale['country'] ?>','<?= $sale['installments'] ?>','<?= $sale['total_amount'] ?>','<?= $sale['course_id'] ?>','<?= $sale['id_user'] ?>');">
                         <span class="svg-icon svg-icon-warning svg-icon-2x">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -212,9 +216,9 @@
         });
     }
 
-    function verify(id, net_value, proof_payment, name, lastname, username, phone, email, country, installments, total_amount, course_id, id_user) {
+    function verify(id, proof_payment, name, lastname, username, phone, email, country, installments, total_amount, course_id, id_user) {
+        let net_value = $('#net_price_input' + id).text().replace('$ ', '');
         if (net_value > 0 && proof_payment === '1') {
-
             let info = {
                 'name': name,
                 'lastname': lastname,
@@ -227,25 +231,36 @@
                 'total_amount': total_amount
             }
 
-            $.ajax({
-                type: 'get',
-                url: './functions/registerStudent.php',
-                data: info,
-                success: function(response) {
-                    let lead_to_update = {
-                        'id_lead': id,
-                        'id_user': id_user,
-                        'label': '3'
-                    }
-                    $.ajax({
-                        type: 'get',
-                        url: './functions/changeLeadState.php',
-                        data: lead_to_update,
-                        success: function(response) {
-                            location.reload();
+            Swal.fire({
+                title: "Confirmar venta?",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonText: "Confirmar",
+                cancelButtonText: "Cancelar",
+                reverseButtons: true
+            }).then(function(result) {
+                if (result.value) {
+                $.ajax({
+                    type: 'get',
+                    url: './functions/registerStudent.php',
+                    data: info,
+                    success: function(response) {
+                        let lead_to_update = {
+                            'id_lead': id,
+                            'id_user': id_user,
+                            'label': '3'
                         }
-                    });
-                }
+                        $.ajax({
+                            type: 'get',
+                            url: './functions/changeLeadState.php',
+                            data: lead_to_update,
+                            success: function(response) {
+                                location.reload();
+                            }
+                        });
+                    }
+                });
+            }
             });
         } else {
             swalfire('Revise valor neto y comprobante.');
@@ -274,7 +289,7 @@
                 $('#tr' + lead['id']).hide();
             }
             if (optValue === 'name') {
-                (lead['lastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show() : $('#tr' + lead['id']).hide();
+                (lead['lastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();
             }
             if (optValue === 'salesusername') {
                 (lead['userlastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();

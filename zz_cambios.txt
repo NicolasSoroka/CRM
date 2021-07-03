@@ -3,25 +3,20 @@
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
 • Al formulario de promesa, agregar "agregar curso" para aclarar que cursos y a cuanto se venden, que la solapa que agrega solo sea para mas personas.
 • Al agregar promesa multiple, asignar en promesa los agregados.
-• Datos sin asignar
-• Agregar columna "ID DE DATO"
-• Editar datos
-• Revisar cifrado al logeo.
-• confirmar al tocar el boton Verificar en promises.
-• Cuando se actualiza el valor neto de una promesa, hasta no actualizar la pagina no funca el verify, revisar.
-• Revisar la carga automatica desde los formularios de las paginas.
 • mail de aviso de pago al alumno
+• al crear promesa multiple, no se esta cargando contactDay y Course
+• al crear promesa multiple, asignar al vendedor las multiples promesas.
+• Traer view con info de los alumnos y sus cursos.
+• Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todosl os casos.)
+• buscadores nombre
+• no contactado (si en 24h nada, al pool) (6)
+• Revisar la carga automatica desde los formularios de las paginas.
+• Editar datos ????????????
+• Revisar cifrado al logeo.
+• Cambiar pass al primer logeo.
+• registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
+• check todos los campos APB
 
-sacar no interesado
-buscadores nombre
-
-
-al crear promesa multiple, no se esta cargando contactDay y Course
-al crear promesa multiple, asignar al vendedor las multiples promesas.
-
-estadistica de promesas por dia y ventas por dia
-check campos APB
-dato no interesado pasarlo a disposicion del admin
 
 Administrador
 • Ver ventas (filtrar por vendedor)
@@ -33,24 +28,19 @@ Estadisticas
 • Ventas por cursos
 • Cantidad de datos entregados por vendedor
 
-PRIMER LOGEO CAMBIAR PASS
 
-registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
 
-• agregar quasi-promesa (8)
-    
+
+
+    quasi-promesa (8)
     promesa 7
-    no contactado (sin info o sin respuesta)  (si en 24h nada, al pool) 6
+    no contactado 6
     llamar luego 5
     no interesado 4
     venta 3
     interesado 2
     nuevos 1
     no asignado 0  (lo voy a renombrar como reasignado por el momento, solo el admin lo puede poner en este estado.)
-
-• Traer view con info de los alumnos y sus cursos.
-• Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todosl os casos.)
-
 
 campus - 
 post examen, comprobacion de datos para imprimir certificado.

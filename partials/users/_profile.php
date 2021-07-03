@@ -61,10 +61,10 @@
                     <label for="exampleSelectd" class="col-1 col-form-label">Pais</label>
                     <div class="col-3">
                         <select class="form-control" id="country" value="<?= $userData[0]['country'] ?>">
-                            <option selected disabled>-- Seleccione --</option>
-                            <option>Argentina</option>
-                            <option>Chile</option>
-                            <option>Paraguay</option>
+                            <option disabled>-- Seleccione --</option>
+                            <option <?php if ($userData[0]['country'] == 'Argentina') echo 'selected'; ?>>Argentina</option>
+                            <option <?php if ($userData[0]['country'] == 'Chile') echo 'selected'; ?>>Chile</option>
+                            <option <?php if ($userData[0]['country'] == 'Paraguay') echo 'selected'; ?>>Paraguay</option>
                         </select>
                     </div>
                 </div>

@@ -12,6 +12,10 @@
 • Revisar la carga automatica desde los formularios de las paginas.
 • mail de aviso de pago al alumno
 
+sacar no interesado
+buscadores nombre
+
+
 al crear promesa multiple, no se esta cargando contactDay y Course
 al crear promesa multiple, asignar al vendedor las multiples promesas.
 
@@ -33,6 +37,8 @@ PRIMER LOGEO CAMBIAR PASS
 
 registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
 
+• agregar quasi-promesa (8)
+    
     promesa 7
     no contactado (sin info o sin respuesta)  (si en 24h nada, al pool) 6
     llamar luego 5
@@ -41,3 +47,11 @@ registerStudent.php    chequear todos los tipos de dato y los casos de error. Re
     interesado 2
     nuevos 1
     no asignado 0
+
+• Traer view con info de los alumnos y sus cursos.
+• Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todosl os casos.)
+
+
+campus - 
+post examen, comprobacion de datos para imprimir certificado.
+    - entre esos datos, pedir carga de DNI (pendiente de aprobacion.)

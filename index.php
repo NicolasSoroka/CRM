@@ -42,7 +42,7 @@ if (isset($_GET['page'])) {
 //SALES-VIEW
 if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'sales/_sales-view') {
-		$db->query("SELECT sales.*, leads.total_amount, leads.country, leads.group_sale, users.name, users.lastname 
+		$db->query("SELECT sales.*, leads.total_amount, leads.country, leads.group_sale, users.name, users.lastname, leads.net_price, leads.total_amount, leads.course, leads.name AS client_name, leads.lastname AS client_lastname, leads.id AS id_sale
 					FROM sales, leads, users
 					where sales.id_lead = leads.id AND sales.id_user = users.id");
 		$sales = $db->fetchAll();
@@ -173,7 +173,7 @@ if ($route == '_main.php') {
 
 <body id="kt_body" class="page-loading-enabled page-loading header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed page-loading">
 
-	<?php include("partials/_page-loader.php"); 
+	<?php //include("partials/_page-loader.php"); 
 	?>
 
 	<!--begin::Main-->

@@ -61,9 +61,9 @@
                     if ($sale['contactDay'] == '0000-00-00') {
                         echo '<span class="font-weight-bolder font-weight-500">-</span>';
                     } else if ((strtotime($sale['contactDay'] . ' ' . $sale['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
-                        echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d-m / h:i") . '</span>';
+                        echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d-m / H:i") . '</span>';
                     } else {
-                        echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d-m / h:i") . '</span>';
+                        echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d-m / H:i") . '</span>';
                     } ?>
                 </td>
                 <td class="text-center align-middle">

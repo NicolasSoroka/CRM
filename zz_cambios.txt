@@ -1,22 +1,23 @@
-• tolerancia de 30'' por lead
+
 • Poner las condiciones de que etiqueta se puede poner segun el estado actual en base al PDF.
 • Pedir carga de comprobante de pago.
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
 • Al formulario de promesa, agregar "agregar curso" para aclarar que cursos y a cuanto se venden, que la solapa que agrega solo sea para mas personas.
 • Al agregar promesa multiple, asignar en promesa los agregados.
-• mail de aviso de pago al alumno
 • al crear promesa multiple, no se esta cargando contactDay y Course
 • al crear promesa multiple, asignar al vendedor las multiples promesas.
 • Traer view con info de los alumnos y sus cursos.
-• Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todosl os casos.)
+• Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todos los casos.)
 • buscadores nombre
-• no contactado (si en 24h nada, al pool) (6)
-• Revisar la carga automatica desde los formularios de las paginas.
 • Editar datos ????????????
-• Revisar cifrado al logeo.
+
+• ok las funciones de tolerancia 30'' y 24h en NC(6), aplicarla al server usando cron.
 • Cambiar pass al primer logeo.
 • registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
 • check todos los campos APB
+• Revisar la carga automatica desde los formularios de las paginas.
+• mail de aviso de pago al alumno
+• Revisar cifrado al logeo.
 
 
 Administrador
@@ -29,7 +30,6 @@ Estadisticas
 • Ventas por cursos
 • Cantidad de datos entregados por vendedor
 
-
     quasi-promesa (8)
     promesa 7
     no contactado 6
@@ -38,8 +38,4 @@ Estadisticas
     venta 3
     interesado 2
     nuevos 1
-    no asignado 0  (lo voy a renombrar como reasignado por el momento, solo el admin lo puede poner en este estado.)
-
-campus - 
-post examen, comprobacion de datos para imprimir certificado.
-    - entre esos datos, pedir carga de DNI (pendiente de aprobacion.)
+    no asignado 0

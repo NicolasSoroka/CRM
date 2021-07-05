@@ -1,4 +1,5 @@
 • tolerancia de 30'' por lead
+• Poner las condiciones de que etiqueta se puede poner segun el estado actual en base al PDF.
 • Pedir carga de comprobante de pago.
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
 • Al formulario de promesa, agregar "agregar curso" para aclarar que cursos y a cuanto se venden, que la solapa que agrega solo sea para mas personas.
@@ -17,7 +18,7 @@
 • registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
 • check todos los campos APB
 
-c
+
 Administrador
 • Ver ventas (filtrar por vendedor)
 • Ver ranking de ventas
@@ -27,9 +28,6 @@ Estadisticas
 • Quien vendio que
 • Ventas por cursos
 • Cantidad de datos entregados por vendedor
-
-
-
 
 
     quasi-promesa (8)

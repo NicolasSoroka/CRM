@@ -120,6 +120,11 @@ if ($route == '_main.php') {
 	$db->getUsers();
 	$users = $db->fetchAll();
 }
+
+//REPORT
+if (isset($_GET['page'])) {
+	$route = '_report.php';
+}
 ?>
 
 <!DOCTYPE html>

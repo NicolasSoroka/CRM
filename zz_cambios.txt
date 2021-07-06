@@ -17,7 +17,7 @@ Estadisticas
 • Ver ventas (filtrar por vendedor)
 • Ver ranking de ventas
 • Monetizacion (cuanto $$ acumula cada vendedor, $$ total (fitlrado por dia,semana,mes))
-• Ventas por cursos
+• Ventas por cursos.
 
     quasi-promesa (8) pide fecha
     promesa 7

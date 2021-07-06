@@ -121,6 +121,17 @@ if ($route == '_main.php') {
 	$users = $db->fetchAll();
 }
 
+//users-stats
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'users/_users-stats') {
+		$route = 'users/_users-stats.php';
+		$db->getUsers();
+		$users = $db->fetchAll();
+		$db->query('SELECT *, COUNT(id_user) AS sales_count FROM sales GROUP BY id_user');
+		$sales = $db->fetchAll();
+	}
+}
+
 //REPORT
 if (isset($_GET['report'])) {
 	$route = '_report.php';

@@ -203,7 +203,7 @@
 									</a>
 								</li>
 								<li class="menu-item" aria-haspopup="true">
-									<a href="?page=users/_sales-accu" class="menu-link">
+									<a href="?page=users/_users-stats" class="menu-link">
 										<i class="menu-bullet menu-bullet-line">
 											<span></span>
 										</i>

@@ -12,15 +12,12 @@
 • check todos los campos APB
 • Revisar la carga automatica desde los formularios de las paginas.
 • mail de aviso de pago al alumno
-• Revisar cifrado al logeo.
 
 Estadisticas
 • Ver ventas (filtrar por vendedor)
 • Ver ranking de ventas
 • Monetizacion (cuanto $$ acumula cada vendedor, $$ total (fitlrado por dia,semana,mes))
-• Quien vendio que
 • Ventas por cursos
-• Cantidad de datos entregados por vendedor
 
     quasi-promesa (8) pide fecha
     promesa 7

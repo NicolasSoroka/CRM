@@ -145,6 +145,11 @@ $courses_list = $db2->fetchAll();
 						</div> -->
 						<div class="card-footer">
 							<a href="#" class="btn btn-primary font-weight-bold mr-2" data-toggle="modal" data-target="#modal">Actualizar estado</a>
+							<?php 
+								//PARA HABILITAR LA EDICION DE LEAD, access === 0
+							if ($userData[0]['access'] === '999') { ?>
+								<a href="./index.php?edit=<?= $lead[0]['id'] ?>" class="btn btn-secondary font-weight-bold mr-2">Editar dato</a>
+							<?php } ?>
 						</div>
 						<!--end::Footer-->
 					</div>

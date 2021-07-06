@@ -6,35 +6,26 @@
             <!--begin::Details-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Actualizar lead</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mr-2">Editar lead</h5><span class="text-dark-75 font-weight-bolder label label-xl bg-transparent border border-dark label-inline font-size-xg"><?=$lead[0]['id']?></span>
                 <!--end::Title-->
             </div>
             <!--end::Details-->
-            <!--begin::Toolbar-->
-            <div class="d-flex align-items-center">
-                <!--begin::Button-->
-                <a href="#" class="btn btn-danger font-weight-bold">Volver</a>
-                <!--end::Button-->
-            </div>
-            <!--end::Toolbar-->
         </div>
     </div>
     <!--end::Subheader-->
-    <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class="container">
             <!--begin::Row-->
             <div class="row">
                 <div class="col-xl-5">
-
                     <!--begin::Card-->
                     <div class="card card-custom">
                         <!--begin::Header-->
                         <div class="card-header h-auto py-4">
                             <div class="card-title">
-                                <h3 class="card-label">Juan Perez
-                                    <span class="d-block text-muted pt-2 font-size-sm"><b>Ingresado el 2/3/2020</b></span>
+                                <h3 class="card-label"><?=$lead[0]['name']?>
+                                    <span class="d-block text-muted pt-2 font-size-sm"><b>Ingresado el <?=$lead[0]['date']?></b></span>
                                 </h3>
                             </div>
                         </div>

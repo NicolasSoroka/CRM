@@ -9,7 +9,7 @@
 • Traer view con info de los alumnos y sus cursos.
 • Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todos los casos.)
 • buscadores nombre
-• Editar datos ????????????
+
 
 • ok las funciones de tolerancia 30'' y 24h en NC(6), aplicarla al server usando cron.
 • Cambiar pass al primer logeo.

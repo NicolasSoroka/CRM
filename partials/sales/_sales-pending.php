@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <!--end::Modal valor neto-->
-                <td class="text-center align-middle" data-toggle="modal" data-target="#modalPdf" style="cursor: pointer;">
+                <td class="text-center align-middle" data-toggle="modal" data-target="#modalPdf<?= $sale['id'] ?>" style="cursor: pointer;">
                     <?php if ($sale['proof_payment'] == 0) {
                         echo '<span class="svg-icon svg-icon-danger svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -140,60 +140,58 @@
                         </span>
                     </button>
                 </td>
+
+                <!-- Modal comprobante-->
+                <div class="modal fade" id="modalPdf<?= $sale['id'] ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Comprobante de pago</h5>
+                            </div>
+                            <div class="modal-body">
+                                <object data="./comprobantes/<?= $sale['id'] ?>/<?= $sale['id'] ?>.jpg" type="image/jpg" width="100%" height="400px">
+                                    <p>Parece que tu navegador no permite visualizar el documento.
+                                        Puedes descargarlo del siguiente link <a href="#">Click aqui para descargar</a></p>
+                                </object>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" data-toggle="modal" data-target="#modalUpload<?= $sale['id'] ?>">Cargar nuevo</button>
+                                <button type="submit" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Modal comprobante-->
+
+                <!-- Modal carga_comprobante-->
+                <div class="modal fade" id="modalUpload<?= $sale['id'] ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Cargar comprobante - UNICAMENTE ARCHIVOS .jpg</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label class="btn btn-warning" for="my-file-selector">
+                                            <input type="file" id="fileToUpload<?= $sale['id'] ?>">
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" onclick="upload(<?= $sale['id'] ?>)">Cargar</button>
+                                <button type="submit" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Modal carga_comprobante-->
             </tr>
         <?php } ?>
     </tbody>
 </table>
 <!--end::Table-->
-
-<!-- Modal comprobante-->
-<div class="modal fade" id="modalPdf" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Comprobante de pago</h5>
-            </div>
-            <div class="modal-body">
-                <object data="recibos/venta_1.pdf" type="application/pdf" width="100%" height="400px">
-                    <p>Parece que tu navegador no permite visualizar el documento.
-                        Puedes descargarlo del siguiente link <a href="recibos/venta_1.pdf">Click aqui para descargar</a></p>
-                </object>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" data-toggle="modal" data-target="#modalUpload">Cargar nuevo</button>
-                <button type="submit" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end::Modal comprobante-->
-
-
-<!-- Modal carga_comprobante-->
-<div class="modal fade" id="modalUpload" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cargar comprobante</h5>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label class="btn btn-warning" for="my-file-selector">
-                            <input type="file" name="file" id="exampleInputFile">
-                            <input type="hidden" value="<?= $curso ?>" name="dir_upload">
-                        </label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cargar</button>
-                <button type="submit" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end::Modal carga_comprobante-->
 
 <script>
     <?php //array traido desde PHP pasado a JS para utilizar en el buscador
@@ -240,27 +238,27 @@
                 reverseButtons: true
             }).then(function(result) {
                 if (result.value) {
-                $.ajax({
-                    type: 'get',
-                    url: './functions/registerStudent.php',
-                    data: info,
-                    success: function(response) {
-                        let lead_to_update = {
-                            'id_lead': id,
-                            'id_user': id_user,
-                            'label': '3'
-                        }
-                        $.ajax({
-                            type: 'get',
-                            url: './functions/changeLeadState.php',
-                            data: lead_to_update,
-                            success: function(response) {
-                                location.reload();
+                    $.ajax({
+                        type: 'get',
+                        url: './functions/registerStudent.php',
+                        data: info,
+                        success: function(response) {
+                            let lead_to_update = {
+                                'id_lead': id,
+                                'id_user': id_user,
+                                'label': '3'
                             }
-                        });
-                    }
-                });
-            }
+                            $.ajax({
+                                type: 'get',
+                                url: './functions/changeLeadState.php',
+                                data: lead_to_update,
+                                success: function(response) {
+                                    location.reload();
+                                }
+                            });
+                        }
+                    });
+                }
             });
         } else {
             swalfire('Revise valor neto y comprobante.');
@@ -295,5 +293,33 @@
                 (lead['userlastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();
             }
         });
+    }
+
+    function upload(id) {
+        let file_data = $('#fileToUpload' + id).prop('files')[0];
+        let id_lead = id;
+        let form_data = new FormData();
+        form_data.append('file', file_data);
+        form_data.append('id_lead', id_lead);
+        $.ajax({
+            url: './functions/proofPaymentUpload.php',
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            id_lead,
+            type: 'post',
+            success: function(response) {
+                Swal.fire({
+                    title: "Comprobante cargado",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false,
+                }).then(function () {
+                    location.reload();
+                })
+            }
+        })
     }
 </script>

@@ -49,7 +49,7 @@ if (isset($_GET['page'])) {
 	}
 }
 
-//datos del usuario
+//USER DATA
 $db->query("SELECT * FROM users WHERE id = '$userId' LIMIT 1");
 $userData = $db->fetchAll();
 
@@ -73,7 +73,6 @@ if (isset($_GET['page'])) {
 	}
 }
 
-
 //NEW LEAD WHATSAPP
 if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'leads/_new-lead-wsp') {
@@ -81,6 +80,14 @@ if (isset($_GET['page'])) {
 		$db->getUsers();
 		$users = $db->fetchAll();
 	}
+}
+
+//LEAD EDIT
+if (isset($_GET['edit'])) {
+	$route = 'leads/_edit.php';
+	$leadId = $_GET['edit'];
+	$db->query("SELECT * FROM leads WHERE id = '$leadId' LIMIT 1");
+	$lead = $db->fetchAll();
 }
 
 //LEAD DETAIL

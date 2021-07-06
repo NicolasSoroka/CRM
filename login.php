@@ -11,7 +11,7 @@
         $db = Database::getInstance();
         $username = $db->escape($_POST['username']);
         $pwd = $db->escape($_POST['password']);
-        //$pwd = sha1($pwd);
+        $pwd = sha1($pwd);
      
         $db->query("SELECT * FROM users WHERE username = '$username' AND password = '$pwd' LIMIT 1");
         if ($db->numRows() == 1) {

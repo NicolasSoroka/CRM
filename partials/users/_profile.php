@@ -100,6 +100,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-xl-1 col-lg-3 col-form-label">Cambiar contraseña</label>
+                    <div class="col-lg-9 col-xl-3">
+                        <input class="form-control form-control-lg form-control-solid font-weight-bold label-danger text-danger border border-danger" type="text" id="password">
+                    </div>
+                </div>
             </div>
             <!--end::Body-->
         </form>
@@ -115,10 +121,12 @@
         let phone = $('#phone').val();
         let email = $('#email').val();
         let country = $('#country').val();
+        let password = $('#password').val();
 
         let info = {
             'name': name,
             'lastname': lastname,
+            'password': password,
             'phone': phone,
             'email': email,
             'country': country,

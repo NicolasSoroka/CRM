@@ -1,5 +1,4 @@
 
-• Poner las condiciones de que etiqueta se puede poner segun el estado actual en base al PDF.
 • leads con mismo telefono/email resaltar para que el admin pueda borrar el duplicado.
 • Al formulario de promesa, agregar "agregar curso" para aclarar que cursos y a cuanto se venden, que la solapa que agrega solo sea para mas personas.
 • Al agregar promesa multiple, asignar en promesa los agregados.
@@ -24,12 +23,15 @@ Estadisticas
 • Ventas por cursos
 • Cantidad de datos entregados por vendedor
 
-    quasi-promesa (8)
+    quasi-promesa (8) pide fecha
+        no contactado
     promesa 7
     no contactado 6
     llamar luego 5
+        no contactado
     no interesado 4
     venta 3
-    interesado 2
+    interesado 2  (se debe fijar fecha a 5 dias del dia actual)
+        no contactado
     nuevos 1
     no asignado 0

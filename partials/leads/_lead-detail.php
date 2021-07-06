@@ -251,21 +251,76 @@ $courses_list = $db2->fetchAll();
 					<div class="col">
 						<select class="form-control mb-4" id="selectState" onchange="comboChange(this)">
 							<option selected disabled>-- Seleccione --</option>
-							<?php if ($message['label'] !== '7' && $message['label'] !== '3') { ?>
-								<option value="2">Interesado</option>
-								<?php if ($message['label'] !== '8') { ?><option value="8">Quasi promesa</option> <?php } ?>
-								<option value="7">Promesa</option>
-								<option value="6">No contactado</option>
-								<option value="5">Llamar luego</option>
-								<?php if ($message['label'] !== '4') { ?><option value="4" class="font-weight-bold text-danger">No interesado</option> <?php } ?>
-							<?php } else { ?>
-								<option value="6">No contactado</option>
-								<option value="5">Llamar luego</option>
-								<option value="4" class="font-weight-bold text-danger">No interesado</option>
-							<?php }
-							if ($userData[0]['access'] == '0') { ?>
-								<option value="0">Reasignado</option>
-							<?php } ?>
+							<?php if ($lead[0]['label'] == '8') {  
+								echo '
+									<option value="2">Interesado</option>
+									<option value="6">No contactado</option>
+									<option value="8">Quasi promesa</option>
+									<option value="7">Promesa</option>
+									<option value="5">Llamar luego</option>
+									<option value="4" class="font-weight-bold text-danger">No interesado</option>
+									';
+							}
+							if ($lead[0]['label'] == '7') { //promesa
+								echo '
+									<option value="6">No contactado</option>
+									';
+							}
+							if ($lead[0]['label'] === '6') { //no contactado
+								echo '
+									<option value="6">No contactado</option>
+									<option value="2">Interesado</option>
+									<option value="8">Quasi promesa</option>
+									<option value="7">Promesa</option>
+									<option value="5">Llamar luego</option>
+									<option value="4" class="font-weight-bold text-danger">No interesado</option>
+									';
+							}
+							if ($lead[0]['label'] === '5') { //llamar luego
+								echo '
+									<option value="5">Llamar luego</option>
+									<option value="6">No contactado</option>
+									<option value="8">Quasi promesa</option>
+									<option value="7">Promesa</option>
+									<option value="4" class="font-weight-bold text-danger">No interesado</option>
+									';
+							}
+							
+							if ($lead[0]['label'] === '2') { //interesado
+								echo '
+									<option value="2">Interesado</option>
+									<option value="5">Llamar luego</option>
+									<option value="6">No contactado</option>
+									<option value="8">Quasi promesa</option>
+									<option value="7">Promesa</option>
+									<option value="4" class="font-weight-bold text-danger">No interesado</option>
+									';
+							}
+
+							if ($lead[0]['label'] === '1') { //nuevo
+								echo '<option value="2">Interesado</option>
+									<option value="5">Llamar luego</option>
+									<option value="6">No contactado</option>
+									<option value="8">Quasi promesa</option>
+									<option value="7">Promesa</option>
+									<option value="4" class="font-weight-bold text-danger">No interesado</option>';
+							}
+
+							if ($lead[0]['label'] === '0') { //no asignado
+								echo '
+									<option value="2">Interesado</option>
+									<option value="5">Llamar luego</option>
+									<option value="6">No contactado</option>
+									<option value="8">Quasi promesa</option>
+									<option value="7">Promesa</option>
+									<option value="4" class="font-weight-bold text-danger">No interesado</option>
+									';
+							}
+
+							if ($userData[0]['access'] == '0') {
+								echo '<option value="0">Reasignado</option>';
+							} ?>
+
 						</select>
 					</div>
 				</div>

@@ -122,7 +122,7 @@ if ($route == '_main.php') {
 }
 
 //REPORT
-if (isset($_GET['page'])) {
+if (isset($_GET['report'])) {
 	$route = '_report.php';
 }
 ?>

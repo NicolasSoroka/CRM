@@ -8,7 +8,7 @@ $route = '_main.php';
 //_ASSIGNED
 if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'leads/_assigned') {
-		$db->query("SELECT leads.country, leads.course, leads.id, leads.label, users.name, users.lastname, assigned.time
+		$db->query("SELECT leads.country, leads.course, leads.id, leads.label, leads.name, users.name AS username, users.lastname AS userlastname, assigned.time
 					FROM leads, users, assigned 
 					WHERE assigned.id_lead = leads.id AND assigned.id_user = users.id AND leads.label <> 3 ORDER BY `assigned`.`time` ASC");
 		$sales = $db->fetchAll();

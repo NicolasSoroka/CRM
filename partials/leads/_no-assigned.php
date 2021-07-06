@@ -7,8 +7,8 @@
 			<input type="input" id="searchValue" placeholder="Buscar">
 			<select id="searchOpt">
 				<option value="" selected disabled>-- Seleccione --</option>
+				<option value="id">Numero</option>
 				<option value="course">Curso</option>
-				<option value="name">Vendedor</option>
 				<option value="country">Pais</option>
 				<option value="name">Nombre</option>
 				<option value="label">Estado</option>
@@ -252,9 +252,6 @@
 			}
 			if (optValue === 'name') {
 				(lead['lastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();
-			}
-			if (optValue === 'salesusername') {
-				(lead['userlastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();
 			}
 		});
 	}

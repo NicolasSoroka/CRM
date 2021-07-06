@@ -7,8 +7,10 @@
 			<input type="input" id="searchValue" placeholder="Buscar">
 			<select id="searchOpt">
 				<option value="" selected disabled>-- Seleccione --</option>
+				<option value="id">Numero</option>
 				<option value="course">Curso</option>
-				<option value="name">Vendedor</option>
+				<option value="name">Nombre</option>
+				<option value="username">Vendedor</option>
 				<option value="country">Pais</option>
 			</select>
 			<button onclick="search()">Buscar
@@ -35,6 +37,7 @@
 			<th class="text-center" scope="col">Pais</th>
 			<th class="text-center" scope="col">Vendedor</th>
 			<th class="text-center" scope="col">Fecha de asignacion</th>
+			<th class="text-center" scope="col">Nombre</th>
 			<th class="text-center" scope="col">Curso de interes</th>
 			<th class="text-center" scope="col">Estado</th>
 			<th class="text-center" scope="col">Reasignar</th>
@@ -57,7 +60,7 @@
 					</div>
 				</td>
 				<td class="text-center align-middle">
-					<label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $sale['name'] . ' ' . $sale['lastname'] ?></label>
+					<label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $sale['username'] . ' ' . $sale['userlastname'] ?></label>
 				</td>
 				<td class="text-center align-middle">
 					<?php
@@ -65,6 +68,9 @@
 					$date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
 					echo '<span class="font-weight-bolder font-weight-500 label label-primary label-inline">' . $date->format("d/m - h:i") . '</span>';
 					?>
+				</td>
+				<td class="text-center align-middle">
+					<label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $sale['name'] ?></label>
 				</td>
 				<td class="text-center align-middle">
 					<label class="text-dark-75 font-weight-bolder text-primary mb-1 font-size-lg"><?= $sale['course'] ?></label>
@@ -251,6 +257,9 @@
 			}
 			if (optValue === 'name') {
 				(lead['lastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();
+			}
+			if (optValue === 'username') {
+				(lead['userlastname'].toLowerCase().includes(searchValue)) ? $('#tr' + lead['id']).show(): $('#tr' + lead['id']).hide();
 			}
 		});
 	}

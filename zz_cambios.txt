@@ -6,7 +6,6 @@
 • al crear promesa multiple, asignar al vendedor las multiples promesas.
 • Traer view con info de los alumnos y sus cursos.
 • Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todos los casos.)
-• buscadores nombre
 
 • ok las funciones de tolerancia 30'' y 24h en NC(6), aplicarla al server usando cron.
 • registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
@@ -24,14 +23,11 @@ Estadisticas
 • Cantidad de datos entregados por vendedor
 
     quasi-promesa (8) pide fecha
-        no contactado
     promesa 7
     no contactado 6
     llamar luego 5
-        no contactado
     no interesado 4
     venta 3
     interesado 2  (se debe fijar fecha a 5 dias del dia actual)
-        no contactado
     nuevos 1
     no asignado 0

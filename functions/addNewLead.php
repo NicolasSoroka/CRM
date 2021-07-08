@@ -26,7 +26,8 @@ VALUES ('$phone', '$email', '$name', '$lastname', '$username', '$contactTime', '
 if ($created_by !== 0) {
     $db->query("SELECT MAX(id) from leads limit 1");
     $res = $db->fetch();
-    echo json_encode($res['MAX(id)']);
+    //echo json_encode($res['MAX(id)']);
+    echo $res['MAX(id)'];
 } else { 
 echo "Consulta enviada con exito!"; }
 ?>

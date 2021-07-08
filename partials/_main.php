@@ -221,7 +221,7 @@
                                                 </span></span>';
                                                     break;
                                                 case 0:
-                                                    echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
+                                                    echo '<span class="ml-2 label label-dark label-inline">Reasignado</span>';
                                                     break;
                                             } ?>
                                         </td>
@@ -234,7 +234,7 @@
                                             $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
                                             if ($lead['contactDay'] == '0000-00-00') {
                                                 echo '<span class="font-weight-bolder font-weight-500">-</span>';
-                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d H:i:s'))) > 0) {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d/m - H:i") . '</span>';
                                             } else {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d/m - H:i") . '</span>';
@@ -322,7 +322,7 @@
                                                 </span></span>';
                                                     break;
                                                 case 0:
-                                                    echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
+                                                    echo '<span class="ml-2 label label-dark label-inline">Reasignado</span>';
                                                     break;
                                             } ?>
                                         </td>
@@ -335,7 +335,7 @@
                                             $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
                                             if ($lead['contactDay'] == '0000-00-00') {
                                                 echo '<span class="font-weight-bolder font-weight-500">-</span>';
-                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d H:i:s'))) > 0) {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d/m - H:i") . '</span>';
                                             } else {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d/m - H:i") . '</span>';
@@ -424,7 +424,7 @@
                                                 </span></span>';
                                                     break;
                                                 case 0:
-                                                    echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
+                                                    echo '<span class="ml-2 label label-dark label-inline">Reasignado</span>';
                                                     break;
                                             } ?>
                                         </td>
@@ -437,7 +437,7 @@
                                             $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
                                             if ($lead['contactDay'] == '0000-00-00') {
                                                 echo '<span class="font-weight-bolder font-weight-500">-</span>';
-                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d H:i:s'))) > 0) {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d/m - H:i") . '</span>';
                                             } else {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d/m - H:i") . '</span>';
@@ -525,7 +525,7 @@
                                                 </span></span>';
                                                     break;
                                                 case 0:
-                                                    echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
+                                                    echo '<span class="ml-2 label label-dark label-inline">Reasignado</span>';
                                                     break;
                                             } ?>
                                         </td>
@@ -538,7 +538,7 @@
                                             $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
                                             if ($lead['contactDay'] == '0000-00-00') {
                                                 echo '<span class="font-weight-bolder font-weight-500">-</span>';
-                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d H:i:s'))) > 0) {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d/m - H:i") . '</span>';
                                             } else {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d/m - H:i") . '</span>';
@@ -626,7 +626,7 @@
                                                 </span></span>';
                                                     break;
                                                 case 0:
-                                                    echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
+                                                    echo '<span class="ml-2 label label-dark label-inline">Reasignado</span>';
                                                     break;
                                             } ?>
                                         </td>
@@ -639,7 +639,7 @@
                                             $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
                                             if ($lead['contactDay'] == '0000-00-00') {
                                                 echo '<span class="font-weight-bolder font-weight-500">-</span>';
-                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d H:i:s'))) > 0) {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d/m - H:i") . '</span>';
                                             } else {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d/m - H:i") . '</span>';
@@ -669,7 +669,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($leads as $lead) {
-                                    if ($lead['label'] !== '1') continue; ?>
+                                    if (($lead['label'] !== '1') && $lead['label'] !=='0') continue; ?>
                                     <tr onclick="window.location='./index.php?lead=<?= $lead['id'] ?>'" style="cursor: pointer;">
                                         <td class="text-center align-middle">
                                             <?php if ($lead['status'] == 'default') {
@@ -727,7 +727,7 @@
                                                 </span></span>';
                                                     break;
                                                 case 0:
-                                                    echo '<span class="ml-2 label label-dark label-inline">No asignado</span>';
+                                                    echo '<span class="ml-2 label label-dark label-inline">Reasignado</span>';
                                                     break;
                                             } ?>
                                         </td>
@@ -740,7 +740,7 @@
                                             $date = DateTime::createFromFormat("Y-m-d H:i:s", $str);
                                             if ($lead['contactDay'] == '0000-00-00') {
                                                 echo '<span class="font-weight-bolder font-weight-500">-</span>';
-                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d h:i'))) > 0) {
+                                            } else if ((strtotime($lead['contactDay'] . ' ' . $lead['contactTime'])) - (strtotime(date('Y-m-d H:i:s'))) > 0) {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-success label-inline">' . $date->format("d/m - H:i") . '</span>';
                                             } else {
                                                 echo '<span class="font-weight-bolder font-weight-500 label label-danger label-inline">' . $date->format("d/m - H:i") . '</span>';

@@ -13,7 +13,7 @@ $courses_list = $db2->fetchAll();
 			<!--begin::Details-->
 			<div class="d-flex align-items-center flex-wrap mr-2">
 				<!--begin::Title-->
-				<h5 class="text-dark font-weight-bold mt-2 mr-2">Detalle del dato </h5><span class="text-dark-75 font-weight-bolder label label-xl bg-transparent border border-dark label-inline font-size-xg"><?=$lead[0]['id']?></span>
+				<h5 class="text-dark font-weight-bold mt-2 mr-2">Detalle del dato </h5><span class="text-dark-75 font-weight-bolder label label-xl bg-transparent border border-dark label-inline font-size-xg"><?= $lead[0]['id'] ?></span>
 				<!--end::Title-->
 			</div>
 			<!--end::Details-->
@@ -145,8 +145,8 @@ $courses_list = $db2->fetchAll();
 						</div> -->
 						<div class="card-footer">
 							<a href="#" class="btn btn-primary font-weight-bold mr-2" data-toggle="modal" data-target="#modal">Actualizar estado</a>
-							<?php 
-								//PARA HABILITAR LA EDICION DE LEAD, access === 0
+							<?php
+							//PARA HABILITAR LA EDICION DE LEAD, access === 0
 							if ($userData[0]['access'] === '999') { ?>
 								<a href="./index.php?edit=<?= $lead[0]['id'] ?>" class="btn btn-secondary font-weight-bold mr-2">Editar dato</a>
 							<?php } ?>
@@ -250,8 +250,8 @@ $courses_list = $db2->fetchAll();
 				<div class="form-group row">
 					<div class="col">
 						<select class="form-control mb-4" id="selectState" onchange="comboChange(this)">
-							<option selected disabled>-- Seleccione --</option>
-							<?php if ($lead[0]['label'] == '8') {  
+							<option selected disabled required>-- Seleccione --</option>
+							<?php if ($lead[0]['label'] == '8') {
 								echo '
 									<option value="2">Interesado</option>
 									<option value="6">No contactado</option>
@@ -285,7 +285,7 @@ $courses_list = $db2->fetchAll();
 									<option value="4" class="font-weight-bold text-danger">No interesado</option>
 									';
 							}
-							
+
 							if ($lead[0]['label'] === '2') { //interesado
 								echo '
 									<option value="2">Interesado</option>
@@ -326,7 +326,7 @@ $courses_list = $db2->fetchAll();
 				</div>
 				<div class="form-group row">
 					<span class="col-6" id="contactTimeField" style="display: none;">
-						<input class="form-control" type="datetime-local" id="datetime-call-later" />
+						<input class="form-control" type="datetime-local" id="datetime-call-later" required />
 					</span>
 					<div class="col-6 text-right">
 						<button href="#" class="btn btn-light-primary font-weight-bold" onclick="sendMessage('<?= $userData[0]['name'] ?>','<?= $userData[0]['lastname'] ?>','<?= $userData[0]['id'] ?>','<?= $lead[0]['id'] ?>','<?= $userData[0]['img'] ?>',
@@ -377,7 +377,7 @@ $courses_list = $db2->fetchAll();
 												<div class="form-group row">
 													<label class="col-2 col-form-label">Apellido</label>
 													<div class="col-4">
-														<input class="form-control" type="text" id="lastname1" />
+														<input class="form-control" type="text" id="lastname1" required />
 													</div>
 												</div>
 												<div class="form-group row">
@@ -389,19 +389,19 @@ $courses_list = $db2->fetchAll();
 												<div class="form-group row">
 													<label for="example-search-input" class="col-2 col-form-label">Telefono</label>
 													<div class="col-4">
-														<input class="form-control" type="search" id="phone1" />
+														<input class="form-control" type="number" numeric min='0' id="phone1" required />
 													</div>
 												</div>
 												<div class="form-group row">
 													<label for="example-email-input" class="col-2 col-form-label">Email</label>
 													<div class="col-4">
-														<input class="form-control" type="email" id="email1" />
+														<input class="form-control" type="email" id="email1" required />
 													</div>
 												</div>
 												<div class="form-group row">
 													<label for="exampleSelectd" class="col-2 col-form-label">Pais</label>
 													<div class="col-4">
-														<select class="form-control" id="country1">
+														<select class="form-control" id="country1" required>
 															<option selected disabled>-- Seleccione --</option>
 															<option value="argentina">Argentina</option>
 															<option value="chile">Chile</option>
@@ -412,7 +412,7 @@ $courses_list = $db2->fetchAll();
 												<div class="form-group row">
 													<label for="example-url-input" class="col-2 col-form-label">Curso</label>
 													<div class="col-6">
-														<select class="form-control" id="course1">
+														<select class="form-control" id="course1" required>
 															<option selected disabled>-- Seleccione --</option>
 															<?php foreach ($courses_list as $course) { ?>
 																<option value="<?= $course['id_curso'] ?>"><?= $course['nombre'] ?></option>
@@ -423,7 +423,7 @@ $courses_list = $db2->fetchAll();
 												<div class="form-group row">
 													<label class="col-2 col-form-label">Cantidad de cuotas</label>
 													<div class="col-4">
-														<input class="form-control" type="text" id="installments1" required numeric step="1" min="1" />
+														<input class="form-control" type="text" id="installments1" required numeric step="1" min="1" required />
 													</div>
 												</div>
 												<div class="form-group row">
@@ -479,7 +479,13 @@ $courses_list = $db2->fetchAll();
 		let text = $('#messageArea').val();
 		let str = $('#datetime-call-later').val();
 		let substrings = str.split('T');
-		if ((select > 0) && (text.length > 20)) {
+		let msgState = false;
+
+		if (((select == 0) || (select == 7)) || ((select > 0) && (text.length > 20))) {
+			msgState = true;
+		}
+
+		if (msgState) {
 			var info = {
 				'message': $('#messageArea').val(),
 				'name': name,
@@ -634,75 +640,108 @@ $courses_list = $db2->fetchAll();
 						</li>`);
 	}
 
+	function checkForm(pointer) {
+		let formNumber = 1;
+		let check = true;
+
+		for (let i = counter; i >= 0; i--) {
+			check = ($(`#name${formNumber}`).val() == null || $(`#name${formNumber}`).val() == "") ? false : true;
+			check = ($(`#lastname${formNumber}`).val() == null || $(`#lastname${formNumber}`).val() == "") ? false : true;
+			check = ($(`#username${formNumber}`).val() == null || $(`#username${formNumber}`).val() == "") ? false : true;
+			check = ($(`#phone${formNumber}`).val() == null || $(`#phone${formNumber}`).val() == "") ? false : true;
+			check = ($(`#email${formNumber}`).val() == null || $(`#email${formNumber}`).val() == "") ? false : true;
+			check = ($(`#country${formNumber}`).val() == null || $(`#country${formNumber}`).val() == "") ? false : true;
+			check = ($(`#course${formNumber}`).val() == null || $(`#course${formNumber}`).val() == "") ? false : true;
+			check = ($(`#installments${formNumber}`).val() == null || $(`#installments${formNumber}`).val() == "") ? false : true;
+			check = ($(`#total_amount${formNumber}`).val() == null || $(`#total_amount${formNumber}`).val() == "") ? false : true;
+			formNumber++;
+		}
+		return check;
+	}
+
 	function finishPromise(id_user, id_lead, img) {
 		let pointer = 2;
 		counter--;
-		let str = $('#datetime-call-later').val();
-		let substrings = str.split('T');
-		for (let i = counter; i > 0; i--) {
+		if (checkForm(pointer)) {
+			let str = $('#datetime-call-later').val();
+			let substrings = str.split('T');
+			for (let i = counter; i > 0; i--) {
+				var info = {
+					'name': $(`#name${pointer}`).val(),
+					'lastname': $(`#lastname${pointer}`).val(),
+					'username': $(`#username${pointer}`).val(),
+					'phone': $(`#phone${pointer}`).val(),
+					'email': $(`#email${pointer}`).val(),
+					'country': $(`#country${pointer}`).val(),
+					'course_id': $(`#course${pointer}`).val(),
+					'installments': $(`#installments${pointer}`).val(),
+					'total_amount': $(`#total_amount${pointer}`).val(),
+					'course_name': $(`#course${pointer}`).text(),
+					'label': 7,
+					'created_by': '<?= $userId ?>',
+					'group_sale': id_lead,
+					'contactDay': substrings[0],
+					'contactTime': substrings[1]
+				}
+				$.ajax({
+					type: 'get',
+					url: './functions/addNewLead.php',
+					data: info,
+					success: function(response) {
+						var info = {
+							'user_id': id_user,
+							'status': 'modified',
+							'lead_id': response
+						}
+						$.ajax({
+							type: 'get',
+							url: './functions/assignById.php',
+							data: info,
+							success: function(response) {}
+						});
+					}
+				});
+			}
+			pointer++;
+
 			var info = {
-				'name': $(`#name${pointer}`).val(),
-				'lastname': $(`#lastname${pointer}`).val(),
-				'username': $(`#username${pointer}`).val(),
-				'phone': $(`#phone${pointer}`).val(),
-				'email': $(`#email${pointer}`).val(),
-				'country': $(`#country${pointer}`).val(),
-				'course_id': $(`#course${pointer}`).val(),
-				'installments': $(`#installments${pointer}`).val(),
-				'total_amount': $(`#total_amount${pointer}`).val(),
-				'course_name': $(`#course${pointer}`).text(),
-				'label': 7,
-				'created_by': '<?= $userId ?>',
+				'message': $('#messageArea').val(),
+				'label': $('#selectState').val(),
+				'name': $(`#name1`).val(),
+				'lastname': $(`#lastname1`).val(),
+				'username': $(`#username1`).val(),
+				'id_user': id_user,
+				'id_lead': id_lead,
+				'img': img,
+				'phone': $(`#phone1`).val(),
+				'email': $(`#email1`).val(),
+				'country': $(`#country1`).val(),
+				'course_id': $(`#course1`).val(),
+				'course_name': $(`#course1 option:selected`).text(),
+				'installments': $(`#installments1`).val(),
+				'total_amount': $(`#total_amount1`).val(),
 				'group_sale': id_lead,
 				'contactDay': substrings[0],
 				'contactTime': substrings[1]
 			}
-			pointer++;
 			$.ajax({
 				type: 'get',
-				url: './functions/addNewLead.php',
+				url: './functions/changeLeadState.php',
 				data: info,
 				success: function(response) {
-					Swal.fire({
-						text: "Promesa creada con exito",
-						icon: "success",
-						buttonsStyling: false,
-						showConfirmButton: false,
-						timer: 2000
-					})
+					$('#messageArea').val("");
+					location.href = "./index.php";
 				}
 			});
+		} else {
+			Swal.fire({
+				text: "Hay campos sin completar",
+				icon: "warning",
+				buttonsStyling: false,
+				showConfirmButton: false,
+				timer: 3000
+			})
 		}
-
-		var info = {
-			'message': $('#messageArea').val(),
-			'label': $('#selectState').val(),
-			'name': $(`#name1`).val(),
-			'lastname': $(`#lastname1`).val(),
-			'username': $(`#username1`).val(),
-			'id_user': id_user,
-			'id_lead': id_lead,
-			'img': img,
-			'phone': $(`#phone1`).val(),
-			'email': $(`#email1`).val(),
-			'country': $(`#country1`).val(),
-			'course_id': $(`#course1`).val(),
-			'course_name': $(`#course1 option:selected`).text(),
-			'installments': $(`#installments1`).val(),
-			'total_amount': $(`#total_amount1`).val(),
-			'group_sale': id_lead,
-			'contactDay': substrings[0],
-			'contactTime': substrings[1]
-		}
-		$.ajax({
-			type: 'get',
-			url: './functions/changeLeadState.php',
-			data: info,
-			success: function(response) {
-				$('#messageArea').val("");
-				location.href = "./index.php";
-			}
-		});
 	}
 
 	function comboChange(combo) {

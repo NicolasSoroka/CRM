@@ -1,6 +1,12 @@
-<?php //Route controller
+<?php
 require "./globals/Database.php";
 session_start();
+
+if (!isset($_SESSION['logged_crm'])) {
+    header("Location: login.php");
+    exit;
+}
+
 $db = Database::getInstance();
 $userId = $_SESSION['user']['id'];
 $route = '_main.php';
@@ -42,10 +48,12 @@ if (isset($_GET['page'])) {
 //SALES-VIEW
 if (isset($_GET['page'])) {
 	if ($_GET['page'] == 'sales/_sales-view') {
-		$db->query("SELECT sales.*, leads.total_amount, leads.country, leads.group_sale, users.name, users.lastname, leads.net_price, leads.total_amount, leads.course, leads.name AS client_name, leads.lastname AS client_lastname, leads.id AS id_sale
-					FROM sales, leads, users
-					where sales.id_lead = leads.id AND sales.id_user = users.id");
+		$db->query("SELECT leads.id, leads.course, leads.country, leads.total_amount, leads.proof_payment, leads.net_price, leads.name AS client_name, leads.lastname AS client_lastname, users.name, users.lastname, users.id AS user_id, DATE(sales.sale_date) AS sale_date, sales.id_user, sales.id_lead FROM leads, users, sales WHERE sales.id_lead = leads.id AND sales.id_user = users.id  
+		ORDER BY `sales`.`sale_date` DESC");
 		$sales = $db->fetchAll();
+
+		$db->query("SELECT DISTINCT users.name, users.lastname, users.id FROM users,sales WHERE users.id = sales.id_user");
+		$users = $db->fetchAll();
 	}
 }
 
@@ -123,13 +131,24 @@ if ($route == '_main.php') {
 
 //users-stats
 if (isset($_GET['page'])) {
-	if ($_GET['page'] == 'users/_users-stats') {
-		$route = 'users/_users-stats.php';
+	if ($_GET['page'] == 'stats/_users-stats') {
+		$route = 'stats/_users-stats.php';
 		$db->getUsers();
 		$users = $db->fetchAll();
 		$db->query('SELECT *, COUNT(id_user) AS sales_count FROM sales GROUP BY id_user');
 		$sales = $db->fetchAll();
 	}
+}
+
+//sales-detail
+if (isset($_GET['user_sales'])) {
+		$route = 'stats/_sales-detail.php';
+		$user_sales_id = $_GET['user_sales'];
+		$db->query("SELECT leads.id, leads.course, leads.country, leads.total_amount, leads.net_price, leads.name AS client_name, leads.lastname AS client_lastname, users.name, users.lastname, users.id AS user_id, DATE(sales.sale_date) AS sale_date, sales.id_user, sales.id_lead
+		FROM leads, users, sales
+		WHERE sales.id_lead = leads.id AND sales.id_user = users.id AND users.id = '$user_sales_id'
+		ORDER BY `sales`.`sale_date` DESC");
+		$sales = $db->fetchAll();
 }
 
 //REPORT

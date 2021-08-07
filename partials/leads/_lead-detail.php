@@ -517,7 +517,7 @@ $courses_list = $db2->fetchAll();
 								success: function(response) {}
 							});
 						}
-						location.href = "./index.php";
+						window.location = "index.php?timestamp=" + (new Date()).getTime();
 					}
 				});
 			} else { //EN CASO DE PROMISE SE MUESTRA EL MODAL CON DATA DEL LEAD.
@@ -730,7 +730,7 @@ $courses_list = $db2->fetchAll();
 				data: info,
 				success: function(response) {
 					$('#messageArea').val("");
-					location.href = "./index.php";
+					window.location = "index.php?timestamp=" + (new Date()).getTime();
 				}
 			});
 		} else {

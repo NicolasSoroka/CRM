@@ -188,7 +188,7 @@ if ($ok == 0) {
                 FROM leads
                 LEFT JOIN assigned
                 ON leads.id = assigned.id_lead  
-                WHERE assigned.id_lead is Null AND leads.group_sale = '0'");
+                WHERE assigned.id_lead is Null AND leads.group_sale = '0' AND leads.label IN (1,2,5,6,7,8)");
 
     $leads_ok = $db->fetchAll();
     assignLeads($leads_ok[0]['id'], $userId, $user_counter['lead_counter']);

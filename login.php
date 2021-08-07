@@ -2,7 +2,7 @@
     require "./globals/Database.php";
     session_start();
     
-    if(isset($_SESSION['logged'])) {
+    if(isset($_SESSION['logged_crm)'])) {
       header("Location: index.php");
       exit;
     }
@@ -15,7 +15,7 @@
      
         $db->query("SELECT * FROM users WHERE username = '$username' AND password = '$pwd' LIMIT 1");
         if ($db->numRows() == 1) {
-            $_SESSION['logged'] = true;
+            $_SESSION['logged_crm'] = true;
             $_SESSION['user'] = $db->fetch();
             header("Location: index.php");
             exit;

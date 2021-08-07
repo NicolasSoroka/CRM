@@ -3,21 +3,24 @@
 • Al agregar promesa multiple, asignar en promesa los agregados.
 • al crear promesa multiple, no se esta cargando contactDay y Course
 • al crear promesa multiple, asignar al vendedor las multiples promesas.
+
+
+• MAIN Promesas x semana y mes en main
 • Traer view con info de los alumnos y sus cursos.
 • Promesa con multiple curso vuevle (tener en cuenta que al pagar una cuota debe computar en todos los casos.)
+• En estadisticas/vendedores -> al hacer click en un vendedor desplegar modal con detalle de bruto/neto/curso vendido  y poder filtrar por fecha
+        Monetizacion (cuanto $$ acumula cada vendedor, $$ total (fitlrado por dia,semana,mes))
 
-• ok las funciones de tolerancia 30'' y 24h en NC(6), aplicarla al server usando cron.
+• Buscadores
+    agregar buscador por numero de lead en Ventas
+    agregar enter para buscar
+
+para la venta directa desde escuelasiade, crear un user dedicado a eso y se le asignan las promesas por query.
+
+• se rompio el cron, checkear.
 • registerStudent.php    chequear todos los tipos de dato y los casos de error. Revisar cuantos modulos se estan entregando y la opcion de curso completo y/o remoto.
 • Revisar la carga automatica desde los formularios de las paginas.
 • mail de aviso de pago al alumno
-
-Estadisticas
-• Ver ventas (filtrar por vendedor)
-• Ver ranking de ventas
-• Monetizacion (cuanto $$ acumula cada vendedor, $$ total (fitlrado por dia,semana,mes))
-• Ventas por cursos.
-• Promesas x semana y mes en main
-
 
     quasi-promesa (8) pide fecha
     promesa 7
@@ -28,17 +31,3 @@ Estadisticas
     interesado 2  (se debe fijar fecha a 5 dias del dia actual)
     nuevos 1
     reasignado 0
-
-
-    lead wspvendedor asiganr directamente
-    estado :no interesado: no lo esta quitando, falta un if en la funcion sendmessage() dentro de lead-detail
-    check comprobante en vista ventas.
-
-    para la venta directa desde escuelasiade, crear un user dedicado a eso y se le asignan las promesas por query.
-
-
-    MAIN ///
-
-    venta por dia semana mes, 
-    ventas por dia semana mes de vendedor directo
-    hacer vista igual a stats-ventas_vendedor pero para los valores brutos por dia/semana/mes

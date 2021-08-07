@@ -1,0 +1,63 @@
+
+
+
+<script>
+	<?php //array traido desde PHP pasado a JS para utilizar en el buscador
+	$sales_js = json_encode($sales);
+	echo "let leads_array = " . $sales_js . ";\n";
+	?>
+
+	function swalfire(text) {
+		Swal.fire({
+			text,
+			icon: "warning",
+			buttonsStyling: true,
+			showConfirmButton: true,
+			timer: 4000
+		})
+	}
+
+	function searchDate() {
+		let dateFrom = $('#date-from').val();
+		let dateTo = $('#date-to').val();
+
+		if (dateTo === '') {
+			alert('Ingrese una fecha limite.');
+			return;
+		}
+		if (dateTo < dateFrom) {
+			alert('La fecha limite no puede ser anterior a la inicial.');
+			return;
+		}
+		let userSelected = $('#user-filter').val();
+
+		leads_array.forEach(lead => {
+			if (lead['user_id'] === userSelected || userSelected === '0') {
+				if (lead['sale_date'] >= dateFrom && lead['sale_date'] <= dateTo) {
+					$('#' + lead['id']).show();
+				} else {
+					$('#' + lead['id']).hide();
+				}
+			} else {
+				return;
+			}
+
+		});
+	}
+</script>
+
+
+
+
+//sales-stats
+if (isset($_GET['page'])) {
+	if ($_GET['page'] == 'stats/_sales-stats') {
+		$route = 'stats/_sales-stats.php';
+		$db->query("SELECT leads.id, leads.course, leads.country, leads.total_amount, leads.net_price, users.name, users.lastname, users.id AS user_id, DATE(sales.sale_date) AS sale_date FROM leads, users, sales WHERE users.id = sales.id_user AND sales.id_lead = leads.id  
+		ORDER BY `sales`.`sale_date` DESC");
+		$sales = $db->fetchAll();
+
+		$db->query("SELECT DISTINCT users.name, users.lastname, users.id FROM users,sales WHERE users.id = sales.id_user");
+		$users = $db->fetchAll();
+	}
+}

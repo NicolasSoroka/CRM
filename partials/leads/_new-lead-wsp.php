@@ -29,12 +29,11 @@
 			</div>
 
 			<?php if ($userData[0]['access'] == 0) { ?>
-				<input type="hidden" id="testigo" value="1">
 				<div class="form-group row">
 					<label class="col-1 col-form-label">Asignar a</label>
 					<div class="col-4">
 						<select class="form-control" id="userSelect">
-							<option selected disabled>-- Seleccione vendedor --</option>
+							<option selected>No asignar</option>
 							<?php foreach ($users as $user) { ?>
 								<option value="<?= $user['id'] ?>"><?= $user['name'] . ' ' . $user['lastname'] ?></option>
 							<?php } ?>
@@ -45,7 +44,7 @@
 
 			<div class="form-row mt-4">
 				<div class="col-6">
-					<button type="button" onclick="newLead()" class="btn btn-primary mr-2">Cargar lead</button>
+					<button type="button" onclick="newLead(<?= $userData[0]['access']?>)" class="btn btn-primary mr-2">Cargar lead</button>
 				</div>
 			</div>
 		</div>
@@ -54,7 +53,7 @@
 <!--end::Card-->
 
 <script>
-	function newLead() {
+	function newLead(user) {
 		Swal.fire({
 			title: "Esta por cargar un nuevo lead",
 			icon: "warning",
@@ -78,8 +77,8 @@
 							'user_id': $('#userSelect').val(),
 							'lead_id': lead_id
 						}
-						let ok = $('#testigo').val();
-						if (ok == 1) {
+						if (user == 1) 	info.user_id = '<?=$userId?>';
+						if (user === 0 || user === 1) {
 							$.ajax({
 								type: 'get',
 								url: './functions/assignById.php',

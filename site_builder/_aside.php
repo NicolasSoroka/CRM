@@ -62,6 +62,30 @@
 						</a>
 					</li>
 
+					<li class="menu-item" aria-haspopup="true">
+						<a href="?page=reviews" class="menu-link">
+							<span class="menu-text">Reviews</span>
+						</a>
+					</li>
+
+					<li class="menu-item" aria-haspopup="true">
+						<a href="?page=certificaciones" class="menu-link">
+							<span class="menu-text">Certificaciones</span>
+						</a>
+					</li>
+
+					<li class="menu-item" aria-haspopup="true">
+						<a href="?page=componentes" class="menu-link">
+							<span class="menu-text">Componentes</span>
+						</a>
+					</li>
+
+					<li class="menu-item" aria-haspopup="true">
+						<a href="?page=footer" class="menu-link">
+							<span class="menu-text">Footer</span>
+						</a>
+					</li>
+
 				<?php } ?>
 					<li class="menu-item" aria-haspopup="true">
 						<a href="../index.php" class="menu-link">

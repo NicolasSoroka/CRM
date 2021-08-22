@@ -21,6 +21,40 @@ if (isset($_GET['page'])) {
 	}
 }
 
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'reviews') {
+		$route = '_reviews.php';
+		$db->query("SELECT * FROM card_reputation");
+		$cards = $db->fetchAll();
+	}
+}
+
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'certificaciones') {
+		$route = '_certificaciones.php';
+		$db->query("SELECT * FROM certificaciones");
+		$certificaciones = $db->fetchAll();
+	}
+}
+
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'componentes') {
+		$route = '_site_components.php';
+		$db->query("SELECT * FROM site_components");
+		$components = $db->fetchAll();
+	}
+}
+
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'footer') {
+		$route = '_footer.php';
+		$db->query("SELECT * FROM site_footer");
+		$footer = $db->fetchAll();
+		$db->query("SELECT * FROM site_footer_buttons");
+		$buttons = $db->fetchAll();
+	}
+}
+
 
 
 ?>

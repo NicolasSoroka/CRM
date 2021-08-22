@@ -41,11 +41,11 @@
 							<div class="symbol symbol-100 symbol-light">
 								<label for="file-input<?= $banner['id'] ?>">
 									<span class="symbol-label">
-										<img src="./images/banner/<?= $banner['imagen'] ?>" class="img-thumbnail" alt="" />
+										<img src="./images/banner_caracteristicas/<?= $banner['imagen'] ?>" class="img-thumbnail" alt="" />
 									</span>
 								</label>
 							</div>
-							<form id="frmImage<?= $banner['id'] ?>" onsubmit="return false">
+							<form id="frmImage_<?= $banner['id'] ?>" onsubmit="return false">
 								<input type="file" name="image" accept=".png, .jpg, .jpeg" style="display: none;" id="file-input<?= $banner['id'] ?>" onchange="uploadImage(<?= $banner['id'] ?>)"">
 							</form>
 						</td>
@@ -102,7 +102,8 @@
 							url: './functions/builder.php',
 							data: {
 								item_id: id,
-								function: 'delete_banner_item'
+								function: 'delete_item',
+								table : 'banner_caracteristicas'  
 							},
 							success: function(response) {
 								location.reload();
@@ -128,9 +129,9 @@
 			}
 
 			function uploadImage(id) {
-				fetch(`./functions/builder.php?function=save_banner_image&item_id=${id}`, {
+				fetch(`./functions/builder.php?table=banner_caracteristicas&function=save_image&item_id=${id}`, {
 					method: "POST",
-					body: new FormData(document.getElementById('frmImage' + id))
+					body: new FormData(document.getElementById('frmImage_' + id))
 				}).then(function() {
 					location.reload();
 				})

@@ -14,8 +14,6 @@
 		<!--begin::Toggle-->
 		<button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
 			<span class="svg-icon svg-icon svg-icon-xl">
-
-				<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<polygon points="0 0 24 0 24 24 0 24" />
@@ -193,23 +191,6 @@
 						</a>
 					</li>
 
-					<!-- <li class="menu-item" aria-haspopup="true">
-						<a href="?page=payment/_new-payment" class="menu-link">
-							<span class="svg-icon menu-icon">
-								<span class="svg-icon svg-icon-primary svg-icon-2x">
-										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-											<rect x="0" y="0" width="24" height="24" />
-											<circle fill="#000000" opacity="0.3" cx="20.5" cy="12.5" r="1.5" />
-											<rect fill="#000000" opacity="0.3" transform="translate(12.000000, 6.500000) rotate(-15.000000) translate(-12.000000, -6.500000) " x="3" y="3" width="18" height="7" rx="1" />
-											<path d="M22,9.33681558 C21.5453723,9.12084552 21.0367986,9 20.5,9 C18.5670034,9 17,10.5670034 17,12.5 C17,14.4329966 18.5670034,16 20.5,16 C21.0367986,16 21.5453723,15.8791545 22,15.6631844 L22,18 C22,19.1045695 21.1045695,20 20,20 L4,20 C2.8954305,20 2,19.1045695 2,18 L2,6 C2,4.8954305 2.8954305,4 4,4 L20,4 C21.1045695,4 22,4.8954305 22,6 L22,9.33681558 Z" fill="#000000" />
-										</g>
-									</svg>
-								</span>
-							</span>
-							<span class="menu-text">Generar pagos</span>
-						</a>
-					</li> -->
-					<!--end::Menu Nav ADM-->
 				<?php } else { ?>
 					<!--begin::Menu Nav USR-->
 					<ul class="menu-nav">
@@ -243,26 +224,40 @@
 					<?php } ?>
 					<li class="menu-item" aria-haspopup="true">
 						<a href="?page=leads/_new-lead-wsp" class="menu-link">
-							<span class="socicon-whatsapp icon-xl text-success mr-5 pt-1">
+							<span class="socicon-whatsapp icon-xl text-primary mr-4 pt-1">
 							</span>
 							<span class="menu-text">Cargar Whatsapp</span>
 						</a>
 					</li>
 					<li class="menu-item" aria-haspopup="true">
 						<a href="?report=_report" class="menu-link">
+							<span class="svg-icon menu-icon">
+								<span class="svg-icon svg-icon-primary svg-icon-2x">
+									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											<rect x="0" y="0" width="24" height="24" />
+											<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+											<rect fill="#000000" x="11" y="7" width="2" height="8" rx="1" />
+											<rect fill="#000000" x="11" y="16" width="2" height="2" rx="1" />
+										</g>
+									</svg>
+								</span>
+							</span>
+							<span class="menu-text">Reportar un problema</span>
+						</a>
+					</li>
+					<li class="menu-item" aria-haspopup="true">
+						<a href="../crm/site_builder/index.php" class="menu-link">
 						<span class="svg-icon menu-icon">
 							<span class="svg-icon svg-icon-primary svg-icon-2x">
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
-										<circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
-										<rect fill="#000000" x="11" y="7" width="2" height="8" rx="1" />
-										<rect fill="#000000" x="11" y="16" width="2" height="2" rx="1" />
+										<path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) " />
+										<rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1" />
 									</g>
-								</svg>
-							</span>
-							</span>
-							<span class="menu-text">Reportar un problema</span>
+								</svg></span></span>
+							<span class="menu-text">Editor de sitio</span>
 						</a>
 					</li>
 					</ul>

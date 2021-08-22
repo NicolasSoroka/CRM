@@ -3,7 +3,8 @@
 • Al agregar promesa multiple, asignar en promesa los agregados.
 • al crear promesa multiple, no se esta cargando contactDay y Course
 • al crear promesa multiple, asignar al vendedor las multiples promesas.
-
+saber tiempo que tienen el dato?
+metodo de pago?
 
 • MAIN Promesas x semana y mes en main
 • Traer view con info de los alumnos y sus cursos.

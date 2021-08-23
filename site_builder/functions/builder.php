@@ -78,7 +78,44 @@ switch ($function) {
         $db->query("UPDATE `site_footer_buttons` SET `button`='$button',`link`='$link' WHERE id = '$item_id'");
         exit;
 
+    //SITE_INSTITUTIONAL
+    case 'save_institutional_text':
+        $title = (isset($_GET['title'])) ? $db->escape($_GET['title']) : 'Sin informacion';
+        $subtitle1 = (isset($_GET['subtitle1'])) ? $db->escape($_GET['subtitle1']) : 'Sin informacion';
+        $subtitle2 = (isset($_GET['subtitle2'])) ? $db->escape($_GET['subtitle2']) : 'Sin informacion';
+        $subtitle3 = (isset($_GET['subtitle3'])) ? $db->escape($_GET['subtitle3']) : 'Sin informacion';
+        $subtitle4 = (isset($_GET['subtitle4'])) ? $db->escape($_GET['subtitle4']) : 'Sin informacion';
+        $db->query("UPDATE `site_institutional` SET `title`='$title', `subtitle1`='$subtitle1', `subtitle2`='$subtitle2', `subtitle3`='$subtitle3', `subtitle4`='$subtitle4'");
+        exit;
 
-        
+
+    //SITE_MAIN
+    case 'save_main_text':
+        $caracteristica = (isset($_GET['caracteristica'])) ? $db->escape($_GET['caracteristica']) : 'Sin informacion';
+        $main_title = (isset($_GET['main_title'])) ? $db->escape($_GET['main_title']) : 'Sin informacion';
+        $main_information1 = (isset($_GET['main_information1'])) ? $db->escape($_GET['main_information1']) : 'Sin informacion';
+        $main_information2 = (isset($_GET['main_information2'])) ? $db->escape($_GET['main_information2']) : 'Sin informacion';
+        $main_information3 = (isset($_GET['main_information3'])) ? $db->escape($_GET['main_information3']) : 'Sin informacion';
+        $main_button = (isset($_GET['main_button'])) ? $db->escape($_GET['main_button']) : 'Sin informacion';
+        $main_button_link = (isset($_GET['main_button_link'])) ? $db->escape($_GET['main_button_link']) : 'Sin informacion';
+        $db->query("UPDATE `site_main` SET `main_title`='$main_title', `main_information1`='$main_information1', `main_information2`='$main_information2', `main_information3`='$main_information3', `main_button`='$main_button', `main_button_link`='$main_button_link'");
+        $db->query("UPDATE `site_main_caracteristicas` SET `caracteristica`='$caracteristica' WHERE id = '$item_id'");
+        exit;
+
+    case 'add_site_main_caracteristicas_item':
+        $db->query("INSERT INTO `site_main_caracteristicas`(`caracteristica`, `imagen`) VALUES ('Nuevo valor', 'sin informacion')");
+        exit;
+
+    //NAVBAR
+    case 'save_navbar_text':
+        $button1 = (isset($_GET['button1'])) ? $db->escape($_GET['button1']) : 'Sin informacion';
+        $button2 = (isset($_GET['button2'])) ? $db->escape($_GET['button2']) : 'Sin informacion';
+        $button3 = (isset($_GET['button3'])) ? $db->escape($_GET['button3']) : 'Sin informacion';
+        $button4 = (isset($_GET['button4'])) ? $db->escape($_GET['button4']) : 'Sin informacion';
+        $button5 = (isset($_GET['button5'])) ? $db->escape($_GET['button5']) : 'Sin informacion';
+        $button6 = (isset($_GET['button6'])) ? $db->escape($_GET['button6']) : 'Sin informacion';
+        $button7 = (isset($_GET['button7'])) ? $db->escape($_GET['button7']) : 'Sin informacion';
+        $db->query("UPDATE `site_navbar` SET `button1`='$button1',`button2`='$button2',`button3`='$button3',`button4`='$button4',`button5`='$button5',`button6`='$button6',`button7`='$button7'");
+        exit;
 }
 ?>

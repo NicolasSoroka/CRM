@@ -55,7 +55,31 @@ if (isset($_GET['page'])) {
 	}
 }
 
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'institucional') {
+		$route = '_institutional.php';
+		$db->query("SELECT * FROM site_institutional");
+		$institutional = $db->fetchAll();
+	}
+}
 
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'main') {
+		$route = '_site_main.php';
+		$db->query("SELECT * FROM site_main");
+		$main = $db->fetchAll();
+		$db->query("SELECT * FROM site_main_caracteristicas");
+		$caracteristicas = $db->fetchAll();
+	}
+}
+
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'navbar') {
+		$route = '_navbar.php';
+		$db->query("SELECT * FROM site_navbar");
+		$navbar = $db->fetchAll();
+	}
+}
 
 ?>
 

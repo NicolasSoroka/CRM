@@ -86,6 +86,24 @@
 						</a>
 					</li>
 
+					<li class="menu-item" aria-haspopup="true">
+						<a href="?page=institucional" class="menu-link">
+							<span class="menu-text">Institucional</span>
+						</a>
+					</li>
+
+					<li class="menu-item" aria-haspopup="true">
+						<a href="?page=main" class="menu-link">
+							<span class="menu-text">Principal</span>
+						</a>
+					</li>
+
+					<li class="menu-item" aria-haspopup="true">
+						<a href="?page=navbar" class="menu-link">
+							<span class="menu-text">Navbar</span>
+						</a>
+					</li>
+
 				<?php } ?>
 					<li class="menu-item" aria-haspopup="true">
 						<a href="../index.php" class="menu-link">

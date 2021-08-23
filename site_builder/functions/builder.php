@@ -88,7 +88,6 @@ switch ($function) {
         $db->query("UPDATE `site_institutional` SET `title`='$title', `subtitle1`='$subtitle1', `subtitle2`='$subtitle2', `subtitle3`='$subtitle3', `subtitle4`='$subtitle4'");
         exit;
 
-
     //SITE_MAIN
     case 'save_main_text':
         $caracteristica = (isset($_GET['caracteristica'])) ? $db->escape($_GET['caracteristica']) : 'Sin informacion';
@@ -116,6 +115,36 @@ switch ($function) {
         $button6 = (isset($_GET['button6'])) ? $db->escape($_GET['button6']) : 'Sin informacion';
         $button7 = (isset($_GET['button7'])) ? $db->escape($_GET['button7']) : 'Sin informacion';
         $db->query("UPDATE `site_navbar` SET `button1`='$button1',`button2`='$button2',`button3`='$button3',`button4`='$button4',`button5`='$button5',`button6`='$button6',`button7`='$button7'");
+        exit;
+
+    //SITE_SCHOOLS
+    case 'add_school_item':
+        $db->query("INSERT INTO `site_schools`(`name`, `link`) VALUES ('Nuevo item','Sin informacion')");
+        exit;
+
+    case 'save_school_text':
+        $name = (isset($_GET['name'])) ? $db->escape($_GET['name']) : 'Sin informacion';
+        $link = (isset($_GET['link'])) ? $db->escape($_GET['link']) : 'Sin informacion';
+        $db->query("UPDATE `site_schools` SET `name`='$name',`link`='$link' WHERE id = '$item_id'");
+        exit;
+
+    //COURSES
+    case 'add_course':
+        $db->query("INSERT INTO `courses`(`description`, `title`, `content`, `international`, `nuevo`, `valoracion`, `precio`, `duracion`)
+                    VALUES ('Curso nuevo', 'titulo', 'contenido', '0', '0', '5.0', '9999', '99.0')");
+        exit;
+
+    case 'save_course_text':
+        $title = (isset($_GET['title'])) ? $db->escape($_GET['title']) : 'Sin informacion';
+        $precio = (isset($_GET['precio'])) ? $db->escape($_GET['precio']) : 'Sin informacion';
+        $duracion = (isset($_GET['duracion'])) ? $db->escape($_GET['duracion']) : 'Sin informacion';
+        $valoracion = (isset($_GET['valoracion'])) ? $db->escape($_GET['valoracion']) : 'Sin informacion';
+        $description = (isset($_GET['description'])) ? $db->escape($_GET['description']) : 'Sin informacion';
+        $content = (isset($_GET['content'])) ? $db->escape($_GET['content']) : 'Sin informacion';
+        $internacional = (isset($_GET['internacional'])) ? $db->escape($_GET['internacional']) : 'Sin informacion';
+        $nuevo = (isset($_GET['nuevo'])) ? $db->escape($_GET['nuevo']) : 'Sin informacion';
+
+        $db->query("UPDATE `courses` SET `description`='$description',`title`='$title',`content`='$content',`international`='$internacional',`nuevo`='$nuevo',`valoracion`='$valoracion',`precio`='$precio',`duracion`='$duracion' WHERE id = '$item_id'");
         exit;
 }
 ?>

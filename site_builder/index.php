@@ -81,6 +81,22 @@ if (isset($_GET['page'])) {
 	}
 }
 
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'escuelas') {
+		$route = '_site_schools.php';
+		$db->query("SELECT * FROM site_schools");
+		$schools = $db->fetchAll();
+	}
+}
+
+if (isset($_GET['page'])) {
+	if ($_GET['page'] === 'courses') {
+		$route = '_courses.php';
+		$db->query("SELECT * FROM courses");
+		$courses = $db->fetchAll();
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
